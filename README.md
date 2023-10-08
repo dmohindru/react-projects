@@ -2,6 +2,7 @@
 This repository contains collection of full stack react projects to capture my experiments and learnings.
 
 ### Projects
+---
 [Counter App](./counter-app) is just to practice following concepts.
 - Simple UI practice with material ui
 - Redux usage with react and typescipt
