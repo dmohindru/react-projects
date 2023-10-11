@@ -4,7 +4,7 @@ interface CounterValue {
     value: number;
 }
 
-interface CounterAction {
+export interface CounterAction {
     payload: number;
     type: string;
 }
@@ -27,7 +27,6 @@ const counterSlice = createSlice({
             state.value = initialCounterState.value;
         },
         incrementByValue: (state: CounterValue, value: CounterAction) => {
-            console.log(value.type);
             state.value += value.payload;
         }
 

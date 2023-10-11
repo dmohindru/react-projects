@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CounterAction } from './counterSlice';
 
 interface AlphaCounterValue {
     value: string;
@@ -25,9 +26,16 @@ const alphaCounterSlice = createSlice({
             } else {
                 state.value = String.fromCharCode(state.value.charCodeAt(0) - 1);
             }
+        },
+        resetAlpha: (state: AlphaCounterValue) => {
+            state.value = initialAlphaCounterState.value;
+        },
+        alphaIncrementByValue: (state: AlphaCounterValue, value: CounterAction) => {
+            state.value = String.fromCharCode(state.value.charCodeAt(0) + value.payload);
         }
+
     }
 });
 
-export const {incrementAlpha, decrementAlpha} = alphaCounterSlice.actions;
+export const {incrementAlpha, decrementAlpha, resetAlpha, alphaIncrementByValue} = alphaCounterSlice.actions;
 export const alphaCounterReducer = alphaCounterSlice.reducer;
