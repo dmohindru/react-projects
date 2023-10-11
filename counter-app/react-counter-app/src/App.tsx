@@ -1,15 +1,21 @@
 
-import { AlphaCounterValue } from "./components/AlphaCounterValue";
-import { Counter } from "./components/Counter";
-import { CounterValue } from "./components/CounterValue";
+
+import { Stack } from "@mui/material";
+import { AppHeader } from "./components/AppHeader";
+import { AlphaNumericCounter } from "./components/alpha-numeric-counter/AlphaNumericCounter";
+import { NumericCounter } from "./components/numeric-counter/NumericCounter";
+
 
 const App: React.FC = () => {
   return (
-      <div>
-        <Counter />
-        <CounterValue />
-        <AlphaCounterValue />
-      </div>
+      <>      
+        <AppHeader />
+          <Stack direction='row'>
+            <AlphaNumericCounter />
+            <NumericCounter />
+          </Stack>
+        </>
+      
   )
 }
 
