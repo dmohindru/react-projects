@@ -31,6 +31,7 @@ const alphaCounterSlice = createSlice({
             state.value = initialAlphaCounterState.value;
         },
         alphaIncrementByValue: (state: AlphaCounterValue, value: CounterAction) => {
+            // TODO improve logic here to wrap around to A if value crosses Z value
             state.value = String.fromCharCode(state.value.charCodeAt(0) + value.payload);
         }
 
