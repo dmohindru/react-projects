@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { counterReducer, increment, decrement, reset, incrementByValue } from "./slice/counterSlice";
 import { alphaCounterReducer, incrementAlpha, decrementAlpha, resetAlpha, alphaIncrementByValue } from "./slice/alphaCounterSlice";
+import { incrementNumericAsync, incrementAlphaNumericAsync } from "./thunks/incrementAsync";
 const store = configureStore({
     reducer: {
         counter: counterReducer,
@@ -11,4 +12,16 @@ const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export { store, increment, decrement, reset, incrementByValue, incrementAlpha, decrementAlpha, resetAlpha, alphaIncrementByValue };
+export { 
+    store, 
+    increment, 
+    decrement, 
+    reset, 
+    incrementByValue, 
+    incrementAlpha, 
+    decrementAlpha, 
+    resetAlpha, 
+    alphaIncrementByValue,
+    incrementNumericAsync,
+    incrementAlphaNumericAsync
+};

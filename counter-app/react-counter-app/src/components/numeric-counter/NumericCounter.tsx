@@ -1,10 +1,10 @@
 import { Paper, Stack, Typography, Button, Divider, ButtonGroup } from "@mui/material"
-import { increment, decrement, reset, incrementByValue } from "../../store";
-import { useDispatch } from "react-redux";
+import { increment, decrement, reset, incrementByValue, incrementNumericAsync } from "../../store";
 import { NumericCounterValue } from "./NumericCounterValue";
+import { useAppDispatch } from "../../hooks/useTypedSelector";
 
 export const NumericCounter: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch(); 
     return (
         <Paper sx={{padding: '32px', width: '30%', justifyContent: 'center', margin: '20px'}} elevation={4}>
             <Stack direction='column' spacing={1}>
@@ -15,6 +15,7 @@ export const NumericCounter: React.FC = () => {
                     <Button variant='contained' onClick={() => dispatch(decrement())}>Decrement</Button>
                     <Button variant='contained' onClick={() => dispatch(reset())}>Reset</Button>
                     <Button variant='contained' onClick={() => dispatch(incrementByValue(10))}>Increment by 10</Button>
+                    <Button variant='contained' onClick={() => dispatch(incrementNumericAsync({amount: 5, delay: 1000}))}>Increment Async +5</Button>
                 </ButtonGroup>
                 <Divider />
                 <NumericCounterValue />
