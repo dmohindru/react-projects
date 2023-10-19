@@ -1,10 +1,12 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Container, Typography, Box, Stack } from '@mui/material';
 import { GroceryInput } from './GroceryInput';
 export const GroceryTracker: React.FC = () => {
     return (
-        <Box maxWidth='sm' alignItems='center' justifyContent='center' display='flex'>
-            <Typography variant='h4'>Grocery Tracker</Typography>
-            <GroceryInput />
-        </Box>
+        <Container maxWidth='xs' sx={{backgroundColor: 'red'}}>
+            <Stack direction='column' alignItems='center'>
+                <Typography variant='h4'>Grocery Tracker</Typography>
+                <GroceryInput />
+            </Stack>
+        </Container>
     )
 }
