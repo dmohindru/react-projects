@@ -4,7 +4,7 @@ import { GroceryList } from './GroceryList';
 import { GroceryTotal } from './GroceryTotal';
 export const GroceryTracker: React.FC = () => {
     return (
-        <Container maxWidth='xs' sx={{backgroundColor: 'lightgray'}}>
+        <Container maxWidth='xs'>
             <Stack direction='column' alignItems='center' spacing={1}>
                 <Typography variant='h4'>Grocery Tracker</Typography>
                 <Divider />

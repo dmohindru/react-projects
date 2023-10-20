@@ -1,8 +1,8 @@
-import { TextField, Button, Grid, IconButton } from '@mui/material'
-import { useState } from 'react';
-
+import { TextField, Button, Grid, IconButton, Paper } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useState } from 'react';
+
 export const GroceryInput: React.FC = () => {
     const [quantity, setQuantity] = useState(0);
     const [itemName, setItemName] = useState('');
@@ -48,6 +48,7 @@ export const GroceryInput: React.FC = () => {
         }
     }
     return (
+        <Paper elevation={1} sx={{p: 1, width: '100%'}}>
             <Grid container spacing={1} alignItems='center'>
                 <Grid item xs={3}>
                     <TextField label='Item' variant='outlined' size='small' onChange={e => updateItemName(e.target.value)}/>
@@ -85,6 +86,7 @@ export const GroceryInput: React.FC = () => {
                         </Button>
                 </Grid>
             </Grid>
+        </Paper>
         
         
     )
