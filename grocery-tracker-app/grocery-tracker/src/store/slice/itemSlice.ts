@@ -6,6 +6,11 @@ export interface GroceryItemSlice {
     unitPrice: number;
 }
 
+export interface GroceryItemUpdateSlice {
+    id: number;
+    itemQuantity: number;
+}
+
 const groceryItemsInitialState: GroceryItemSlice[] = [];
 
 const groceryItemSlice = createSlice({
@@ -19,9 +24,16 @@ const groceryItemSlice = createSlice({
         removeGroceryItem: (state: GroceryItemSlice[], groceryItem: PayloadAction<number>) => {
             console.log(`removing grocery item with id: ${groceryItem.payload}`);
             return state.filter(item => item.id !== groceryItem.payload);
+        },
+        updateGroceryItem: (state: GroceryItemSlice[], groceryItem: PayloadAction<GroceryItemUpdateSlice>) => {
+            const foundItem = state.find((item) => item.id === groceryItem.payload.id);
+            if (foundItem) {
+                foundItem.itemQuantity = groceryItem.payload.itemQuantity;
+            }
+
         }
     }
 });
 
-export const { addGroceryItem, removeGroceryItem } = groceryItemSlice.actions;
+export const { addGroceryItem, removeGroceryItem, updateGroceryItem } = groceryItemSlice.actions;
 export const groceryItemReducer = groceryItemSlice.reducer;

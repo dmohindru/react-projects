@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { groceryItemReducer, addGroceryItem, removeGroceryItem } from "./slice/itemSlice";
+import { groceryItemReducer, addGroceryItem, removeGroceryItem, updateGroceryItem } from "./slice/itemSlice";
 
 const store = configureStore({
     reducer: {
@@ -13,7 +13,8 @@ export type AppDispatch = typeof store.dispatch;
 export {
     store,
     addGroceryItem,
-    removeGroceryItem
+    removeGroceryItem,
+    updateGroceryItem
 };
 
-export type { GroceryItemSlice } from './slice/itemSlice';
+export type { GroceryItemSlice, GroceryItemUpdateSlice } from './slice/itemSlice';

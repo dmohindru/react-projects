@@ -30,7 +30,7 @@ export const GroceryInput: React.FC = () => {
     }
 
     const decrementQuantity = () => {
-        if (quantity > 0) {
+        if (quantity > 1) {
             setQuantity(quantity - 1);
             if (quantity - 1 === 0) {
                 setAddButtonState(true);
@@ -69,12 +69,26 @@ export const GroceryInput: React.FC = () => {
         }    
     }
 
+    const dispatchGroceryItem = () => {
+        const groceryItem = getGroceryItem()
+        dispatch(addGroceryItem(groceryItem));
+        setItemName('');
+        setQuantity(1);
+        setItemPrice(0.0);
+        
+    }
+
 
     return (
         <Paper elevation={1} sx={{p: 1, width: '100%'}}>
             <Grid container spacing={1} alignItems='center'>
                 <Grid item xs={3}>
-                    <TextField label='Item' variant='outlined' size='small' onChange={e => updateItemName(e.target.value)}/>
+                    <TextField 
+                        label='Item' 
+                        variant='outlined' 
+                        size='small' 
+                        onChange={e => updateItemName(e.target.value)} 
+                        value={itemName}/>
                 </Grid>
                 <Grid item xs={1}>
                     <IconButton aria-label='increment' color='success' size='small' onClick={() => incrementQuantity()}><AddIcon /></IconButton>
@@ -97,6 +111,7 @@ export const GroceryInput: React.FC = () => {
                         size='small'
                         type='number'
                         onChange={e => updateItemPrice(e.target.value)}
+                        value={itemPrice}
                     ></TextField>
                 </Grid>
                 <Grid item xs={2}>
@@ -104,7 +119,7 @@ export const GroceryInput: React.FC = () => {
                         variant='contained' 
                         size='small'
                         disabled={addButtonState}
-                        onClick={() => dispatch(addGroceryItem(getGroceryItem()))}
+                        onClick={() => dispatchGroceryItem()}
                         >
                             Add
                         </Button>
