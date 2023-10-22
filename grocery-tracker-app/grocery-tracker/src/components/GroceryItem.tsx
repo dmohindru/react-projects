@@ -1,8 +1,9 @@
-import { Grid, Typography, Button, IconButton } from "@mui/material";
+import { Grid, Typography, IconButton } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { useState } from "react";
+import { useAppDispatch } from "../hooks/useHooks";
+import { removeGroceryItem } from "../store";
 
 export interface GroceryItemProps {
     id: number
@@ -12,6 +13,8 @@ export interface GroceryItemProps {
 
 }
 export const GroceryItem: React.FC<GroceryItemProps> = ({id, itemName, quantity, totalAmount}: GroceryItemProps) => {
+    const dispatch = useAppDispatch();
+
     return (
         <>
             <Grid item xs={4}>
@@ -30,7 +33,11 @@ export const GroceryItem: React.FC<GroceryItemProps> = ({id, itemName, quantity,
                 <Typography variant='h6' textAlign='right'>{`$ ${totalAmount}`}</Typography>
             </Grid>
             <Grid item xs={1}>
-                <IconButton aria-label='cancel' color='warning' size='small'><CancelIcon /></IconButton>
+                <IconButton 
+                    aria-label='cancel' 
+                    color='warning' 
+                    size='small'
+                    onClick={() => dispatch(removeGroceryItem(id))}><CancelIcon /></IconButton>
             </Grid>
         </>
     )

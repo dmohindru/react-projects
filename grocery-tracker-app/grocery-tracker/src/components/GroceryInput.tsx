@@ -2,12 +2,23 @@ import { TextField, Button, Grid, IconButton, Paper } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
+import { addGroceryItem, GroceryItemSlice } from '../store';
+import { useAppDispatch } from '../hooks/useHooks';
+
+
+const getRandomInt = (min: number, max: number) => {
+    const minVal = Math.ceil(min);
+    const maxVal = Math.ceil(max);
+    return Math.floor(Math.random() * (maxVal - minVal)) + minVal;
+}
 
 export const GroceryInput: React.FC = () => {
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [itemName, setItemName] = useState('');
     const [addButtonState, setAddButtonState] = useState(true);
     const [itemPrice, setItemPrice] = useState(0.0);
+
+    const dispatch = useAppDispatch();
     
     const incrementQuantity = () => {
         if (quantity < 10) {
@@ -47,6 +58,18 @@ export const GroceryInput: React.FC = () => {
             setAddButtonState(true);
         }
     }
+
+    const getGroceryItem = (): GroceryItemSlice => {
+
+        return {
+            id: getRandomInt(1, 1000),
+            itemName: itemName,
+            itemQuantity: quantity,
+            unitPrice: itemPrice
+        }    
+    }
+
+
     return (
         <Paper elevation={1} sx={{p: 1, width: '100%'}}>
             <Grid container spacing={1} alignItems='center'>
@@ -81,13 +104,12 @@ export const GroceryInput: React.FC = () => {
                         variant='contained' 
                         size='small'
                         disabled={addButtonState}
+                        onClick={() => dispatch(addGroceryItem(getGroceryItem()))}
                         >
                             Add
                         </Button>
                 </Grid>
             </Grid>
         </Paper>
-        
-        
-    )
+    );
 }
