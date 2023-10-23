@@ -1,7 +1,7 @@
 import { TextField, Button, Grid, IconButton, Paper } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { addGroceryItem, GroceryItemSlice } from '../store';
 import { useAppDispatch } from '../hooks/useHooks';
 
@@ -16,46 +16,28 @@ export const GroceryInput: React.FC = () => {
     const [quantity, setQuantity] = useState(1);
     const [itemName, setItemName] = useState('');
     const [addButtonState, setAddButtonState] = useState(true);
-    const [itemPrice, setItemPrice] = useState(0.0);
+    const [itemPrice, setItemPrice] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (quantity > 0 && itemName && itemPrice) {
+            setAddButtonState(false);
+        } else {
+            setAddButtonState(true);
+        }
+
+    }, [quantity, itemName, itemPrice])
 
     const dispatch = useAppDispatch();
     
     const incrementQuantity = () => {
         if (quantity < 10) {
             setQuantity(quantity + 1);
-            if (itemName && itemPrice) {
-                setAddButtonState(false);
-            }
         }
     }
 
     const decrementQuantity = () => {
         if (quantity > 1) {
             setQuantity(quantity - 1);
-            if (quantity - 1 === 0) {
-                setAddButtonState(true);
-            }
-        }
-    }
-
-    const updateItemName = (value: string) => {
-        const trimmedValue = value.trim();
-        setItemName(trimmedValue);
-        if (trimmedValue && quantity > 0 && itemPrice > 0) {
-                setAddButtonState(false);
-        } else {
-            setAddButtonState(true);
-        }
-    }
-
-    const updateItemPrice = (value: string) => {
-        const trimmedValue = value.trim();
-        if (trimmedValue)
-            setItemPrice(+trimmedValue);
-        if (quantity > 0 && itemName && +trimmedValue > 0) {
-            setAddButtonState(false);
-        } else {
-            setAddButtonState(true);
         }
     }
 
@@ -65,7 +47,7 @@ export const GroceryInput: React.FC = () => {
             id: getRandomInt(1, 1000),
             itemName: itemName,
             itemQuantity: quantity,
-            unitPrice: itemPrice
+            unitPrice: itemPrice || 0.0
         }    
     }
 
@@ -74,7 +56,7 @@ export const GroceryInput: React.FC = () => {
         dispatch(addGroceryItem(groceryItem));
         setItemName('');
         setQuantity(1);
-        setItemPrice(0.0);
+        setItemPrice(null);
         
     }
 
@@ -87,7 +69,7 @@ export const GroceryInput: React.FC = () => {
                         label='Item' 
                         variant='outlined' 
                         size='small' 
-                        onChange={e => updateItemName(e.target.value)} 
+                        onChange={e => setItemName(e.target.value)} 
                         value={itemName}/>
                 </Grid>
                 <Grid item xs={1}>
@@ -110,8 +92,8 @@ export const GroceryInput: React.FC = () => {
                         label='Price' 
                         size='small'
                         type='number'
-                        onChange={e => updateItemPrice(e.target.value)}
-                        value={itemPrice}
+                        onChange={e => setItemPrice(+(e.target.value))}
+                        value={itemPrice || ''}
                     ></TextField>
                 </Grid>
                 <Grid item xs={2}>
