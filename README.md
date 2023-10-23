@@ -20,9 +20,9 @@ This repository will follow folder structure as below.
 - This parent folder may contain one or may other folder for back end app to support a front end app.
 Folder structure will look like this
 
-|----master-folder/                         # master folder
-|----README.md                              # master readme file
-|       |------Full-stack-app/              # particular full stack app
-|       |------README.md                    # full stack app readme file
-|       |       |---------- Front-end-app/  # front-end app folder
-|       |       |---------- Back-end-app /  # back-end app folder
+|----master-folder/                         # master folder <br>
+|----README.md                              # master readme file <br>
+|-------|------Full-stack-app/              # particular full stack app <br>
+|-------|------README.md                    # full stack app readme file <br>
+|-------|-------|---------- Front-end-app/  # front-end app folder <br>
+|-------|-------|---------- Back-end-app /  # back-end app folder <br>
