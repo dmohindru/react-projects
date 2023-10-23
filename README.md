@@ -7,6 +7,11 @@ This repository contains collection of full stack react projects to capture my e
 - Simple UI practice with material ui
 - Redux usage with react and typescipt
 ---
+[Grocery Tracker](./grocery-tracker-app) 
+- This app is built to track grocery shopping
+- This app will be using material ui
+- Redux for central state management
+---
 
 ### Remarks
 This repository will follow folder structure as below.
@@ -15,9 +20,9 @@ This repository will follow folder structure as below.
 - This parent folder may contain one or may other folder for back end app to support a front end app.
 Folder structure will look like this
 
-|----master-folder/
-|----README.md
-|       |------Full-stack-app/
-|       |------README.md
-|       |       |---------- Front-end-app/
-|       |       |---------- Back-end-app /
+|----master-folder/                         # master folder <br>
+|----README.md                              # master readme file <br>
+|-------|------Full-stack-app/              # particular full stack app <br>
+|-------|------README.md                    # full stack app readme file <br>
+|-------|-------|---------- Front-end-app/  # front-end app folder <br>
+|-------|-------|---------- Back-end-app /  # back-end app folder <br>
