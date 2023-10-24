@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/react-fullstack-projects/grocery-tracker-app/grocery-tracker/build/static/js/main.ea190efd.js",
+    "index.html": "/react-fullstack-projects/grocery-tracker-app/grocery-tracker/build/index.html",
+    "main.ea190efd.js.map": "/react-fullstack-projects/grocery-tracker-app/grocery-tracker/build/static/js/main.ea190efd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ea190efd.js"
+  ]
+}
