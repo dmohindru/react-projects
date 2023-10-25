@@ -8,12 +8,12 @@ export const TodoMenu: React.FC = () => {
 
     useEffect(() => {
         dialogState.current = !dialogOpen;
-        console.log('inside useEffect' + dialogState.current);
+        console.log('inside useEffect ' + dialogState.current);
     }, [dialogOpen])
 
     const handleAddTodoListClick = () => {
         console.log('clicked')
-        setDialogOpen(!dialogOpen);
+        setDialogOpen(true);
     }
 
     const handleDialogClose = () => {
