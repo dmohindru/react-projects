@@ -13,13 +13,18 @@ export const TodoDialog: React.FC<TodoDialogProps> = ({open, title, content}: To
 
     }
 
-    const handleClose = () => {
+    const handleDialogClose = () => {
+        console.log('Dialog closed')
+        setOpenState(false);
+    }
 
+    const handleCloseButtonClick = () => {
+        setOpenState(false);
     }
 
     return (
         <div>
-            <Dialog open={openState} onClose={handleClose}>
+            <Dialog open={openState} onClose={() => handleDialogClose()}>
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>{content}</DialogContentText>
@@ -31,7 +36,7 @@ export const TodoDialog: React.FC<TodoDialogProps> = ({open, title, content}: To
                         variant='standard'
                     />
                     <Button>Add</Button>
-                    <Button>Cancel</Button>
+                    <Button onClick={() => handleCloseButtonClick()}>Cancel</Button>
                 </DialogContent>
             </Dialog>
 
