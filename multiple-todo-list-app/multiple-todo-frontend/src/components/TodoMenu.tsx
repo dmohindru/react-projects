@@ -2,10 +2,15 @@ import { SpeedDial, SpeedDialAction, SpeedDialIcon, Dialog, DialogTitle, DialogC
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState, useEffect } from "react";
+import { useAppDispatch } from "../hooks/useHooks";
+import { addTodoTitle } from "../store";
+
 export const TodoMenu: React.FC = () => {
     const [open, setOpen] = useState(false);
     const [saveBtnState, setSaveBtnState] = useState(true);
     const [todoListName, setTodoListName] = useState('');
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (todoListName.trim()) {
@@ -27,6 +32,9 @@ export const TodoMenu: React.FC = () => {
 
     const handleDialogSave = () => {
         console.log('Entered value: ', todoListName);
+        dispatch(addTodoTitle({
+            title: todoListName
+        }));
         setOpen(false);
         setTodoListName('');
     }
@@ -58,7 +66,6 @@ export const TodoMenu: React.FC = () => {
                         onChange={handleInputChange}
                     />
                     <Button disabled={saveBtnState} onClick={handleDialogSave}>Save</Button>
-                    {/* <Button onClick={() => handleDialogClose() }>Cancel</Button> */}
                 </DialogContent>
             </Dialog>
         <SpeedDial
