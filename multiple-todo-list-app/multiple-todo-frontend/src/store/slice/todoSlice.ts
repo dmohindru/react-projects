@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
 
 export interface Todo {
     id?: string,
@@ -46,7 +45,7 @@ const todoSlice = createSlice({
                 foundTodo.done = true;
             }
             else if (foundTodo && todo.payload.todo.done) {
-                foundTodo.done = true;
+                foundTodo.done = todo.payload.todo.done;
             }               
         }
     }

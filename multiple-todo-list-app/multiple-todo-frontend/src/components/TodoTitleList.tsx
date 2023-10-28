@@ -1,6 +1,7 @@
-import { Box, Tabs, Tab, Typography } from '@mui/material';
+import { Box, Tabs, Tab, Typography, Container } from '@mui/material';
 import { useState } from 'react';
 import { useTypeSelector } from '../hooks/useHooks';
+import { TodoComponent } from './TodoComponent';
 
 
 interface TabPanelProps {
@@ -21,9 +22,9 @@ interface TabPanelProps {
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>
+          <Container sx={{ p: 3, width: '80%', backgroundColor: 'red' }}>
             {children}
-          </Box>
+          </Container>
         )}
       </div>
     );
@@ -57,35 +58,17 @@ interface TabPanelProps {
                     {
                         todoTitleList.map(item => <Tab label={item.title} />)
                     }
-                    {/* <Tab label="TODO List 1" />
-                    <Tab label="TODO List 2" /> */}
                 </Tabs>
-                {/* <TabPanel value={value} index={0}>
-                    <div>TODO List 1</div>
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <div>TODO List 2</div>
-                </TabPanel> */}
+                {
+                    todoTitleList.map((item, index) => 
+                    (
+                        <TabPanel value={value} index={index}>
+                            <TodoComponent title={item.title} />
+                        </TabPanel>
+                    ))
+                }
             </>
         }
-            
-            {/* <Tabs
-                orientation="vertical"
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="vertical tabs example"
-                sx={{borderRight: 1, borderColor: 'divider'}}
-            >
-                <Tab label="TODO List 1" />
-                <Tab label="TODO List 2" />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-                <div>TODO List 1</div>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <div>TODO List 2</div>
-            </TabPanel> */}
         </Box>
     )
 }
