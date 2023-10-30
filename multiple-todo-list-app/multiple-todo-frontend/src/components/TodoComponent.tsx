@@ -6,9 +6,9 @@ interface TodoComponentProps {
 export const TodoComponent: React.FC<TodoComponentProps> = ({title}) => {
     return (
         // <Container maxWidth="sm" sx={{backgroundColor: 'lightblue'}}>
-        <Grid container spacing={2} sx={{backgroundColor: 'lightblue', flexGrow: 1}}>
-            <Grid item mx={12}>
-            <Typography sx={{flexGrow: 1, justifyContent: 'center', backgroundColor: 'lightblue'}}>{title}</Typography>
+        <Grid container spacing={1} sx={{m: 0.5}}>
+            <Grid item md={12}>
+            <Typography sx={ {backgroundColor: 'lightblue', textAlign: 'center'}}>{title}</Typography>
             </Grid>
         </Grid>
            

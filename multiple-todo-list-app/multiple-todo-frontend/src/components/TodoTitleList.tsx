@@ -3,32 +3,27 @@ import { useState } from 'react';
 import { useTypeSelector } from '../hooks/useHooks';
 import { TodoComponent } from './TodoComponent';
 
+interface TabContainerProps {
+  children?: React.ReactNode;
+}
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-  }
 
-  function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`vertical-tabpanel-${index}`}
-        aria-labelledby={`vertical-tab-${index}`}
-        {...other}
-      >
-        {value === index && (
-          <Container sx={{ p: 3, width: '80%', backgroundColor: 'red' }}>
-            {children}
-          </Container>
-        )}
-      </div>
+
+  function TabContainer({children}: TabContainerProps) {
+     return (
+      <Box
+      sx={{
+        display: "flex",
+        flexGrow: 1,
+        backgroundColor: "red"
+      }}
+    >
+        {children}
+      </Box>
     );
   }
+
+
 
   export const TodoTitleList: React.FC = () => {
 
@@ -60,12 +55,9 @@ interface TabPanelProps {
                     }
                 </Tabs>
                 {
-                    todoTitleList.map((item, index) => 
-                    (
-                        <TabPanel value={value} index={index}>
-                            <TodoComponent title={item.title} />
-                        </TabPanel>
-                    ))
+                  todoTitleList.map((item, index) => 
+                    index === value && <TabContainer><TodoComponent title={item.title} /></TabContainer>
+                  )
                 }
             </>
         }
