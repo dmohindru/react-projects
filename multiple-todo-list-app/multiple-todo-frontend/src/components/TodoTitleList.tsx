@@ -1,4 +1,4 @@
-import { Box, Tabs, Tab, Typography, Container } from '@mui/material';
+import { Box, Tabs, Tab, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useTypeSelector } from '../hooks/useHooks';
 import { TodoComponent } from './TodoComponent';
@@ -14,8 +14,7 @@ interface TabContainerProps {
       <Box
       sx={{
         display: "flex",
-        flexGrow: 1,
-        backgroundColor: "red"
+        flexGrow: 1
       }}
     >
         {children}
