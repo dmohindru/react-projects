@@ -50,12 +50,12 @@ interface TabContainerProps {
                     sx={{borderRight: 1, borderColor: 'divider'}}
                 >
                     {
-                        todoTitleList.map(item => <Tab label={item.title} />)
+                        todoTitleList.map(item => <Tab key={item.id} label={item.title} />)
                     }
                 </Tabs>
                 {
                   todoTitleList.map((item, index) => 
-                    index === value && <TabContainer><TodoComponent title={item.title} /></TabContainer>
+                    index === value && <TabContainer><TodoComponent key={item.id} title={item.title} /></TabContainer>
                   )
                 }
             </>

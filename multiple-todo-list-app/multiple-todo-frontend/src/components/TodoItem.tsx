@@ -9,14 +9,18 @@ interface TodoItemProps {
 }
 export const TodoItem: React.FC<TodoItemProps> = ({id, text, done, deleted}: TodoItemProps) => {
 
+    const handleDoneBtn = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.checked);
+    }
+
     return (
         <Paper sx={{my: 1}}>
             <Grid container>
                 <Grid item md={10}>
-                    <Typography variant='h5'>{text}</Typography>
+                    <Typography variant='h5' style={{textDecoration: done ? 'line-through' : 'none'}}>{text}</Typography>
                 </Grid>
                 <Grid item md={1}>
-                    <Switch size="small" />
+                    <Switch size="small" onChange={handleDoneBtn} />
                 </Grid>
                 <Grid item md={1}>
                     <IconButton

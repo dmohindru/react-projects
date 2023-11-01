@@ -11,7 +11,7 @@ const todoList: Todo[] = [
     {
         id: 'random_id_2',
         todoText: 'some todo text 1',
-        done: false,
+        done: true,
         deleted: false
     },
     {
@@ -28,7 +28,7 @@ export const TodoList: React.FC = () => {
             <Stack>
                 {todoList
                     .filter(item => !item.deleted)
-                    .map(item => <TodoItem id={item.id || ''} text={item.todoText} done={item.done} deleted={item.deleted} /> )}
+                    .map(item => <TodoItem key={item.id} id={item.id || ''} text={item.todoText} done={item.done} deleted={item.deleted} /> )}
             </Stack>
         
     )
