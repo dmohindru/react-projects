@@ -1,5 +1,5 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, TextField, Button } from "@mui/material";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 export interface TodoDialogProps {
     open: boolean,
     title: string,
@@ -9,12 +9,7 @@ export interface TodoDialogProps {
 export const TodoDialog: React.FC<TodoDialogProps> = ({open, title, content}: TodoDialogProps) => {
     const [openState, setOpenState] = useState(open);
 
-    const handleClickOk = () => {
-
-    }
-
     const handleDialogClose = () => {
-        console.log('Dialog closed')
         setOpenState(false);
     }
 

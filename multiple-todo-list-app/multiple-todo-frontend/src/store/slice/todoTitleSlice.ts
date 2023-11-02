@@ -13,7 +13,6 @@ const titleSlice = createSlice({
     initialState: titleInitialState,
     reducers: {
         addTodoTitle(state: TodoTitleSlice[], todoTitle: PayloadAction<TodoTitleSlice>) {
-            console.log('Adding todo title: ', todoTitle.payload.title);
             state.push(todoTitle.payload);
         },
         removeTodoTitle(state: TodoTitleSlice[], todoTitle: PayloadAction<TodoTitleSlice>) {

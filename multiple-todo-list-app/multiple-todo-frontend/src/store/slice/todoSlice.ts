@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Todo {
     id?: string,
@@ -34,6 +35,10 @@ const todoSlice = createSlice({
     initialState: todoInitialState,
     reducers: {
         addTodo(state: TodoSlice, todo: PayloadAction<TodoAddAction>) {
+            if (!state[todo.payload.todoListTitle]) {
+                state[todo.payload.todoListTitle] = [];
+            }
+            todo.payload.todo.id = uuidv4();
             state[todo.payload.todoListTitle].push(todo.payload.todo);
         },
         updateTodo(state: TodoSlice, todo: PayloadAction<TodoUpdateAction>) {
@@ -44,8 +49,8 @@ const todoSlice = createSlice({
                 foundTodo.deleted = true;
                 foundTodo.done = true;
             }
-            else if (foundTodo && todo.payload.todo.done) {
-                foundTodo.done = todo.payload.todo.done;
+            else if (foundTodo) {
+                foundTodo.done = todo.payload.todo.done || false;
             }               
         }
     }
