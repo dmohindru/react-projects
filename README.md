@@ -12,6 +12,13 @@ This repository contains collection of full stack react projects to capture my e
 - This app will be using material ui
 - Redux for central state management
 ---
+[Multiple TODO List App](./multiple-todo-list-app) 
+- This app is built to maintain and keep track of multiple todo list
+- This app will be using material ui
+- Redux for central state management
+- This app will have backend written in Spring boot and Monogo DB
+- This app will be secured by Keycloak OAuth 2.0 login
+---
 
 ### Remarks
 This repository will follow folder structure as below.
