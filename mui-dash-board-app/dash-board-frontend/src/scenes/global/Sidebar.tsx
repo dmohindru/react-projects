@@ -89,7 +89,7 @@ const Sidebar: React.FC = () => {
                                 ml="15px"
                             >
                                 <Typography variant="h3" color={colors.grey[100]}>
-                                    ADMINIS
+                                    DASHBOARD
                                 </Typography>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
@@ -111,7 +111,7 @@ const Sidebar: React.FC = () => {
                             </Box>
                             <Box textAlign="center">
                                 <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{m: "10px 0 0 0"}}>Dhruv Mohindru</Typography>
-                                <Typography variant="h5" color={colors.greenAccent[500]}>VP Fancy Admin</Typography>
+                                <Typography variant="h5" color={colors.greenAccent[500]}>Fullstack Developer</Typography>
                             </Box>
                         </Box>)
                     }
