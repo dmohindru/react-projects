@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar, { formatDate, DateSelectArg, EventApi, EventClickArg } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -11,17 +11,18 @@ import { tokens } from "../../theme";
 const Calendar: React.FC = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [currentEvent, setCurrentEvents] = useState([]);
+    const [currentEvent, setCurrentEvents] = useState<EventApi[]>([]);
 
     // TODO give a type to selected argument
-    const handleDateClick = (selected: any) => {
+    const handleDateClick = (selected: DateSelectArg) => {
         const title = prompt("Please enter a new title for your event");
         const calendarApi = selected.view.calendar;
-        calendarApi.unselected();
+        
+        calendarApi.unselect();
 
         if (title) {
             calendarApi.addEvent({
-                id: `${selected.dateStr}-${title}`,
+                id: `${selected.startStr}-${title}`,
                 title,
                 start: selected.startStr,
                 end: selected.endStr,
@@ -31,7 +32,7 @@ const Calendar: React.FC = () => {
     };
 
     // TODO give a type to selected argument
-    const handleEventClick = (selected: any) => {
+    const handleEventClick = (selected: EventClickArg) => {
         if (window.confirm(`Are you sure you want to delete the event '${selected.event.title}'`)) {
             selected.event.remove();
         }
@@ -51,7 +52,7 @@ const Calendar: React.FC = () => {
                 <Typography variant="h5">Events</Typography>
                 <List>
                     {/* fix type of event here */}
-                    {currentEvent.map((event :any) => (
+                    {currentEvent.map((event) => (
                         <ListItem
                             key={event.id}
                             sx={{
@@ -63,7 +64,7 @@ const Calendar: React.FC = () => {
                                 primary={event.title}
                                 secondary={
                                     <Typography>
-                                        {formatDate(event.start, {
+                                        {formatDate(event.startStr, {
                                             year: "numeric",
                                             month: "short",
                                             day: "numeric"
@@ -98,7 +99,7 @@ const Calendar: React.FC = () => {
                     dayMaxEvents={true}
                     select={handleDateClick}
                     eventClick={handleEventClick}
-                    eventsSet={(events:any) => setCurrentEvents(events)}
+                    eventsSet={(events:EventApi[]) => setCurrentEvents(events)}
                     initialEvents={[
                         {id: "1234", title: "All-day event", date: "2022-09-14"},
                         {id: "4321", title: "Timed event", date: "2022-09-28"},
