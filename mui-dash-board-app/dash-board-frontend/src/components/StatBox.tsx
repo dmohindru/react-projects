@@ -30,20 +30,21 @@ const StatBox: React.FC<StatBoxPros> = ({title, subtitle, icon, progress, increa
                 <Box>
                     <ProgressCircle progress={progress} />
                 </Box>
-                <Box display="flex" justifyContent="space-between" mt="2px">
-                    <Typography 
-                        variant="h5" 
-                        sx={{color: colors.greenAccent[500]}}>
-                        {subtitle} 
-                    </Typography>
-                    <Typography 
-                        variant="h5" 
-                        fontWeight="italic" 
-                        sx={{color: colors.greenAccent[600]}}>
-                        {increase} 
-                    </Typography>
-                </Box>
             </Box>
+            <Box display="flex" justifyContent="space-between" mt="2px">
+                <Typography 
+                    variant="h5" 
+                    sx={{color: colors.greenAccent[500]}}>
+                    {subtitle} 
+                </Typography>
+                <Typography 
+                    variant="h5" 
+                    fontWeight="italic" 
+                    sx={{color: colors.greenAccent[600]}}>
+                    {increase} 
+                </Typography>
+            </Box>
+            
         </Box>
     )
 
