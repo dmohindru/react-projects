@@ -37,6 +37,12 @@ This repository contains collection of full stack react projects to capture my e
 
 ---
 
+[Tailwind CSS demo](./tailwind-css-demo-app)
+
+- This app is built to practice usage of tailwind css.
+
+---
+
 ### Remarks
 
 This repository will follow folder structure as below.
