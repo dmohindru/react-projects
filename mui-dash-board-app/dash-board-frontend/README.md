@@ -1,5 +1,3 @@
-# Terms
-
 ### Components used in this project
 
 - [material-ui](https://mui.com/) for all its ui elements
