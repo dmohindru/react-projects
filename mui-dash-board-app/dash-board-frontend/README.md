@@ -10,4 +10,4 @@
 
 This project uses following file pattern
 
-- duck pattern: organisate by feature
+- duck pattern: organisate by feature.
