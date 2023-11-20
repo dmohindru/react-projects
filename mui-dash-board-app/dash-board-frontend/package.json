@@ -2,7 +2,7 @@
   "name": "dash-board-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dmohindru.github.io/react-fullstack-projects/mui-dash-board-app/dash-board-frontend/build/",
+  "homepage": "http://dmohindru.github.io/react-fullstack-projects/mui-dash-board-app/dash-board-frontend/build",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
