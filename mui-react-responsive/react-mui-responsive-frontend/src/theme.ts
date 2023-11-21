@@ -9,6 +9,7 @@ export const theme = createTheme({
         secondary: {
             main: '#15c630'
         },
+        // TODO Module argumentation required here
         // otherColor: {
         //     main: '#999'
         // }
