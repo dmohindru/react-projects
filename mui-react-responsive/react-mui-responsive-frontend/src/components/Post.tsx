@@ -1,7 +1,7 @@
 import { Favorite, FavoriteBorder, MoreVert, Share } from "@mui/icons-material";
 import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Checkbox, IconButton, Typography } from "@mui/material";
 
-const Post = () => {
+const Post: React.FC = () => {
     return (
         <Card sx={{ margin: 5 }}>
                 <CardHeader

@@ -15,7 +15,7 @@ const UserBox = styled(Box)({
     marginBottom: "20px"
 })
 
-const Add = () => {
+const Add: React.FC = () => {
     const [open, setOpen] = useState(false);
     return (
         <>

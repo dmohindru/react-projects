@@ -1,7 +1,7 @@
 import { Box} from "@mui/material";
 import Post from "./Post";
 
-const Feed = () => {
+const Feed: React.FC = () => {
     return (
         <Box flex={4} p={2}>
            <Post />
