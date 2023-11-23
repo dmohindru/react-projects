@@ -43,6 +43,12 @@ This repository contains collection of full stack react projects to capture my e
 
 ---
 
+[React MUI demo](./mui-react-responsive)
+
+- This app is built to practice responsive mui react project.
+
+---
+
 ### Remarks
 
 This repository will follow folder structure as below.
