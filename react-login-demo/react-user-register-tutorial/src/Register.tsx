@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "./api/axios";
+import baseAxios, {AxiosError, AxiosResponse} from "axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -79,13 +80,25 @@ const Register = () => {
 
             // Clear input fields
         } catch (err) {
+            if (baseAxios.isAxiosError(err)) {
+                const axiosError = err as AxiosError;
+                if (!axiosError?.response) {
+                    setErrMsg('No Server Response');
+                } else if (axiosError.response?.status === 409) {
+                    setErrMsg('Username Taken');
+                }
+                else {
+                    setErrMsg('Registration failed');
+                }
+                errRef.current?.focus();
+
+            } else {
+                setErrMsg(`Error: ${err}`);
+            }
             
 
         }
     }
-
-    
-
 
     return (
         <>
