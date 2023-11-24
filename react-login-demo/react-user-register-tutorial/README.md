@@ -1,5 +1,5 @@
 # Introduction
 
-React login demo
+This app demonstartes user registration form in react js.
 
-[Code repo](https://github.com/gitdagray/react_register_form)
+[Original Code repo](https://github.com/gitdagray/react_register_form)

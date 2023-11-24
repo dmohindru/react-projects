@@ -6,10 +6,10 @@ This folder have series of examples to demonstrate following features
 
 ### Note
 
-All the demos in this folder will be supported by [backend application](./mongo_async_crud_backend/). This backend is downloaded from this [github repo](https://github.com/gitdagray/mongo_async_crud)
+All the demos in this folder will be supported by this [backend application](./mongo_async_crud_backend/). This backend is downloaded from this [github repo](https://github.com/gitdagray/mongo_async_crud)
 
-Instruction to run this backend
-[Install mongodb on ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04-source)
+Instruction to run this backend. First
+[install mongodb on ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04-source)
 
 Start mongodb
 
