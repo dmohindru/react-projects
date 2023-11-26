@@ -2,7 +2,7 @@
 
 This folder have series of examples to demonstrate following features
 
-- [reactjs user registartion demo](./react-user-register-tutorial/)
+- [reactjs user registartion demo](./react-authentication-tutorial/)
 
 ### Note
 
