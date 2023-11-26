@@ -39,6 +39,6 @@ export enviornment variable connection string used by backend
 
 ```shell
 export DATABASE_URI="mongodb://127.0.0.1:27017"
+export ACCESS_TOKEN_SECRET='dhruv12345'
+export REFRESH_TOKEN_SECRET='dhruv12345'
 ```
-
-Test

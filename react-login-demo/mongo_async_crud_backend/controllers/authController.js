@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const handleLogin = async (req, res) => {
     const { user, pwd } = req.body;
+    console.log(user, pwd);
     if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
 
     const foundUser = await User.findOne({ username: user }).exec();
@@ -11,7 +12,11 @@ const handleLogin = async (req, res) => {
     // evaluate password 
     const match = await bcrypt.compare(pwd, foundUser.password);
     if (match) {
+        
         const roles = Object.values(foundUser.roles).filter(Boolean);
+        console.log('roles', roles);
+        console.log('ACCESS_TOKEN_SECRET', process.env.ACCESS_TOKEN_SECRET);
+        console.log('REFRESH_TOKEN_SECRET', process.env.REFRESH_TOKEN_SECRET);
         // create JWTs
         const accessToken = jwt.sign(
             {

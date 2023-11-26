@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect, FormEvent, useContext } from "react";
 import AuthContext from "./context/AuthProvider";
 import axios from "./api/axios";
-const LOGIN_URL = "/auth";
+import baseAxios, { AxiosError } from "axios";
 
+const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
   // use global context to store authentication details
   const { setAuth } = useContext(AuthContext);
@@ -28,10 +29,46 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: FormEvent) => {
     // this is required to prevent page reload
     event.preventDefault();
-    console.log(user, pwd);
-    setUser("");
-    setPwd("");
-    setSuccess(true);
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+
+      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response));
+      const accessToken = response?.data?.accessToken as string;
+      const roles = response?.data?.roles as string[];
+
+      // TODO fix this error
+      //setAuth({ user, pwd, roles, accessToken });
+
+      setUser("");
+      setPwd("");
+      setSuccess(true);
+    } catch (err) {
+      if (baseAxios.isAxiosError(err)) {
+        const axiosError = err as AxiosError;
+        if (!axiosError?.response) {
+          setErrMsg("No Server Response");
+        } else if (axiosError.response?.status === 400) {
+          setErrMsg("Missing Username or Password");
+        } else if (axiosError.response?.status === 401) {
+          setErrMsg("Unauthorized");
+        } else {
+          setErrMsg("Login failed");
+        }
+        errRef.current?.focus();
+      } else {
+        setErrMsg(`Error: ${err}`);
+      }
+      // Set focus to errRef so that screen reader can read it out
+      errRef.current?.focus();
+    }
   };
 
   return (
@@ -75,7 +112,6 @@ const Login: React.FC = () => {
               id="password"
               onChange={(e) => setPwd(e.target.value)}
               value={pwd}
-              required
             />
 
             {/* Submit button */}
