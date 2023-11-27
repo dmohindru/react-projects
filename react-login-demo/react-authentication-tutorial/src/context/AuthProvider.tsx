@@ -1,8 +1,8 @@
 import { createContext, ReactElement, useState } from "react";
 
 interface AuthContexProps {
-  setAuth?: React.Dispatch<React.SetStateAction<{}>>;
-  auth?: any;
+  setAuth: React.Dispatch<React.SetStateAction<AuthProperties>>;
+  auth: AuthProperties;
 }
 
 interface AuthProviderProps {
@@ -16,7 +16,7 @@ interface AuthProperties {
   accessToken?: string;
 }
 
-const AuthContext = createContext<AuthContexProps>({});
+const AuthContext = createContext<AuthContexProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [auth, setAuth] = useState<AuthProperties>({});

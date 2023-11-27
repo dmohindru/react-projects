@@ -6,7 +6,9 @@ import baseAxios, { AxiosError } from "axios";
 const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
   // use global context to store authentication details
-  const { setAuth } = useContext(AuthContext);
+  const context = useContext(AuthContext);
+
+  const setAuth = context?.setAuth;
 
   const userRef = useRef<HTMLInputElement | null>(null);
   const errRef = useRef<HTMLParagraphElement | null>(null);
@@ -45,7 +47,9 @@ const Login: React.FC = () => {
       const roles = response?.data?.roles as string[];
 
       // TODO fix this error
-      //setAuth({ user, pwd, roles, accessToken });
+      if (accessToken && roles && setAuth) {
+        setAuth({ user, pwd, roles, accessToken });
+      }
 
       setUser("");
       setPwd("");
