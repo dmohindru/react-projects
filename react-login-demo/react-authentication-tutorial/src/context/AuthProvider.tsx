@@ -12,7 +12,7 @@ interface AuthProviderProps {
 interface AuthProperties {
   user?: string;
   pwd?: string;
-  roles?: string[];
+  roles?: number[];
   accessToken?: string;
 }
 

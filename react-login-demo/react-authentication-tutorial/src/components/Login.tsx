@@ -1,14 +1,18 @@
-import { useRef, useState, useEffect, FormEvent, useContext } from "react";
-import AuthContext from "../context/AuthProvider";
+import { useRef, useState, useEffect, FormEvent } from "react";
+import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import baseAxios, { AxiosError } from "axios";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
   // use global context to store authentication details
-  const context = useContext(AuthContext);
-
+  const context = useAuth();
   const setAuth = context?.setAuth;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const userRef = useRef<HTMLInputElement | null>(null);
   const errRef = useRef<HTMLParagraphElement | null>(null);
@@ -16,7 +20,6 @@ const Login: React.FC = () => {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
 
   // set focus to user input element when page loads
   useEffect(() => {
@@ -44,7 +47,7 @@ const Login: React.FC = () => {
       console.log(JSON.stringify(response?.data));
       // console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken as string;
-      const roles = response?.data?.roles as string[];
+      const roles = response?.data?.roles as number[];
 
       // TODO fix this error
       if (accessToken && roles && setAuth) {
@@ -53,7 +56,7 @@ const Login: React.FC = () => {
 
       setUser("");
       setPwd("");
-      setSuccess(true);
+      navigate(from, { replace: true });
     } catch (err) {
       if (baseAxios.isAxiosError(err)) {
         const axiosError = err as AxiosError;
@@ -76,62 +79,49 @@ const Login: React.FC = () => {
   };
 
   return (
-    <>
-      {" "}
-      {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="#">Go to Home</a>
-          </p>
-        </section>
-      ) : (
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMsg}
-          </p>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            {/* Username input */}
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
+    <section>
+      <p
+        ref={errRef}
+        className={errMsg ? "errmsg" : "offscreen"}
+        aria-live="assertive"
+      >
+        {errMsg}
+      </p>
+      <h1>Sign In</h1>
+      <form onSubmit={handleSubmit}>
+        {/* Username input */}
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          ref={userRef}
+          autoComplete="off"
+          onChange={(e) => setUser(e.target.value)}
+          value={user}
+          required
+        />
 
-            {/* Password input */}
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-            />
+        {/* Password input */}
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
+        />
 
-            {/* Submit button */}
-            <button>Sign In</button>
-          </form>
-          <p>
-            Need an Account?
-            <br />
-            <span className="line">
-              {/* Put router link here */}
-              <a href="#">Sign Up</a>
-            </span>
-          </p>
-        </section>
-      )}
-    </>
+        {/* Submit button */}
+        <button>Sign In</button>
+      </form>
+      <p>
+        Need an Account?
+        <br />
+        <span className="line">
+          {/* Put router link here */}
+          <a href="#">Sign Up</a>
+        </span>
+      </p>
+    </section>
   );
 };
 
