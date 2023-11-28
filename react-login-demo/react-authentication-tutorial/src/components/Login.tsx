@@ -2,13 +2,15 @@ import { useRef, useState, useEffect, FormEvent } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import baseAxios, { AxiosError } from "axios";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
   // use global context to store authentication details
   const context = useAuth();
   const setAuth = context?.setAuth;
+  const persist = context?.persist;
+  const setPersist = context?.setPersist;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,6 +80,15 @@ const Login: React.FC = () => {
     }
   };
 
+  const togglePersist = () => {
+    setPersist && setPersist((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const persistValue = persist || false;
+    localStorage.setItem("persist", persistValue.toString());
+  }, [persist]);
+
   return (
     <section>
       <p
@@ -112,6 +123,15 @@ const Login: React.FC = () => {
 
         {/* Submit button */}
         <button>Sign In</button>
+        <div className="persistCheck">
+          <input
+            type="checkbox"
+            id="persist"
+            onChange={togglePersist}
+            checked={persist}
+          />
+          <label htmlFor="persist">Trust this device</label>
+        </div>
       </form>
       <p>
         Need an Account?

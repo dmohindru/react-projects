@@ -8,18 +8,23 @@ const PersistLogin = () => {
   const refresh = useRefreshToken();
   const context = useAuth();
   const auth = context?.auth;
+  const persist = context?.persist;
 
   useEffect(() => {
+    let isMounted = true;
     const verifyRefreshToken = async () => {
       try {
         await refresh();
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(false);
+        isMounted && setIsLoading(false);
       }
     };
     !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
+
+    // TODO fix this return statement to avoid memory leak
+    //return () => (isMounted = false);
   }, []);
 
   useEffect(() => {
@@ -27,7 +32,9 @@ const PersistLogin = () => {
     console.log(`at: ${JSON.stringify(auth?.accessToken)}`);
   }, [isLoading]);
 
-  return <>{isLoading ? <p>Loading...</p> : <Outlet />}</>;
+  return (
+    <>{!persist ? <Outlet /> : isLoading ? <p>Loading...</p> : <Outlet />}</>
+  );
 };
 
 export default PersistLogin;
