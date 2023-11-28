@@ -10,13 +10,19 @@ const useRefreshToken = () => {
             withCredentials: true
         });
 
-        if (setAuth)
+        if (setAuth) {
             setAuth(prev => {
                 console.log(JSON.stringify(prev));
                 console.log(response.data.accessToken);
-                return {...prev, accessToken: response.data.accessToken}
+                return {
+                    ...prev,
+                    roles: response.data.roles, 
+                    accessToken: response.data.accessToken}
 
         });
+    } else {
+        console.log('setAuth is null');
+    }
         return response.data.accessToken;
     }
 
