@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import baseAxios, { AxiosError } from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
@@ -19,7 +20,7 @@ const Login: React.FC = () => {
   const userRef = useRef<HTMLInputElement | null>(null);
   const errRef = useRef<HTMLParagraphElement | null>(null);
 
-  const [user, setUser] = useState("");
+  const [user, setUser] = useLocalStorage("user", ""); //useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
