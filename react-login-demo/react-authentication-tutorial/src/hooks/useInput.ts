@@ -1,7 +1,7 @@
-import { useState } from "react";
+import useLocalStorage from "./useLocalStorage";
 
-const useInput = (initValue: string) => {
-    const [value, setValue] = useState(initValue);
+const useInput = (key: string, initValue: string): [value: string, reset: () => void, attObj: {value: string, onChange: (e:any) => void}] => {
+    const [value, setValue] = useLocalStorage(key, initValue);
 
     const reset = () => setValue(initValue);
 

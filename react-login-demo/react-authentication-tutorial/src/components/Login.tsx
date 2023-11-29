@@ -3,7 +3,8 @@ import useAuth from "../hooks/useAuth";
 import axios from "../api/axios";
 import baseAxios, { AxiosError } from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useInput from "../hooks/useInput";
+import useToggle from "../hooks/useToggle";
 
 const LOGIN_URL = "/auth";
 const Login: React.FC = () => {
@@ -20,9 +21,10 @@ const Login: React.FC = () => {
   const userRef = useRef<HTMLInputElement | null>(null);
   const errRef = useRef<HTMLParagraphElement | null>(null);
 
-  const [user, setUser] = useLocalStorage("user", ""); //useState("");
+  const [user, resetUser, userAtrribs] = useInput("user", "");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [check, toggleCheck] = useToggle("persist", false);
 
   // set focus to user input element when page loads
   useEffect(() => {
@@ -57,7 +59,8 @@ const Login: React.FC = () => {
         setAuth({ user, pwd, roles, accessToken });
       }
 
-      setUser("");
+      //setUser("");
+      resetUser();
       setPwd("");
       navigate(from, { replace: true });
     } catch (err) {
@@ -108,8 +111,9 @@ const Login: React.FC = () => {
           id="username"
           ref={userRef}
           autoComplete="off"
-          onChange={(e) => setUser(e.target.value)}
-          value={user}
+          // onChange={(e) => setUser(e.target.value)}
+          // value={user}
+          {...userAtrribs}
           required
         />
 
