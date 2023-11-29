@@ -52,11 +52,10 @@ const Login: React.FC = () => {
       console.log(JSON.stringify(response?.data));
       // console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken as string;
-      const roles = response?.data?.roles as number[];
 
       // TODO fix this error
-      if (accessToken && roles && setAuth) {
-        setAuth({ user, pwd, roles, accessToken });
+      if (accessToken && setAuth) {
+        setAuth({ user, accessToken });
       }
 
       //setUser("");

@@ -22,6 +22,8 @@ const Users = () => {
         const response = await axiosPrivate.get("/users", {
           signal: controller.signal,
         });
+        const users = response.data as User[];
+        const userNames = users.map((user) => user.username);
         console.log(response.data);
         isMounted && setUsers(response.data);
       } catch (err) {
