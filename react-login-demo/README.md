@@ -2,7 +2,8 @@
 
 This folder have series of examples to demonstrate following features
 
-- [reactjs user registartion demo](./react-authentication-tutorial/)
+- [reactjs login demo ts version and bit broken](./react-authentication-tutorial/)
+- [reactjs auth flow using redux toolkit](./react-redux-authentication-tutorial/)
 
 ### Note
 
