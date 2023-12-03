@@ -1,6 +1,31 @@
 ### Introduction
 
-This folder have series of examples to demonstrate following features
+This folder have series of examples to demonstrate react authentication feature. Series of these example follows this [youtube tutorial series](https://www.youtube.com/playlist?list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd)
+
+### [Example 1](https://www.youtube.com/watch?v=brcHK3P6ChQ&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=1)
+
+This example demonstrates
+
+- React user registration form with client side validations
+- Making REST API call to backend authentication server to register new user.
+- Code assert for this example [original repo](https://github.com/gitdagray/react_register_form) and [forked repo](https://github.com/dmohindru/react_register_form)
+
+### [Example 2](https://www.youtube.com/watch?v=X3qyxo_UTR4&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=2)
+
+This example demonstrates
+
+- React user login form
+- Getting auth token from backend authentication server
+- Code assert for this example [original repo](https://github.com/gitdagray/react_login_form) and [forked repo](https://github.com/dmohindru/react_login_form)
+
+### [Example 3](https://www.youtube.com/watch?v=oUZjO00NkhY&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=3)
+
+This example demonstrates
+
+- How to use react router dom library.
+- Implement protected routes in react app.
+- Protect routes on the basis of user roles
+- Code assert for this example [original repo](https://github.com/gitdagray/react_protected_routes) and [forked repo](https://github.com/dmohindru/react_protected_routes)
 
 - [reactjs login demo ts version and bit broken](./react-authentication-tutorial/)
 - [reactjs auth flow using redux toolkit](./react-redux-authentication-tutorial/)
