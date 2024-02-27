@@ -1,28 +1,14 @@
 {
   "cars": [
     {
-      "make": "Ford",
-      "model": "focus",
-      "value": 14000,
-      "engine": 500,
-      "id": "c350da85-e399-4ec7-a29b-36b0bb05c745"
+      "id": "da556518-c4f4-43c9-854b-970cdf36546b",
+      "make": "Toyota",
+      "model": "Corolla",
+      "value": 18000,
+      "engine": 2000
     },
     {
-      "id": "79a3a801-9ef3-41b7-a73e-7ee2982f0efe",
-      "make": "Hyundai",
-      "model": "i20",
-      "value": 4000,
-      "engine": 1000
-    },
-    {
-      "id": "26fa8c48-3f4d-4ce8-ab75-0d19c07bfc50",
-      "make": "Kia",
-      "model": "Rio",
-      "value": 8000,
-      "engine": 1200
-    },
-    {
-      "id": "742ae632-12a6-4ab3-b3a9-1fa2d3ebd476",
+      "id": "146486fb-f747-47f8-a2c6-8ab45c74d69f",
       "make": "Toyota",
       "model": "Corolla",
       "value": 18000,

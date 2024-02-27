@@ -32,9 +32,9 @@ const BikeList: React.FC = () => {
       <h3>Bike List</h3>
       <ul>
         {bikes.map((item, i) => (
-          <li>
+          <li key={item.id}>
             <BikeItem
-              key={item.id}
+              key={i}
               make={item.make}
               model={item.model}
               value={item.value}

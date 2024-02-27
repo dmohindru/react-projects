@@ -35,9 +35,9 @@ const CarList: React.FC = () => {
       <ul>
         {data &&
           data.map((car, i) => (
-            <li>
+            <li key={car.id}>
               <CarItem
-                key={car.id}
+                // key={car.id}
                 make={car.make}
                 model={car.model}
                 value={car.value}
