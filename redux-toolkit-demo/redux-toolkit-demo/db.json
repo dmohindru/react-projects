@@ -1,0 +1,41 @@
+{
+  "cars": [
+    {
+      "make": "Ford",
+      "model": "focus",
+      "value": 14000,
+      "engine": 500,
+      "id": "c350da85-e399-4ec7-a29b-36b0bb05c745"
+    },
+    {
+      "id": "79a3a801-9ef3-41b7-a73e-7ee2982f0efe",
+      "make": "Hyundai",
+      "model": "i20",
+      "value": 4000,
+      "engine": 1000
+    },
+    {
+      "id": "26fa8c48-3f4d-4ce8-ab75-0d19c07bfc50",
+      "make": "Kia",
+      "model": "Rio",
+      "value": 8000,
+      "engine": 1200
+    },
+    {
+      "id": "742ae632-12a6-4ab3-b3a9-1fa2d3ebd476",
+      "make": "Toyota",
+      "model": "Corolla",
+      "value": 18000,
+      "engine": 2000
+    }
+  ],
+  "bikes": [
+    {
+      "id": "9fd0e9b4-b69c-4f75-91fd-93053caff13b",
+      "make": "Hero",
+      "model": "Jet",
+      "value": 40,
+      "tyre": "26X1.75"
+    }
+  ]
+}

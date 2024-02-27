@@ -53,6 +53,10 @@ This repository contains collection of full stack react projects to capture my e
 
 - This folder will have react login page demo.
 
+[Redux Toolkit demo](./redux-toolkit-demo)
+
+- This app will have a simple demo on how to use react-toolkit
+
 ---
 
 ### Remarks
