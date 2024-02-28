@@ -1,27 +1,62 @@
 {
   "cars": [
     {
-      "id": "da556518-c4f4-43c9-854b-970cdf36546b",
-      "make": "Toyota",
-      "model": "Corolla",
-      "value": 18000,
-      "engine": 2000
+      "id": "4cee7ca6-223c-48a2-b1bb-e37d79697faf",
+      "make": "Jeep",
+      "model": "Alpine",
+      "value": 5943,
+      "engine": 1390
     },
     {
-      "id": "146486fb-f747-47f8-a2c6-8ab45c74d69f",
-      "make": "Toyota",
-      "model": "Corolla",
-      "value": 18000,
-      "engine": 2000
+      "id": "621333bc-fa02-469c-a0b3-5bbc50b9232d",
+      "make": "Jaguar hi hai",
+      "model": "Countach",
+      "value": 12140,
+      "engine": 1030
+    },
+    {
+      "id": "4c2e437f-af1f-419b-8723-0a1773e2fa08",
+      "make": "My Honda of Australia",
+      "model": "Mercielago",
+      "value": 14865,
+      "engine": 1396
+    },
+    {
+      "id": "82bb1958-ae8c-4b95-b95a-ef7f508e427d",
+      "make": "Land Rover",
+      "model": "Wrangler",
+      "value": 4435,
+      "engine": 1049
     }
   ],
   "bikes": [
     {
-      "id": "9fd0e9b4-b69c-4f75-91fd-93053caff13b",
-      "make": "Hero",
-      "model": "Jet",
-      "value": 40,
-      "tyre": "26X1.75"
+      "id": "812cddd2-08ae-41d8-8abd-45288279abbd",
+      "model": "BMX Bicycle",
+      "make": "Lamborghini",
+      "tyre": "26X1.5",
+      "value": 47
+    },
+    {
+      "id": "7fb12ec9-651c-4c4d-b602-3bda6e6c79f2",
+      "model": "Mountain Bicycle",
+      "make": "Chevrolet",
+      "tyre": "26X1.5",
+      "value": 16
+    },
+    {
+      "id": "1ca56943-3691-490e-9530-4e3d3e8d6faa",
+      "model": "Cruiser Bicycle",
+      "make": "Chevrolet",
+      "tyre": "26X1.5",
+      "value": 10
+    },
+    {
+      "id": "c6bc5d77-9e66-43a1-b8bd-48ff738c2258",
+      "model": "Fitness Bicycle",
+      "make": "Kia",
+      "tyre": "26X1.5",
+      "value": 46
     }
   ]
 }

@@ -1,12 +1,41 @@
 import { apiSlice } from "../api/apiSlice";
 import { CarDTO } from "../../dto/dto";
 
+
 export const carApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getCars: builder.query<CarDTO[], void>({
             query: () => '/cars',
             providesTags: (result, error, arg) => [
                 { type: 'Car', id: 'LIST'}
+            ]
+        }),
+        getCarById: builder.query<CarDTO, string>({
+            query: (id) => `/cars/${id}`,
+            providesTags: (result, error, arg) => [
+                {type: 'Car', id: result?.id ?? 'LIST'}
+            ]
+        }),
+        addCar: builder.mutation<CarDTO, CarDTO>({
+            query: (carDTO) => ({
+                url: '/cars',
+                method: 'POST',
+                body: carDTO
+            }),
+            invalidatesTags: (result, error, arg) => [
+                {type: 'Car', id: 'LIST'}
+            ]
+        }),
+        updateCar: builder.mutation<CarDTO, CarDTO>({
+            query: (carDTO) => ({
+                url: `/cars/${carDTO.id}`,
+                method: 'PUT',
+                body: carDTO
+            }),
+            invalidatesTags: (result, error, arg) => [
+                {type: 'Car', id: 'LIST'},
+                {type: 'Car', id: result?.id},
+                
             ]
         }),
         deleteCar: builder.mutation<CarDTO, string>({
@@ -22,4 +51,5 @@ export const carApiSlice = apiSlice.injectEndpoints({
     })
 });
 
-export const { useGetCarsQuery, useDeleteCarMutation } = carApiSlice;
+export const { useGetCarsQuery, useGetCarByIdQuery, useAddCarMutation, useUpdateCarMutation, useDeleteCarMutation } = carApiSlice;
+

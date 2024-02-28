@@ -1,5 +1,5 @@
 export interface CarDTO {
-    id: string,
+    id?: string,
     make: string,
     model: string,
     value: number,
@@ -7,7 +7,7 @@ export interface CarDTO {
 }
 
 export interface BikeDTO {
-    id: string,
+    id?: string,
     make: string,
     model: string,
     value: number,

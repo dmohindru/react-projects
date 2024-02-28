@@ -1,48 +1,42 @@
 import { BikeDTO } from "../../dto/dto";
 import BikeItem from "./BikeItem";
-
-const bikes: BikeDTO[] = [
-  {
-    id: "9fd0e9b4-b69c-4f75-91fd-93053caff13b",
-    make: "Hero",
-    model: "Jet",
-    value: 40,
-    tyre: "26X1.75",
-  },
-  {
-    id: "9fd0e9b4-b69c-4f75-91fd-93053caff13c",
-    make: "Hero",
-    model: "pulser",
-    value: 50,
-    tyre: "28X1.5",
-  },
-  {
-    id: "9fd0e9b4-b69c-4f75-91fd-93053caff13e",
-    make: "Avon",
-    model: "Super Star",
-    value: 60,
-    tyre: "24X1.75",
-  },
-];
+import { useAddBikeMutation, useGetBikesQuery } from "./BikeSlice";
+import { faker } from "@faker-js/faker";
 
 const BikeList: React.FC = () => {
+  const { data } = useGetBikesQuery();
+  const [addBike] = useAddBikeMutation();
+
+  const addNewBike = () => {
+    const newBike: BikeDTO = {
+      id: faker.string.uuid(),
+      model: faker.vehicle.bicycle(),
+      make: faker.vehicle.manufacturer(),
+      tyre: "26X1.5",
+      value: Number(faker.number.bigInt({ min: 10, max: 50 })),
+    };
+
+    addBike(newBike);
+  };
+
   return (
     <div>
-      <button>Add Bike</button>
+      <button onClick={addNewBike}>Add Bike</button>
       <h3>Bike List</h3>
       <ul>
-        {bikes.map((item, i) => (
-          <li key={item.id}>
-            <BikeItem
-              key={i}
-              make={item.make}
-              model={item.model}
-              value={item.value}
-              tyre={item.tyre}
-              id={item.id}
-            />
-          </li>
-        ))}
+        {data &&
+          data.map((item, i) => (
+            <li key={item.id}>
+              <BikeItem
+                key={i}
+                make={item.make}
+                model={item.model}
+                value={item.value}
+                tyre={item.tyre}
+                id={item.id}
+              />
+            </li>
+          ))}
       </ul>
     </div>
   );
