@@ -1,0 +1,97 @@
+{
+  "cars": [
+    {
+      "id": "9b8847b2-2f03-42bf-ac1f-5c4ecc15a73d",
+      "make": "Lamborghini",
+      "model": "Model 3",
+      "value": 4297,
+      "engine": 1033
+    },
+    {
+      "id": "9ef184d6-c481-44a8-90fe-4894d36c4a1f",
+      "make": "Volvo",
+      "model": "very good model",
+      "value": 3520,
+      "engine": 1736
+    },
+    {
+      "id": "68442cb5-11d5-4e77-9d17-8c183ad05b3d",
+      "make": "Maserati",
+      "model": "Focus",
+      "value": 18227,
+      "engine": 1462
+    },
+    {
+      "id": "aedce4fe-f83f-4a5d-a9f0-f2f99d58f63e",
+      "make": "Smart",
+      "model": "Corvette",
+      "value": 1243,
+      "engine": 1961
+    },
+    {
+      "id": "c0b60b2b-1255-492b-a6ff-a2117155fbf2",
+      "make": "Hyundai",
+      "model": "Countach",
+      "value": 4729,
+      "engine": 1757
+    },
+    {
+      "id": "fd88274c-32c4-4634-8eab-f96187f8a02c",
+      "make": "Jeep",
+      "model": "Golf",
+      "value": 3074,
+      "engine": 1084
+    }
+  ],
+  "bikes": [
+    {
+      "id": "0b4e345e-ea00-4e5c-b3f9-1b363d3486d7",
+      "model": "Adventure Road Bicycle",
+      "make": "Jeep",
+      "tyre": "26X1.5",
+      "value": 49
+    },
+    {
+      "id": "f0bba37b-49db-42ef-849c-6088b1d022a3",
+      "model": "Folding Bicycle",
+      "make": "Porsche",
+      "tyre": "26X1.5",
+      "value": 28
+    },
+    {
+      "id": "1cbeb9c0-684d-46ca-88c5-18aebaec87a1",
+      "model": "Road Bicycle",
+      "make": "Kia",
+      "tyre": "26X1.5",
+      "value": 34
+    },
+    {
+      "id": "6bde7e97-7f01-495f-b908-c2b5fc6fd433",
+      "model": "Cyclocross Bicycle",
+      "make": "Ferrari",
+      "tyre": "26X1.5",
+      "value": 16
+    },
+    {
+      "id": "c2b01db5-6e55-4285-b36c-5eb25c190d03",
+      "model": "Hybrid Bicycle",
+      "make": "Volkswagen",
+      "tyre": "26X1.5",
+      "value": 46
+    },
+    {
+      "id": "92d0b163-df8b-48b1-9792-9a9537a49b5c",
+      "model": "City Bicycle",
+      "make": "Aston Martin",
+      "tyre": "26X1.5",
+      "value": 19
+    },
+    {
+      "id": "9d28fd64-7f0e-42a9-afc0-5e9e7e4ac839",
+      "model": "Tandem Bicycle",
+      "make": "Bugatti",
+      "tyre": "26X1.5",
+      "value": 17
+    }
+  ]
+}

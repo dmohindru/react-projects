@@ -55,6 +55,12 @@ This repository contains collection of full stack react projects to capture my e
 
 ---
 
+[Redux Toolkit demo series](./redux-toolkit-demo)
+
+- This app will have a simple demo on how to use react-toolkit
+
+---
+
 ### Remarks
 
 This repository will follow folder structure as below.
