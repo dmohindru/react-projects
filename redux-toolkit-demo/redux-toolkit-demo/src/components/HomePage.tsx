@@ -1,13 +1,14 @@
 import BikeList from "../features/bikes/BIkeList";
 import CarList from "../features/cars/CarList";
+import { Container } from "@mui/material";
 
 const HomePage: React.FC = () => {
   return (
-    <div>
+    <Container maxWidth="lg">
       <CarList />
       <hr />
       <BikeList />
-    </div>
+    </Container>
   );
 };
 

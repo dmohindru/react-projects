@@ -1,11 +1,18 @@
 {
   "cars": [
     {
-      "id": "2d3516d2-8de3-4414-bc36-09f4c8b3ff93",
-      "make": "Mini",
-      "model": "CX-9",
-      "value": 5816,
-      "engine": 1869
+      "id": "e41f94c3-46d8-4bde-ad50-9a60c4dec7f2",
+      "make": "Mazda my",
+      "model": "El Camino",
+      "value": 1334,
+      "engine": 1864
+    },
+    {
+      "id": "325ec0d5-60c2-47ee-9843-fbd733c108d3",
+      "make": "BMW",
+      "model": "F-150",
+      "value": 6835,
+      "engine": 1823
     }
   ],
   "bikes": [
@@ -15,6 +22,41 @@
       "make": "Bugatti",
       "tyre": "26X1.5",
       "value": 39
+    },
+    {
+      "id": "bcb6fd60-10e2-485c-9ee2-52dc1eae708c",
+      "model": "Folding Bicycle",
+      "make": "Jeep",
+      "tyre": "26X1.5",
+      "value": 39
+    },
+    {
+      "id": "1312304c-0bfc-42d6-ab24-1f036b17bfb2",
+      "model": "Folding Bicycle",
+      "make": "Dodge",
+      "tyre": "26X1.5",
+      "value": 37
+    },
+    {
+      "id": "fb986e3f-9175-4d15-8e7e-90e36a416018",
+      "model": "Cyclocross Bicycle",
+      "make": "Smart",
+      "tyre": "26X1.5",
+      "value": 37
+    },
+    {
+      "id": "47f6ea3f-b62c-4598-b946-447ac2c84a30",
+      "model": "Folding Bicycle",
+      "make": "Jaguar",
+      "tyre": "26X1.5",
+      "value": 15
+    },
+    {
+      "id": "74e559c8-22ab-49ff-b28b-6e4e9821ba1e",
+      "model": "Mountain Bicycle",
+      "make": "Mini",
+      "tyre": "26X1.5",
+      "value": 32
     }
   ]
 }

@@ -2,6 +2,19 @@ import { faker } from "@faker-js/faker";
 import { CarDTO } from "../../dto/dto";
 import CarItem from "./CarItem";
 import { useGetCarsQuery, useAddCarMutation } from "./CarSlice";
+import {
+  Box,
+  Typography,
+  Button,
+  TableContainer,
+  Table,
+  TableHead,
+  TableCell,
+  Paper,
+  TableBody,
+  TableRow,
+  styled,
+} from "@mui/material";
 
 const CarList: React.FC = () => {
   const [addCar] = useAddCarMutation();
@@ -20,25 +33,57 @@ const CarList: React.FC = () => {
 
   const { data } = useGetCarsQuery();
 
+  const BoldTableCell = styled(TableCell)({
+    fontWeight: "bold",
+  });
+
   return (
-    <div>
-      <button onClick={addNewCar}>Add Car</button>
-      <h3>Car List</h3>
-      <ul>
-        {data &&
-          data.map((car, i) => (
-            <li key={car.id}>
-              <CarItem
-                make={car.make}
-                model={car.model}
-                value={car.value}
-                engine={car.engine}
-                id={car.id}
-              />
-            </li>
-          ))}
-      </ul>
-    </div>
+    <>
+      {/* Header Section */}
+      <Box display="flex" flexDirection="row" sx={{ my: "30px" }}>
+        <Box flex="90%" display="flex" justifyContent="center">
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            Car List
+          </Typography>
+        </Box>
+        <Box flex="10%" display="flex" justifyContent="center">
+          <Button variant="contained" onClick={addNewCar}>
+            Add Car
+          </Button>
+        </Box>
+      </Box>
+      {/* Header Section ends */}
+
+      {/* Body Section */}
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead sx={{ bgcolor: "lightgray" }}>
+            <TableRow>
+              <BoldTableCell align="center">Make</BoldTableCell>
+              <BoldTableCell align="center">Model</BoldTableCell>
+              <BoldTableCell align="center">Value</BoldTableCell>
+              <BoldTableCell align="center">Engine</BoldTableCell>
+              <BoldTableCell align="center">Action</BoldTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data &&
+              data.map((car, i) => (
+                <CarItem
+                  key={i}
+                  make={car.make}
+                  model={car.model}
+                  value={car.value}
+                  engine={car.engine}
+                  id={car.id}
+                />
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {/* Body Section Ends */}
+    </>
   );
 };
 

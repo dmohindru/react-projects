@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetCarByIdQuery, useUpdateCarMutation } from "./CarSlice";
 import { ChangeEvent, useState, useEffect } from "react";
+import { Container, Box, Typography, Button, TextField } from "@mui/material";
 
 const CarItemEdit: React.FC = () => {
   const { carId } = useParams();
@@ -56,45 +57,96 @@ const CarItemEdit: React.FC = () => {
   if (isLoading) return <div>Loading</div>;
 
   return (
-    <div>
-      <h3>{`Editing Car with id ${carId}`}</h3>
+    <Container maxWidth="sm">
+      <Typography
+        variant="h4"
+        display="flex"
+        justifyContent="center"
+        marginY="20px"
+      >
+        Edit Car
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="carMake">Car Make</label>
-        <input
-          type="text"
-          id="carMake"
-          value={make}
-          onChange={onMakeChange}
-        ></input>
-        <br />
-        <label htmlFor="carModel">CarModel</label>
-        <input
-          type="text"
-          id="carModel"
-          value={model}
-          onChange={onModelChange}
-        />
-        <br />
-        <label htmlFor="carValue">Value</label>
-        <input
-          type="number"
-          id="carValue"
-          value={value}
-          onChange={onValueChange}
-        />
-        <br />
-        <label htmlFor="engineValue">Engine</label>
-        <input
-          type="number"
-          id="engineValue"
-          value={engine}
-          onChange={onEngineChange}
-        />
-        <br />
-        <button type="submit">Submit</button>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Car Make
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="make"
+              value={make}
+              onChange={onMakeChange}
+              size="small"
+            />
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Car Model
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="model"
+              value={model}
+              onChange={onModelChange}
+              size="small"
+            />
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Value
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="model"
+              value={value}
+              onChange={onValueChange}
+              size="small"
+            />
+          </Box>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Engine
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="model"
+              value={engine}
+              onChange={onEngineChange}
+              size="small"
+            />
+          </Box>
+          <Button variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        </Box>
       </form>
       <br />
-    </div>
+    </Container>
   );
 };
 
