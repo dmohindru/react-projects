@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { BikeDTO } from "../../dto/dto";
 import { useDeleteBikeMutation } from "./BikeSlice";
 
@@ -7,7 +8,9 @@ const BikeItem: React.FC<BikeDTO> = ({ id, make, model, value, tyre }) => {
 
   return (
     <div>
-      {id}, {make}, {model}, {value}, {tyre}{" "}
+      <Link to={`/bike/edit/${id}`}>
+        {id}, {make}, {model}, {value}, {tyre}{" "}
+      </Link>
       <button onClick={() => deleteBike(id ?? "")}>Delete</button>
     </div>
   );

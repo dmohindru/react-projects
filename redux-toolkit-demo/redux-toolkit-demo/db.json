@@ -1,62 +1,20 @@
 {
   "cars": [
     {
-      "id": "4cee7ca6-223c-48a2-b1bb-e37d79697faf",
-      "make": "Jeep",
-      "model": "Alpine",
-      "value": 5943,
-      "engine": 1390
-    },
-    {
-      "id": "621333bc-fa02-469c-a0b3-5bbc50b9232d",
-      "make": "Jaguar hi hai",
-      "model": "Countach",
-      "value": 12140,
-      "engine": 1030
-    },
-    {
-      "id": "4c2e437f-af1f-419b-8723-0a1773e2fa08",
-      "make": "My Honda of Australia",
-      "model": "Mercielago",
-      "value": 14865,
-      "engine": 1396
-    },
-    {
-      "id": "82bb1958-ae8c-4b95-b95a-ef7f508e427d",
-      "make": "Land Rover",
-      "model": "Wrangler",
-      "value": 4435,
-      "engine": 1049
+      "id": "2d3516d2-8de3-4414-bc36-09f4c8b3ff93",
+      "make": "Mini",
+      "model": "CX-9",
+      "value": 5816,
+      "engine": 1869
     }
   ],
   "bikes": [
     {
-      "id": "812cddd2-08ae-41d8-8abd-45288279abbd",
-      "model": "BMX Bicycle",
-      "make": "Lamborghini",
+      "id": "26d05482-b840-4c66-b9be-e52c0eb42925",
+      "model": "City Bicycle",
+      "make": "Bugatti",
       "tyre": "26X1.5",
-      "value": 47
-    },
-    {
-      "id": "7fb12ec9-651c-4c4d-b602-3bda6e6c79f2",
-      "model": "Mountain Bicycle",
-      "make": "Chevrolet",
-      "tyre": "26X1.5",
-      "value": 16
-    },
-    {
-      "id": "1ca56943-3691-490e-9530-4e3d3e8d6faa",
-      "model": "Cruiser Bicycle",
-      "make": "Chevrolet",
-      "tyre": "26X1.5",
-      "value": 10
-    },
-    {
-      "id": "c6bc5d77-9e66-43a1-b8bd-48ff738c2258",
-      "model": "Fitness Bicycle",
-      "make": "Kia",
-      "tyre": "26X1.5",
-      "value": 46
+      "value": 39
     }
   ]
 }

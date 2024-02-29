@@ -9,10 +9,26 @@ export const bikeApiSlice = apiSlice.injectEndpoints({
                 {type: 'Bike', id: 'LIST'}
             ]
         }),
+        getBikeById: builder.query<BikeDTO, string>({
+            query: (id) => `/bikes/${id}`,
+            providesTags: (result, error, arg) => [
+                {type: 'Bike', id: result?.id ?? 'LIST'}
+            ]
+        }),
         addBike: builder.mutation<BikeDTO, BikeDTO>({
             query: (bikeDTO) => ({
                 url: '/bikes',
                 method: 'POST',
+                body: bikeDTO
+            }),
+            invalidatesTags: (result, error, arg) => [
+                {type: 'Bike', id: 'LIST'}
+            ]
+        }),
+        updateBike: builder.mutation<BikeDTO, BikeDTO>({
+            query: (bikeDTO) => ({
+                url: `/bikes/${bikeDTO.id}`,
+                method: 'PUT',
                 body: bikeDTO
             }),
             invalidatesTags: (result, error, arg) => [
@@ -32,4 +48,4 @@ export const bikeApiSlice = apiSlice.injectEndpoints({
     })
 })
 
-export const { useGetBikesQuery, useAddBikeMutation, useDeleteBikeMutation} = bikeApiSlice;
+export const { useGetBikesQuery, useGetBikeByIdQuery, useAddBikeMutation, useUpdateBikeMutation, useDeleteBikeMutation} = bikeApiSlice;
