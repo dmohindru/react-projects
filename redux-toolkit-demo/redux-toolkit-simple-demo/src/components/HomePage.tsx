@@ -6,7 +6,6 @@ const HomePage: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <CarList />
-      <hr />
       <BikeList />
     </Container>
   );

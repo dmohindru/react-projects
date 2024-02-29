@@ -1,14 +1,7 @@
 import { CarDTO } from "../../dto/dto";
 import { useDeleteCarMutation } from "./CarSlice";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  IconButton,
-  Paper,
-  TableRow,
-  TableCell,
-} from "@mui/material";
+import { IconButton, TableRow, TableCell } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const CarItem: React.FC<CarDTO> = ({ id, make, model, value, engine }) => {

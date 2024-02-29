@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetBikeByIdQuery, useUpdateBikeMutation } from "./BikeSlice";
 import { ChangeEvent, useState, useEffect } from "react";
+import { Container, Box, Typography, Button, TextField } from "@mui/material";
 
 const BikeItemEdit: React.FC = () => {
   const { bikeId } = useParams();
@@ -56,34 +57,102 @@ const BikeItemEdit: React.FC = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h3>{`Editing Bike with id ${bikeId}`}</h3>
+    <Container>
+      <Typography
+        variant="h4"
+        display="flex"
+        justifyContent="center"
+        marginY="20px"
+      >
+        Edit Bike
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="bikeMake">Make</label>
-        <input type="text" id="bikeMake" value={make} onChange={onMakeChange} />
-        <br />
-        <label htmlFor="bikeModel">Model</label>
-        <input
-          type="text"
-          id="bikeModel"
-          value={model}
-          onChange={onModelChange}
-        />
-        <br />
-        <label htmlFor="bikeValue">Value</label>
-        <input
-          type="number"
-          id="bikeValue"
-          value={value}
-          onChange={onValueChange}
-        />
-        <br />
-        <label htmlFor="bikeType">Tyre</label>
-        <input type="text" id="bikeType" value={tyre} onChange={onTyreChange} />
-        <br />
-        <button type="submit">Submit</button>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Bike Make
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="make"
+              value={make}
+              onChange={onMakeChange}
+              size="small"
+            />
+          </Box>
+        </Box>
+
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Bike Model
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="make"
+              value={model}
+              onChange={onModelChange}
+              size="small"
+            />
+          </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Value
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="make"
+              value={value}
+              onChange={onValueChange}
+              size="small"
+            />
+          </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            width="100%"
+            marginY="20px"
+          >
+            <Typography fontWeight="bold" flex="30%">
+              Tyre
+            </Typography>
+            <TextField
+              sx={{ flex: "70%" }}
+              label="make"
+              value={tyre}
+              onChange={onTyreChange}
+              size="small"
+            />
+          </Box>
+          <Button variant="contained" fullWidth type="submit">
+            Submit
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Container>
   );
 };
 
