@@ -1,26 +1,24 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetCarByIdQuery, useUpdateCarMutation } from "./CarSlice";
-import { ChangeEvent, useState, useEffect } from "react";
+import { useUpdateBikeMutation } from "./BikeApiSlice";
+import { ChangeEvent, useState } from "react";
 import { Container, Box, Typography, Button, TextField } from "@mui/material";
+import { selectBikeById } from "./BikeSlice";
+import { useTypeSelector } from "../../hooks/useHooks";
+import { RootState } from "../../app/store";
 
-const CarItemEdit: React.FC = () => {
-  const { carId } = useParams();
+const BikeItemEdit: React.FC = () => {
+  const { bikeId } = useParams();
   const navigate = useNavigate();
 
-  const { data, isLoading } = useGetCarByIdQuery(carId ?? "");
-  const [updateCar] = useUpdateCarMutation();
+  const bike = useTypeSelector((state: RootState) =>
+    selectBikeById(state, bikeId ?? "")
+  );
+  const [updateBike] = useUpdateBikeMutation();
 
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [value, setValue] = useState(0);
-  const [engine, setEngine] = useState(0);
-
-  useEffect(() => {
-    setMake(data?.make ?? "");
-    setModel(data?.model ?? "");
-    setValue(data?.value ?? 0);
-    setEngine(data?.engine ?? 0);
-  }, [data]);
+  const [make, setMake] = useState(bike.make);
+  const [model, setModel] = useState(bike.model);
+  const [value, setValue] = useState(bike.value);
+  const [tyre, setTyre] = useState(bike.tyre);
 
   const onMakeChange = (e: ChangeEvent<HTMLInputElement>) =>
     setMake(e.target.value);
@@ -31,40 +29,38 @@ const CarItemEdit: React.FC = () => {
   const onValueChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(+e.target.value);
 
-  const onEngineChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setEngine(+e.target.value);
+  const onTyreChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setTyre(e.target.value);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await updateCar({
-        id: carId,
-        make: make ?? "",
-        model: model ?? "",
-        value: value ?? 0,
-        engine: engine ?? 0,
+      await updateBike({
+        id: bikeId,
+        make: make,
+        model: model,
+        value: value,
+        tyre: tyre,
       }).unwrap();
     } catch (err) {
-      console.log("Failed to update car", err);
+      console.log("Failed to update bike", err);
     }
     setMake("");
     setModel("");
-    setEngine(0);
     setValue(0);
+    setTyre("");
     navigate("/");
   };
 
-  if (isLoading) return <div>Loading</div>;
-
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Typography
         variant="h4"
         display="flex"
         justifyContent="center"
         marginY="20px"
       >
-        Edit Car
+        Edit Bike
       </Typography>
       <form onSubmit={handleSubmit}>
         <Box display="flex" flexDirection="column" alignItems="center">
@@ -76,7 +72,7 @@ const CarItemEdit: React.FC = () => {
             marginY="20px"
           >
             <Typography fontWeight="bold" flex="30%">
-              Car Make
+              Bike Make
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
@@ -86,6 +82,9 @@ const CarItemEdit: React.FC = () => {
               size="small"
             />
           </Box>
+        </Box>
+
+        <Box display="flex" flexDirection="column" alignItems="center">
           <Box
             display="flex"
             flexDirection="row"
@@ -94,7 +93,7 @@ const CarItemEdit: React.FC = () => {
             marginY="20px"
           >
             <Typography fontWeight="bold" flex="30%">
-              Car Model
+              Bike Model
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
@@ -104,6 +103,8 @@ const CarItemEdit: React.FC = () => {
               size="small"
             />
           </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
           <Box
             display="flex"
             flexDirection="row"
@@ -122,6 +123,8 @@ const CarItemEdit: React.FC = () => {
               size="small"
             />
           </Box>
+        </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
           <Box
             display="flex"
             flexDirection="row"
@@ -130,13 +133,13 @@ const CarItemEdit: React.FC = () => {
             marginY="20px"
           >
             <Typography fontWeight="bold" flex="30%">
-              Engine
+              Tyre
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="engine"
-              value={engine}
-              onChange={onEngineChange}
+              label="tyre"
+              value={tyre}
+              onChange={onTyreChange}
               size="small"
             />
           </Box>
@@ -145,9 +148,8 @@ const CarItemEdit: React.FC = () => {
           </Button>
         </Box>
       </form>
-      <br />
     </Container>
   );
 };
 
-export default CarItemEdit;
+export default BikeItemEdit;

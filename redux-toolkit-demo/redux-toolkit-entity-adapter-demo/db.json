@@ -1,0 +1,76 @@
+{
+  "cars": [
+    {
+      "id": "f5e1a664-fd60-4789-bfbe-39eb9aa86f0c",
+      "make": "Smart",
+      "model": "Element",
+      "value": 6821,
+      "engine": 1852
+    },
+    {
+      "id": "895fa9a6-152d-47c8-a539-d53e6edb02d0",
+      "make": "Dodge",
+      "model": "Ranchero",
+      "value": 16096,
+      "engine": 1392
+    },
+    {
+      "id": "62809794-1614-43bc-aefe-893d231af543",
+      "make": "Chrysler",
+      "model": "Beetle",
+      "value": 12138,
+      "engine": 1510
+    },
+    {
+      "id": "5fd0be68-13a9-4efe-ad19-81f622c3c1b7",
+      "make": "Jeep",
+      "model": "Mercielago",
+      "value": 15906,
+      "engine": 1457
+    }
+  ],
+  "bikes": [
+    {
+      "id": "46b7dd3f-2cbc-4cc1-aaca-65aa1f1d2d0e",
+      "model": "Fitness Bicycle",
+      "make": "Chrysler",
+      "tyre": "26X1.5",
+      "value": 17
+    },
+    {
+      "id": "dcd09b41-29f9-4100-b5a0-71053066e01e",
+      "model": "City Bicycle",
+      "make": "Tesla",
+      "tyre": "26X1.5",
+      "value": 42
+    },
+    {
+      "id": "25e5e2b3-5dcd-416e-9fb4-be3842cddb9a",
+      "model": "Folding Bicycle",
+      "make": "Chevrolet",
+      "tyre": "26X1.5",
+      "value": 20
+    },
+    {
+      "id": "f119ee74-ab12-47e8-bb11-4abc7b6a102f",
+      "model": "Tandem Bicycle",
+      "make": "Chrysler",
+      "tyre": "26X1.5",
+      "value": 14
+    },
+    {
+      "id": "dcda255f-7e15-4343-a3d2-4cbc1ff0d925",
+      "model": "Tandem Bicycle",
+      "make": "Nissan",
+      "tyre": "26X1.5",
+      "value": 24
+    },
+    {
+      "id": "fb0357f8-01c5-4afa-9110-0459b30e9289",
+      "model": "Recumbent Bicycle",
+      "make": "Volkswagen",
+      "tyre": "26X1.5",
+      "value": 26
+    }
+  ]
+}

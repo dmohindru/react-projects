@@ -101,7 +101,7 @@ const BikeItemEdit: React.FC = () => {
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="make"
+              label="model"
               value={model}
               onChange={onModelChange}
               size="small"
@@ -121,7 +121,7 @@ const BikeItemEdit: React.FC = () => {
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="make"
+              label="value"
               value={value}
               onChange={onValueChange}
               size="small"
@@ -141,7 +141,7 @@ const BikeItemEdit: React.FC = () => {
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="make"
+              label="tyre"
               value={tyre}
               onChange={onTyreChange}
               size="small"
