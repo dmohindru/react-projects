@@ -57,7 +57,7 @@ This repository contains collection of full stack react projects to capture my e
 
 [Redux Toolkit demo series](./redux-toolkit-demo)
 
-- This folder will contain series of redux toolkit deoms
+- This folder will contain series of redux toolkit demos
 
 ---
 
