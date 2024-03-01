@@ -1,26 +1,25 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useGetCarByIdQuery, useUpdateCarMutation } from "./CarSlice";
-import { ChangeEvent, useState, useEffect } from "react";
+import { useUpdateCarMutation } from "./CarApiSlice";
+import { selectCarById } from "./CarSlice";
+import { useTypeSelector } from "../../hooks/useHooks";
+import { ChangeEvent, useState } from "react";
 import { Container, Box, Typography, Button, TextField } from "@mui/material";
+import { RootState } from "../../app/store";
 
 const CarItemEdit: React.FC = () => {
-  const { carId } = useParams();
+  const { carId } = useParams<{ carId: string }>();
   const navigate = useNavigate();
 
-  const { data, isLoading } = useGetCarByIdQuery(carId ?? "");
+  const car = useTypeSelector((state: RootState) =>
+    selectCarById(state, carId ?? "")
+  );
+
   const [updateCar] = useUpdateCarMutation();
 
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [value, setValue] = useState(0);
-  const [engine, setEngine] = useState(0);
-
-  useEffect(() => {
-    setMake(data?.make ?? "");
-    setModel(data?.model ?? "");
-    setValue(data?.value ?? 0);
-    setEngine(data?.engine ?? 0);
-  }, [data]);
+  const [make, setMake] = useState(car.make);
+  const [model, setModel] = useState(car.model);
+  const [value, setValue] = useState(car.value);
+  const [engine, setEngine] = useState(car.engine);
 
   const onMakeChange = (e: ChangeEvent<HTMLInputElement>) =>
     setMake(e.target.value);
@@ -53,8 +52,6 @@ const CarItemEdit: React.FC = () => {
     setValue(0);
     navigate("/");
   };
-
-  if (isLoading) return <div>Loading</div>;
 
   return (
     <Container maxWidth="sm">
