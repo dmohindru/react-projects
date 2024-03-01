@@ -113,7 +113,7 @@ const CarItemEdit: React.FC = () => {
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="model"
+              label="value"
               value={value}
               onChange={onValueChange}
               size="small"
@@ -131,7 +131,7 @@ const CarItemEdit: React.FC = () => {
             </Typography>
             <TextField
               sx={{ flex: "70%" }}
-              label="model"
+              label="engine"
               value={engine}
               onChange={onEngineChange}
               size="small"
