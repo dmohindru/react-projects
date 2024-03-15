@@ -1,6 +1,6 @@
 import { BikeDTO } from "../../dto/dto";
 import BikeItem from "./BikeItem";
-import { useAddBikeMutation } from "./BikeApiSlice";
+import { useAddBikeMutation, useGetBikesQuery } from "./BikeApiSlice";
 import { faker } from "@faker-js/faker";
 import {
   Box,
@@ -21,6 +21,7 @@ import { selectAllBikes } from "./BikeSlice";
 const BikeList: React.FC = () => {
   const [addBike] = useAddBikeMutation();
   const allBikes = useTypeSelector(selectAllBikes);
+  const { data } = useGetBikesQuery();
 
   const addNewBike = () => {
     const newBike: BikeDTO = {

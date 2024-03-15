@@ -34,11 +34,14 @@ export const carApiSlice = apiSlice.injectEndpoints({
                 
             ]
         }),
-        deleteCar: builder.mutation<CarDTO, string>({
+        deleteCar: builder.mutation<{id: string}, string>({
             query: (id) => ({
                 url: `/cars/${id}`,
                 method: 'DELETE'
             }),
+            transformResponse: (response: any, meta, arg) => {
+                return {id: arg};
+            }
         })
     })
 });

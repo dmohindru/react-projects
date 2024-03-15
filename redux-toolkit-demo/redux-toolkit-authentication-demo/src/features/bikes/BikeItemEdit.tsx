@@ -49,7 +49,7 @@ const BikeItemEdit: React.FC = () => {
     setModel("");
     setValue(0);
     setTyre("");
-    navigate("/");
+    navigate("/homepage");
   };
 
   return (

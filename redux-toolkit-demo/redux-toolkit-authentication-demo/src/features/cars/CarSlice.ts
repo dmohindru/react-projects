@@ -27,6 +27,7 @@ const carsSlice = createSlice({
             carsAdapter.upsertOne(state, action.payload);
         })
         .addMatcher(carApiSlice.endpoints.deleteCar.matchFulfilled, (state, action) => {
+            console.log(`Deleting car ${action.payload.id}`);
             carsAdapter.removeOne(state, action.payload.id ?? '');
         })
     }

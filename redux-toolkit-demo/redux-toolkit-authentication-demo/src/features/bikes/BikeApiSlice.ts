@@ -32,11 +32,14 @@ export const bikeApiSlice = apiSlice.injectEndpoints({
                 {type: 'Bike', id: result?.id}
             ]
         }),
-        deleteBike: builder.mutation<BikeDTO, string>({
+        deleteBike: builder.mutation<{id: string}, string>({
             query: (id) =>({
                 url: `/bikes/${id}`,
                 method: 'DELETE'
             }),
+            transformResponse: (response: any, meta, args) => {
+                return {id: args}
+            }
         }), 
     })
 });

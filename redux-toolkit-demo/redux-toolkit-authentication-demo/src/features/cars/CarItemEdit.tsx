@@ -50,7 +50,7 @@ const CarItemEdit: React.FC = () => {
     setModel("");
     setEngine(0);
     setValue(0);
-    navigate("/");
+    navigate("/homepage");
   };
 
   return (

@@ -1,23 +1,33 @@
 import BikeList from "../features/bikes/BIkeList";
 import CarList from "../features/cars/CarList";
+import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
-import { useGetCarsQuery } from "../features/cars/CarApiSlice";
-import { useGetBikesQuery } from "../features/bikes/BikeApiSlice";
-
+import { Button } from "@mui/material";
+import { useGetAccessTokenMutation } from "../features/auth/authApiSlice";
+import { useEffect } from "react";
 const HomePage: React.FC = () => {
-  // Load all cars and bikes entites in home page so that child components can use selector to retrieve data
-  const { isError: isCarError, error: carError } = useGetCarsQuery();
-  const { isError: isBikeError, error: bikeError } = useGetBikesQuery();
-  if (isCarError) {
-    console.log("Failed to fetch all cars from remote server", carError);
-  }
+  const [getAccessToken] = useGetAccessTokenMutation();
 
-  if (isBikeError) {
-    console.log("Failed to fetch all bikes from remote server", bikeError);
-  }
+  const fetchAccessToken = async () => {
+    console.log("Fetching new access token on HomePage....");
+    await getAccessToken({
+      email: "dhruv@email.com",
+      password: "dhruv",
+    }).unwrap();
+  };
+
+  // This technique idea is taken from this blog
+  // https://blog.logrocket.com/handling-user-authentication-redux-toolkit/
+  useEffect(() => {
+    const intervalId = setInterval(fetchAccessToken, 45000);
+    return () => clearInterval(intervalId);
+  });
 
   return (
     <Container maxWidth="lg">
+      <Link to="/">
+        <Button variant="contained">Go Landing Page</Button>
+      </Link>
       <CarList />
       <BikeList />
     </Container>

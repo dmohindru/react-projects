@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { CarDTO } from "../../dto/dto";
 import CarItem from "./CarItem";
-import { useAddCarMutation } from "./CarApiSlice";
+import { useAddCarMutation, useGetCarsQuery } from "./CarApiSlice";
 import {
   Box,
   Typography,
@@ -19,8 +19,8 @@ import { useTypeSelector } from "../../hooks/useHooks";
 import { selectAllCars } from "./CarSlice";
 
 const CarList: React.FC = () => {
-  //const { data } = useGetCarsQuery();
   const [addCar] = useAddCarMutation();
+  const { data } = useGetCarsQuery();
   const allCars = useTypeSelector(selectAllCars);
 
   const addNewCar = () => {
