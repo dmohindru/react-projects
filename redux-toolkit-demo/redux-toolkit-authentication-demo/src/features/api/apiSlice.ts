@@ -5,6 +5,7 @@ import { RootState } from '../../app/store';
 //   FetchArgs,
 //   FetchBaseQueryError,
 // } from '@reduxjs/toolkit/query';
+// import { authApiSlice } from '../auth/authApiSlice';
 
 
 // Redux example with reauth
@@ -24,39 +25,45 @@ const baseQuery = fetchBaseQuery({
         },
     });
 // TODO: Need to work on this code using auth refech technique
-/*
-const baseQueryWithReauth: BaseQueryFn<
-  string | FetchArgs,
-  unknown,
-  FetchBaseQueryError
-> = async (args, api, extraOptions) => {
-    let result = await baseQuery(args, api, extraOptions);
-    if (result.error && result.error.status === 401) {
-        console.log('Authentication error caught in baseQueryWithReauth');
+// const baseQueryWithReauth: BaseQueryFn<
+//   string | FetchArgs,
+//   unknown,
+//   FetchBaseQueryError
+// > = async (args, api, extraOptions) => {
+//     let result = await baseQuery(args, api, extraOptions);
+//     if (result.error && result.error.status === 401) {
+        // console.log('Authentication error caught in baseQueryWithReauth');
 
-        const refreshResult = await baseQuery(
-            {
-                url: '/auth/login', 
-                method: 'POST', 
-                body: {email: "dhruv@email.com", password: 'dhruv'}
-            }, 
-            api, 
-            extraOptions
-        );
+        // const [getAccessToken] = authApiSlice.endpoints.getAccessToken.useMutation();
+        // await getAccessToken({
+        //     email: 'dhruv@email.com',
+        //     password: 'dhruv'
+        // }).unwrap();
 
-        if (refreshResult.data) {
-            const newToken = refreshResult.data as AccessTokenDTO;
-            console.log('access_token', newToken.access_token);
-            // Below line is the missing link to the whole solution
-            //api.dispatch(updateToken(newToken.access_token));
-            result = await baseQuery(args, api, extraOptions);
-        } else {
-            console.log('unable to fetch refresh token');
-        }
-    }
-    return result;
-}
-*/
+        // result = await baseQuery(args, api, extraOptions);
+
+        // const refreshResult = await baseQuery(
+        //     {
+        //         url: '/auth/login', 
+        //         method: 'POST', 
+        //         body: {email: "dhruv@email.com", password: 'dhruv'}
+        //     }, 
+        //     api, 
+        //     extraOptions
+        // );
+
+        // if (refreshResult.data) {
+        //     const newToken = refreshResult.data as AccessTokenDTO;
+        //     console.log('access_token', newToken.access_token);
+        //     // Below line is the missing link to the whole solution
+        //     //api.dispatch(updateToken(newToken.access_token));
+        //     result = await baseQuery(args, api, extraOptions);
+        // } else {
+        //     console.log('unable to fetch refresh token');
+        // }
+//     }
+//     return result;
+// }
 
 export const apiSlice = createApi({
     reducerPath: 'api',

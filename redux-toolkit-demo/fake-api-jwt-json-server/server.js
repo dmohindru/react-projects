@@ -13,7 +13,7 @@ server.use(jsonServer.defaults());
 
 const SECRET_KEY = '123456789'
 
-const expiresIn = '1m'
+const expiresIn = '30s'
 
 const port = 8000
 

@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   // This technique idea is taken from this blog
   // https://blog.logrocket.com/handling-user-authentication-redux-toolkit/
   useEffect(() => {
-    const intervalId = setInterval(fetchAccessToken, 45000);
+    const intervalId = setInterval(fetchAccessToken, 20000);
     return () => clearInterval(intervalId);
   });
 
