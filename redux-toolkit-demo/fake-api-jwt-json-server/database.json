@@ -1,0 +1,48 @@
+{
+  "cars": [
+    {
+      "id": "2cbc0529-540d-4350-86eb-34c3169e543e",
+      "make": "Smart",
+      "model": "Countach",
+      "value": 10879,
+      "engine": 1444
+    },
+    {
+      "id": "81d83175-40a4-4a0e-997b-506a3cef704d",
+      "make": "Chevrolet",
+      "model": "Spyder",
+      "value": 7931,
+      "engine": 1029
+    },
+    {
+      "id": "0e12bc3f-5590-4ee8-a8d2-49dbc3b14d5f",
+      "make": "Bentley",
+      "model": "Volt",
+      "value": 3845,
+      "engine": 1925
+    }
+  ],
+  "bikes": [
+    {
+      "id": "5117910d-a612-4ef2-9dd8-ebf7277b2129",
+      "model": "Tandem Bicycle",
+      "make": "Land Rover",
+      "tyre": "26X1.5",
+      "value": 42
+    },
+    {
+      "id": "c7ace699-204d-47cb-b2ca-fa4fb58e9a7a",
+      "model": "Fitness Bicycle",
+      "make": "Ferrari",
+      "tyre": "26X1.5",
+      "value": 42
+    },
+    {
+      "id": "f17d0516-50d6-4a66-a307-88d8e0284e90",
+      "model": "Tricycle",
+      "make": "Tesla",
+      "tyre": "26X1.5",
+      "value": 18
+    }
+  ]
+}
