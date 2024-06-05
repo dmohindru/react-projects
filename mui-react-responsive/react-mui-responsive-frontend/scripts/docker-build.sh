@@ -9,4 +9,4 @@ rm -rf build/
 npm run build
 
 # Build docker image
-docker build -t dmohindru/dashboard-app .
+docker build -t dmohindru/responsive-app .
