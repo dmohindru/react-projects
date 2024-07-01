@@ -1,8 +1,8 @@
 import {useContext} from "react";
 import {Box} from "@mui/material";
 import RandomValueComponent from "./RandomValueComponent";
-import {RandomRepeatedServiceContext} from "../context/RandomRepeatedServiceContext";
-import {RandomServiceContextProps} from "../context/RandomServiceContext";
+import {RandomRepeatedServiceContext, RandomServiceContextProps} from "../context/RandomServiceContextProvider";
+
 
 const DisplayRandomValues: React.FC = () => {
     const {person, car, color, number} = useContext<RandomServiceContextProps>(RandomRepeatedServiceContext);
