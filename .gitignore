@@ -1,0 +1,16 @@
+# Ignore IntelliJ IDEA project files
+**/.idea/
+
+# Ignore IntelliJ IDEA specific files
+**/*.iml
+
+# Ignore build directories
+**/build/
+**/out/
+
+# Ignore other common IDE-specific files and folders
+**/.vscode/
+**/.project
+**/.classpath
+**/.settings/
+**/.cache/
