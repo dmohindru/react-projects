@@ -63,6 +63,10 @@ This repository contains collection of full stack react projects to capture my e
 
 - This folder will contain series of react context demos
 
+[React Custom hooks demo series](./react-custom-hooks-demo/)
+
+- This folder will contain series of react custom hooks demos
+
 ---
 
 ### Remarks
