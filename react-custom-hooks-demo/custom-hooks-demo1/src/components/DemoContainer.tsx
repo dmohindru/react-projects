@@ -13,7 +13,15 @@ const DemoContainer: React.FC<DemoContainerProps> = ({ title, components }) => {
   const [FirstComponent, SecondComponent] = components;
   return (
     <Box display="flex" flexDirection="column" my={2}>
-      <Typography variant="h6">{title}</Typography>
+      <Typography
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+        variant="h4"
+      >
+        {title}
+      </Typography>
       <Box display="flex" flexDirection="row">
         <Box sx={{ flex: 1, p: 1 }}>
           <FirstComponent />
