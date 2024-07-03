@@ -1,20 +1,21 @@
 import React from 'react';
-
-import useLocalStorage from './hooks/useLocalStorage';
+import { Container } from '@mui/material';
+import DemoContainer from './components/DemoContainer';
+import ComplexCounter from './components/localstorage/ComplexCounter';
 
 function App() {
-  const [name, setName, removeName] = useLocalStorage<string>('name', 'Dhruv');
   return (
-    <div>
-      <></>
-      <h1>Hello, {name}!</h1>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+    <Container
+      maxWidth="md"
+      sx={{
+        background: 'gray',
+      }}
+    >
+      <DemoContainer
+        title="Local Storage Hook Demo"
+        components={[ComplexCounter, ComplexCounter]}
       />
-      <button onClick={removeName}>Remove Name</button>
-    </div>
+    </Container>
   );
 }
 
