@@ -1,41 +1,68 @@
 import React from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import {Box, Typography, IconButton} from '@mui/material';
 import ComponentContainer from '../ComponentContainer';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
-interface MultiCounter {
-  counter1: number;
-  counter2: number;
-  counter3: number;
+type counter = {
+    name: string
+    value: number
 }
 
-const ComplexCounter: React.FC = () => {
-  return (
-    <ComponentContainer>
-      <Box display="flex" flexDirection="column">
-        <Typography
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-          variant="h5"
-        >
-          Complex Counter
-        </Typography>
-        <Box display="flex" flexDirection="row">
-          <Box sx={{ flex: 1 }}>
+const createCounterControl= (counterName: string, counterValue:number): React.ReactElement => (
+    <Box display="flex" flexDirection="row" my={0.5}>
+        <Box sx={{flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Typography variant="body1" fontWeight="bold">
-              counter1:
+                {counterName}:
             </Typography>
-          </Box>
-          <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row' }}>
-            <Button>+</Button>
-            <TextField>0</TextField>
-            <Button>-</Button>
-          </Box>
         </Box>
-      </Box>
-    </ComponentContainer>
-  );
+        <Box sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
+            <IconButton color="primary" size="small"><AddIcon/></IconButton>
+            <Typography
+                variant="body1"
+                fontWeight="bold"
+                mx={2}
+                width='30px'
+                textAlign="center">
+                {counterValue}
+            </Typography>
+            <IconButton color="primary" size="small"><RemoveIcon/></IconButton>
+        </Box>
+    </Box>
+
+)
+
+const ComplexCounter: React.FC = () => {
+    const counters: counter[] = [
+        {name: 'counter1', value: 20},
+        {name: 'counter2', value: 30},
+        {name: 'counter3', value: 2},
+        {name: 'counter4', value: 200},
+    ]
+    return (
+        <ComponentContainer>
+            <Box display="flex" flexDirection="column">
+                <Typography
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        my: 0.5
+                    }}
+                    variant="h5"
+                    fontWeight="bold"
+                >
+                    Complex Counter
+                </Typography>
+                {counters.map(({name, value}) => createCounterControl(name, value))}
+            </Box>
+        </ComponentContainer>
+    );
 };
 
 export default ComplexCounter;
