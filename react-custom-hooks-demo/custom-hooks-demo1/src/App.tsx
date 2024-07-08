@@ -3,6 +3,8 @@ import { Container } from '@mui/material';
 import DemoContainer from './components/DemoContainer';
 import ComplexCounter from './components/localstorage/ComplexCounter';
 import FriendList from './components/localstorage/FriendList';
+import OnLineStatusOne from './components/onlinestatus/OnLineStatusOne';
+import OnLineStatusTwo from './components/onlinestatus/OnLineStatusTwo';
 
 function App() {
   return (
@@ -11,6 +13,11 @@ function App() {
       <DemoContainer
         title="Local Storage Hook Demo"
         components={[ComplexCounter, FriendList]}
+      />
+      {/*   Online hook Demo Container*/}
+      <DemoContainer
+        title="Online Hook Demo"
+        components={[OnLineStatusOne, OnLineStatusTwo]}
       />
     </Container>
   );
