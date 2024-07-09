@@ -6,6 +6,7 @@ import FriendList from './components/localstorage/FriendList';
 import OnLineStatusOne from './components/onlinestatus/OnLineStatusOne';
 import OnLineStatusTwo from './components/onlinestatus/OnLineStatusTwo';
 import CsvAverage from './components/csvdata/CsvAverage';
+import CsvStdDeviation from './components/csvdata/CsvStdDeviation';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
       {/* Csv File Hook Demo */}
       <DemoContainer
         title="CSV File Hook Demo"
-        components={[{ CsvAverage }, CsvAverage]}
+        components={[CsvAverage, CsvStdDeviation]}
       />
     </Container>
   );
