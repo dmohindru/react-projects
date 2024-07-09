@@ -5,6 +5,7 @@ import ComplexCounter from './components/localstorage/ComplexCounter';
 import FriendList from './components/localstorage/FriendList';
 import OnLineStatusOne from './components/onlinestatus/OnLineStatusOne';
 import OnLineStatusTwo from './components/onlinestatus/OnLineStatusTwo';
+import CsvAverage from './components/csvdata/CsvAverage';
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
       <DemoContainer
         title="Online Hook Demo"
         components={[OnLineStatusOne, OnLineStatusTwo]}
+      />
+      {/* Csv File Hook Demo */}
+      <DemoContainer
+        title="CSV File Hook Demo"
+        components={[{ CsvAverage }, CsvAverage]}
       />
     </Container>
   );

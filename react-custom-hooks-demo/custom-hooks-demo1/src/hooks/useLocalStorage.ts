@@ -8,10 +8,10 @@ type UseLocalStorageReturnType<T> = [
 ];
 
 // Custom hook to use local storage
-function useLocalStorage<T>(
+const useLocalStorage = <T>(
   key: string,
   initialValue: T
-): UseLocalStorageReturnType<T> {
+): UseLocalStorageReturnType<T> => {
   // State to store our value
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
@@ -53,6 +53,6 @@ function useLocalStorage<T>(
   };
 
   return [storedValue, setValue, removeValue];
-}
+};
 
 export default useLocalStorage;
