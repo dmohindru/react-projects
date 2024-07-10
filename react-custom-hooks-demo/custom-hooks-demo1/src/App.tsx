@@ -7,6 +7,8 @@ import OnLineStatusOne from './components/onlinestatus/OnLineStatusOne';
 import OnLineStatusTwo from './components/onlinestatus/OnLineStatusTwo';
 import CsvAverage from './components/csvdata/CsvAverage';
 import CsvStdDeviation from './components/csvdata/CsvStdDeviation';
+import SydneyWeather from './components/weather/SydneyWeather';
+import LudhianaWeather from './components/weather/LudhianaWeather';
 
 function App() {
   return (
@@ -25,6 +27,11 @@ function App() {
       <DemoContainer
         title="CSV File Hook Demo"
         components={[CsvAverage, CsvStdDeviation]}
+      />
+      {/* Weather Hook Demo */}
+      <DemoContainer
+        title="Weather Hook Demo"
+        components={[SydneyWeather, LudhianaWeather]}
       />
     </Container>
   );
