@@ -9,16 +9,13 @@ import {
   Typography,
 } from '@mui/material';
 import ComponentContainer from '../ComponentContainer';
+import useWeather from '../../hooks/useWeather';
 
 type WeatherTableProps = {
   city: string;
   lat: number;
   lng: number;
-};
-
-type WeatherItem = {
-  label: string;
-  value: string;
+  updateFrequencySec: number;
 };
 
 const getTableRow = (label: string, value: string): React.ReactElement => (
@@ -30,16 +27,22 @@ const getTableRow = (label: string, value: string): React.ReactElement => (
   </TableRow>
 );
 
-const WeatherTable: React.FC<WeatherTableProps> = ({ city, lat, lng }) => {
-  const weatherItems: WeatherItem[] = [
-    { label: 'City', value: city },
-    { label: 'Current Temp', value: '12.50' },
-    { label: 'Max Temp', value: '15.67' },
-    { label: 'Min Temp', value: '3.50' },
-    { label: 'Sun Rise', value: '7:00 AM' },
-    { label: 'Sun Set', value: '5:00 PM' },
-    { label: 'Day Duration', value: '10 Hr 12 Min 34 Secs' },
-  ];
+const WeatherTable: React.FC<WeatherTableProps> = ({
+  city,
+  lat,
+  lng,
+  updateFrequencySec,
+}) => {
+  const weatherItems = useWeather(lat, lng, updateFrequencySec);
+  // const weatherItems: WeatherItem[] = [
+  //   { label: 'City', value: city },
+  //   { label: 'Current Temp', value: '12.50' },
+  //   { label: 'Max Temp', value: '15.67' },
+  //   { label: 'Min Temp', value: '3.50' },
+  //   { label: 'Sun Rise', value: '7:00 AM' },
+  //   { label: 'Sun Set', value: '5:00 PM' },
+  //   { label: 'Day Duration', value: '10 Hr 12 Min 34 Secs' },
+  // ];
 
   return (
     <ComponentContainer>
@@ -48,7 +51,7 @@ const WeatherTable: React.FC<WeatherTableProps> = ({ city, lat, lng }) => {
         fontWeight="bold"
         sx={{ display: 'flex', my: 0.5, justifyContent: 'center' }}
       >
-        Weather Info
+        Weather Info for {city}
       </Typography>
       <TableContainer component={Paper}>
         <Table size="small">

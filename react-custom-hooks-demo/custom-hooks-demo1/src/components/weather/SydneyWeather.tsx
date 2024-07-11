@@ -2,7 +2,14 @@ import React from 'react';
 import WeatherTable from './WeatherTable';
 
 const SydneyWeather: React.FC = () => {
-  return <WeatherTable city="Sydney" lat={-33.86} lng={151.2} />;
+  return (
+    <WeatherTable
+      city="Sydney"
+      lat={-33.86}
+      lng={151.2}
+      updateFrequencySec={60}
+    />
+  );
 };
 
 export default SydneyWeather;
