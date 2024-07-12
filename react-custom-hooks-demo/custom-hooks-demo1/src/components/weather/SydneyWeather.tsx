@@ -8,6 +8,7 @@ const SydneyWeather: React.FC = () => {
       lat={-33.86}
       lng={151.2}
       updateFrequencySec={60}
+      timezone="Australia/Sydney"
     />
   );
 };

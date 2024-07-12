@@ -8,6 +8,7 @@ const LudhianaWeather: React.FC = () => {
       lat={30.9}
       lng={75.85}
       updateFrequencySec={60}
+      timezone="Asia/Kolkata"
     />
   );
 };

@@ -9,13 +9,15 @@ import {
   Typography,
 } from '@mui/material';
 import ComponentContainer from '../ComponentContainer';
-import useWeather from '../../hooks/useWeather';
+import useWeather, { WeatherItem } from '../../hooks/useWeather';
 
 type WeatherTableProps = {
   city: string;
   lat: number;
   lng: number;
   updateFrequencySec: number;
+
+  timezone: string;
 };
 
 const getTableRow = (label: string, value: string): React.ReactElement => (
@@ -27,22 +29,36 @@ const getTableRow = (label: string, value: string): React.ReactElement => (
   </TableRow>
 );
 
+const getErrorMessage = (weatherItems: WeatherItem[]): React.ReactElement => {
+  const errorObj = weatherItems.find(({ label }) => label === 'Error');
+
+  return (
+    <Typography
+      variant="h5"
+      fontWeight="bold"
+      sx={{
+        color: 'red',
+        display: 'flex',
+        justifyContent: 'center',
+        height: '100%',
+      }}
+    >
+      {errorObj ? errorObj.value : 'Unknown Error'}
+    </Typography>
+  );
+};
+
+const hasErrorLabel = (weatherItems: WeatherItem[]) =>
+  weatherItems.some(({ label }) => label === 'Error');
+
 const WeatherTable: React.FC<WeatherTableProps> = ({
   city,
   lat,
   lng,
   updateFrequencySec,
+  timezone,
 }) => {
-  const weatherItems = useWeather(lat, lng, updateFrequencySec);
-  // const weatherItems: WeatherItem[] = [
-  //   { label: 'City', value: city },
-  //   { label: 'Current Temp', value: '12.50' },
-  //   { label: 'Max Temp', value: '15.67' },
-  //   { label: 'Min Temp', value: '3.50' },
-  //   { label: 'Sun Rise', value: '7:00 AM' },
-  //   { label: 'Sun Set', value: '5:00 PM' },
-  //   { label: 'Day Duration', value: '10 Hr 12 Min 34 Secs' },
-  // ];
+  const weatherItems = useWeather(lat, lng, updateFrequencySec, timezone);
 
   return (
     <ComponentContainer>
@@ -56,7 +72,9 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
       <TableContainer component={Paper}>
         <Table size="small">
           <TableBody>
-            {weatherItems.map(({ label, value }) => getTableRow(label, value))}
+            {!hasErrorLabel(weatherItems) &&
+              weatherItems.map(({ label, value }) => getTableRow(label, value))}
+            {hasErrorLabel(weatherItems) && getErrorMessage(weatherItems)}
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export type WeatherItem = {
   label: string;
@@ -21,20 +21,36 @@ type ApiResponse = {
     daylight_duration: number[];
   };
 };
-// const weatherItems: WeatherItem[] = [
-//   { label: 'City', value: city },
-//   { label: 'Current Temp', value: '12.50' },
-//   { label: 'Max Temp', value: '15.67' },
-//   { label: 'Min Temp', value: '3.50' },
-//   { label: 'Sun Rise', value: '7:00 AM' },
-//   { label: 'Sun Set', value: '5:00 PM' },
-//   { label: 'Day Duration', value: '10 Hr 12 Min 34 Secs' },
-// ];
 
+const getFormattedTemp: (temp: number) => string = (temp) => {
+  return `${temp.toFixed(2)} C`;
+};
+
+const getHourMinSec: (duration: number) => string = (duration) => {
+  const hours = Math.floor(duration / 3600);
+  const mins = Math.floor((duration % 3600) / 60);
+  const secs = (duration % 60).toFixed();
+  return `${hours}h ${mins}m ${secs}s`;
+};
+
+const convertToTimeZone = (date: string, timeZone: string): string => {
+  // return new Intl.DateTimeFormat('en-US', {
+  //   timeZone,
+  //   hour: '2-digit',
+  //   minute: '2-digit',
+  //   second: '2-digit',
+  //   hour12: true,
+  // }).format(new Date(date));
+  // const d = new Date(date);
+  // const localTime = d.toLocaleString(undefined, { timeZone });
+  // return date;
+  return new Date(date).toLocaleString();
+};
 const useWeather = (
   lat: number,
   lng: number,
-  frequency: number
+  frequency: number,
+  timezone: string
 ): WeatherItem[] => {
   const [weatherItems, setWeatherItems] = useState<WeatherItem[]>([]);
 
@@ -42,29 +58,55 @@ const useWeather = (
     const fetchWeather = async () => {
       try {
         const { data } = await axios.get<ApiResponse>(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration&forecast_days=1&current=temperature_2m`
+          `https://api1.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration&forecast_days=1&current=temperature_2m`
         );
         console.log(JSON.stringify(data));
         const weatherData: WeatherItem[] = [];
         // current temp
         weatherData.push({
           label: 'Current Temp',
-          value: data.current.temperature_2m.toFixed(2),
+          value: getFormattedTemp(data.current.temperature_2m),
         });
 
         // max temp
         weatherData.push({
           label: 'Max Temp',
-          value: data.daily.temperature_2m_max[0].toFixed(2),
+          value: getFormattedTemp(data.daily.temperature_2m_max[0]),
         });
 
         // min temp
         weatherData.push({
           label: 'Min Temp',
-          value: data.daily.temperature_2m_min[0].toFixed(2),
+          value: getFormattedTemp(data.daily.temperature_2m_min[0]),
         });
+
+        // sun rise
+        weatherData.push({
+          label: 'Sun Rise',
+          value: convertToTimeZone(data.daily.sunrise[0], timezone),
+        });
+
+        // sun set
+        weatherData.push({
+          label: 'Sun Set',
+          value: convertToTimeZone(data.daily.sunset[0], timezone),
+        });
+
+        // day duration
+        weatherData.push({
+          label: 'Day Duration',
+          value: getHourMinSec(data.daily.daylight_duration[0]),
+        });
+
         setWeatherItems(weatherData);
-      } catch (error) {}
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError;
+          setWeatherItems([{ label: 'Error', value: axiosError.message }]);
+        } else {
+          setWeatherItems([{ label: 'Error', value: 'Unknown Error' }]);
+        }
+      }
     };
 
     fetchWeather();
@@ -72,7 +114,7 @@ const useWeather = (
     const intervalId = setInterval(fetchWeather, frequency * 1000);
 
     return () => clearInterval(intervalId);
-  }, [lat, lng, frequency]);
+  }, [lat, lng, frequency, timezone]);
 
   return weatherItems;
 };

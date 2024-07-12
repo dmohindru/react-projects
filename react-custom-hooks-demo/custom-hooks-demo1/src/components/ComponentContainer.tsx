@@ -11,7 +11,7 @@ const ComponentContainer: React.FC<ComponentContainerProps> = ({
   return (
     <Box
       sx={{
-        height: '275px',
+        height: '250px',
         width: '100%', // Adjustable width
         overflowY: 'auto', // Scrollable if content exceeds height
         border: '1px solid #ccc', // Optional: Add a border for better visibility
