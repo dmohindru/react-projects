@@ -34,17 +34,9 @@ const getHourMinSec: (duration: number) => string = (duration) => {
 };
 
 const convertToTimeZone = (date: string, timeZone: string): string => {
-  // return new Intl.DateTimeFormat('en-US', {
-  //   timeZone,
-  //   hour: '2-digit',
-  //   minute: '2-digit',
-  //   second: '2-digit',
-  //   hour12: true,
-  // }).format(new Date(date));
-  // const d = new Date(date);
-  // const localTime = d.toLocaleString(undefined, { timeZone });
-  // return date;
-  return new Date(date).toLocaleString();
+  return new Date(`${date}Z`)
+    .toLocaleString('en-US', { timeZone })
+    .split(',')[1];
 };
 const useWeather = (
   lat: number,
@@ -58,7 +50,7 @@ const useWeather = (
     const fetchWeather = async () => {
       try {
         const { data } = await axios.get<ApiResponse>(
-          `https://api1.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration&forecast_days=1&current=temperature_2m`
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration&forecast_days=1&current=temperature_2m`
         );
         console.log(JSON.stringify(data));
         const weatherData: WeatherItem[] = [];

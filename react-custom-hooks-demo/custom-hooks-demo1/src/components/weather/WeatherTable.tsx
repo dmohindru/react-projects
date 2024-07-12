@@ -16,7 +16,6 @@ type WeatherTableProps = {
   lat: number;
   lng: number;
   updateFrequencySec: number;
-
   timezone: string;
 };
 
@@ -40,7 +39,8 @@ const getErrorMessage = (weatherItems: WeatherItem[]): React.ReactElement => {
         color: 'red',
         display: 'flex',
         justifyContent: 'center',
-        height: '100%',
+        alignItems: 'center',
+        height: '70%',
       }}
     >
       {errorObj ? errorObj.value : 'Unknown Error'}
@@ -74,10 +74,10 @@ const WeatherTable: React.FC<WeatherTableProps> = ({
           <TableBody>
             {!hasErrorLabel(weatherItems) &&
               weatherItems.map(({ label, value }) => getTableRow(label, value))}
-            {hasErrorLabel(weatherItems) && getErrorMessage(weatherItems)}
           </TableBody>
         </Table>
       </TableContainer>
+      {hasErrorLabel(weatherItems) && getErrorMessage(weatherItems)}
     </ComponentContainer>
   );
 };
