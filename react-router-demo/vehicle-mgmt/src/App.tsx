@@ -13,5 +13,5 @@ export const loader = async (): Promise<Response | null> => {
 };
 
 export const App: React.FC = () => {
-  return <></>;
+  return <>Hello</>;
 };

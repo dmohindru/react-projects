@@ -17,9 +17,9 @@ import { ErrorPage } from './ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} loader={rootLoader}>
+    <Route path="/" element={<App />}>
       <Route errorElement={<ErrorPage />}>
-        <Route path="login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="vehicles" element={<VehiclesRoot />}>
           <Route index element={<VehiclesHome />} />
           <Route path="add" element={<VehicleAdd />} />
