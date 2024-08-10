@@ -6,7 +6,7 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import App from './App';
+import { App, loader as rootLoader } from './App';
 import { Login } from './Login';
 import { VehiclesRoot } from './vehicles/VehiclesRoot';
 import { VehiclesHome } from './vehicles/VehiclesHome';
@@ -17,7 +17,7 @@ import { ErrorPage } from './ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route path="/" element={<App />} loader={rootLoader}>
       <Route errorElement={<ErrorPage />}>
         <Route path="login" element={<Login />} />
         <Route path="vehicles" element={<VehiclesRoot />}>
