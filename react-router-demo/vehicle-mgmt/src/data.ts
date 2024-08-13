@@ -5,6 +5,14 @@ export interface LoggedInUser {
   time: number;
 }
 
+export interface Vehicle {
+  make: string;
+  model: string;
+  year: number;
+  value: number;
+  favorite: boolean;
+}
+
 const LOGGED_IN_USER_KEY = 'loggedInUser';
 
 localforage.config({

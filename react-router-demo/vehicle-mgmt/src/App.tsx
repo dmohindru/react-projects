@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getCurrentUser } from './data';
 import { redirect } from 'react-router-dom';
 
@@ -13,5 +13,8 @@ export const loader = async (): Promise<Response | null> => {
 };
 
 export const App: React.FC = () => {
+  useEffect(() => {
+    console.log('hello world');
+  });
   return <>Hello</>;
 };
