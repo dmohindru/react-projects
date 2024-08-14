@@ -1,17 +1,18 @@
 import localforage from 'localforage';
 
-export interface LoggedInUser {
+export type LoggedInUser = {
   username: string;
   time: number;
-}
+};
 
-export interface Vehicle {
+export type Vehicle = {
+  id?: string;
   make: string;
   model: string;
   year: number;
   value: number;
   favorite: boolean;
-}
+};
 
 const LOGGED_IN_USER_KEY = 'loggedInUser';
 
@@ -52,4 +53,18 @@ export const getCurrentUser = async (): Promise<LoggedInUser | null> => {
     console.log('Unable to get logged in user');
   }
   return null;
+};
+
+export const getUserVehicles = async (
+  username: string
+): Promise<Vehicle[] | null> => {
+  throw new Error('Not Implemented');
+};
+
+export const saveUserVehicle = async (vehicle: Vehicle): Promise<void> => {
+  throw new Error('Not Implemented');
+};
+
+export const deleteUserVehicle = async (vehicle: Vehicle): Promise<void> => {
+  throw new Error('Not Implemented');
 };

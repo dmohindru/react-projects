@@ -1,14 +1,24 @@
 import { describe, test, expect, jest } from '@jest/globals';
 import localforage from 'localforage';
+import type { LoggedInUser, Vehicle } from './data';
 import { loginUser, logoutUser, getCurrentUser } from './data';
-import exp from 'constants';
 
 jest.mock('localforage');
-// https://mattmazzola.medium.com/how-to-debug-jest-tests-with-vscode-48f003c7cb41
 
 describe('User login tests', () => {
-  it('Should login user and save logged in user in local forage', async () => {
-    throw Error('Not Implemented');
+  const mockUserName = 'mock-user-name';
+  const mockUser: LoggedInUser = {
+    username: mockUserName,
+    time: Math.floor(Date.now() / 1000),
+  };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('Should login user and save logged in user in local storage', async () => {
+    await loginUser(mockUserName);
+    expect(localforage.setItem).toHaveBeenCalledWith('loggedInUser', mockUser);
   });
 
   it('Should return current logged in user if previous login was less than 30 mins', () => {
