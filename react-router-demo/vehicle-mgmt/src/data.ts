@@ -48,7 +48,13 @@ export const logoutUser = async (): Promise<void> => {
 export const getCurrentUser = async (): Promise<LoggedInUser | null> => {
   try {
     const user = await localforage.getItem<LoggedInUser>(LOGGED_IN_USER_KEY);
-    return user;
+    const thirtyMinutesAgo = Math.floor((Date.now() - 30 * 60 * 1000) / 1000);
+    if (user && user.time >= thirtyMinutesAgo) {
+      return user;
+    } else if (user) {
+      await localforage.removeItem(LOGGED_IN_USER_KEY);
+      return null;
+    }
   } catch (err) {
     console.log('Unable to get logged in user');
   }
