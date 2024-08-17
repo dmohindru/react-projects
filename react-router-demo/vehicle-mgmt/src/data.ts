@@ -15,6 +15,7 @@ export type Vehicle = {
 };
 
 const LOGGED_IN_USER_KEY = 'loggedInUser';
+const MINUTES = 30;
 
 localforage.config({
   driver: localforage.INDEXEDDB,
@@ -48,7 +49,9 @@ export const logoutUser = async (): Promise<void> => {
 export const getCurrentUser = async (): Promise<LoggedInUser | null> => {
   try {
     const user = await localforage.getItem<LoggedInUser>(LOGGED_IN_USER_KEY);
-    const thirtyMinutesAgo = Math.floor((Date.now() - 30 * 60 * 1000) / 1000);
+    const thirtyMinutesAgo = Math.floor(
+      (Date.now() - MINUTES * 60 * 1000) / 1000
+    );
     if (user && user.time >= thirtyMinutesAgo) {
       return user;
     } else if (user) {
