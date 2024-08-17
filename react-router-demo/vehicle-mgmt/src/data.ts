@@ -67,10 +67,16 @@ export const getUserVehicles = async (
   throw new Error('Not Implemented');
 };
 
-export const saveUserVehicle = async (vehicle: Vehicle): Promise<void> => {
+export const saveUserVehicle = async (
+  username: string,
+  vehicle: Vehicle
+): Promise<void> => {
   throw new Error('Not Implemented');
 };
 
-export const deleteUserVehicle = async (vehicle: Vehicle): Promise<void> => {
+export const deleteUserVehicle = async (
+  username: string,
+  vehicle: Vehicle
+): Promise<void> => {
   throw new Error('Not Implemented');
 };

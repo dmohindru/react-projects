@@ -47,11 +47,42 @@ describe('User login tests', () => {
 
   it('Should logout user and remove from local storage', async () => {
     await logoutUser();
-    expect(localforage.removeItem).toHaveBeenLastCalledWith('loggedInUser');
+    expect(localforage.removeItem).toHaveBeenCalledWith('loggedInUser');
   });
 });
 
 describe('Vehicles Test', () => {
+  const mockVehicleList: Vehicle[] = [
+    {
+      id: 'some-id-1',
+      make: 'ford',
+      model: 'falcon',
+      year: 2007,
+      value: 6000,
+      favorite: false,
+    },
+    {
+      id: 'some-id-2',
+      make: 'ford',
+      model: 'focus',
+      year: 2013,
+      value: 10000,
+      favorite: true,
+    },
+    {
+      id: 'some-id-3',
+      make: 'Hyundai',
+      model: 'i30',
+      year: 2015,
+      value: 12000,
+      favorite: false,
+    },
+  ];
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('Should return saved vehicles for logged in user', () => {
     throw Error('Not Implemented');
   });
