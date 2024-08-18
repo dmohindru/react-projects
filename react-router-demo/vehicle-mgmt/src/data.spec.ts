@@ -1,7 +1,15 @@
 import { describe, expect, jest } from '@jest/globals';
 import localforage from 'localforage';
 import type { LoggedInUser, Vehicle } from './data';
-import { loginUser, logoutUser, getCurrentUser } from './data';
+import {
+  loginUser,
+  logoutUser,
+  getCurrentUser,
+  getUserVehicles,
+  saveUserVehicle,
+  deleteUserVehicle,
+} from './data';
+import exp from 'constants';
 
 jest.mock('localforage');
 const mockedLocalForage = localforage as jest.Mocked<typeof localforage>;
@@ -23,14 +31,12 @@ describe('User login tests', () => {
   });
 
   it('Should return current logged in user if previous login was less than 30 mins', async () => {
-    //(localforage.getItem as jest.Mock).mockReturnValue(mockUser);
     mockedLocalForage.getItem.mockResolvedValue(mockUser);
     const loggedInUser = await getCurrentUser();
     expect(loggedInUser).toBe(mockUser);
   });
 
   it('Should return null user if no logged in user found in localforage', async () => {
-    //(localforage.getItem as jest.Mock).mockReturnValue(null);
     mockedLocalForage.getItem.mockResolvedValue(null);
     const loggedInUser = await getCurrentUser();
     expect(loggedInUser).toBe(null);
@@ -88,18 +94,68 @@ describe('Vehicles Test', () => {
     jest.clearAllMocks();
   });
 
-  it('Should return saved vehicles for logged in user', () => {
-    throw Error('Not Implemented');
+  it('Should return saved vehicles for logged in user', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const userVehicles = await getUserVehicles(loggedInUser);
+    expect(userVehicles).toBe(mockVehicleList);
   });
 
-  it('Should save vehicle to localForage', () => {
-    throw Error('Not Implemented');
+  it('Should save vehicle to localForage', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const newVehicle: Vehicle = {
+      id: 'some-id-4',
+      make: 'Mazda',
+      model: 'CX-3',
+      year: 2020,
+      value: 18000,
+      favorite: true,
+    };
+
+    await saveUserVehicle(loggedInUser, newVehicle);
+    expect(localforage.setItem).toHaveBeenCalledWith(loggedInUser, [
+      ...mockVehicleList,
+    ]);
   });
 
-  it('Should modify vehicle to localForage', () => {
-    throw Error('Not Implemented');
+  it('Should save vehicle to localForage for first vehicle in list', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(null);
+    const newVehicle: Vehicle = {
+      id: 'some-id-4',
+      make: 'Mazda',
+      model: 'CX-3',
+      year: 2020,
+      value: 18000,
+      favorite: true,
+    };
+
+    await saveUserVehicle(loggedInUser, newVehicle);
+    expect(localforage.setItem).toHaveBeenCalledWith(loggedInUser, [
+      newVehicle,
+    ]);
   });
-  it('Should delete vehicle from localForage', () => {
-    throw Error('Not Implemented');
+
+  it('Should modify vehicle to localForage', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const modifiedVehicle: Vehicle = {
+      id: 'some-id-3',
+      make: 'Mazda',
+      model: 'CX-3',
+      year: 2020,
+      value: 18000,
+      favorite: true,
+    };
+    await saveUserVehicle(loggedInUser, modifiedVehicle);
+    expect(localforage.setItem).toHaveBeenCalledWith(loggedInUser, [
+      ...mockVehicleList,
+    ]);
+  });
+
+  it('Should delete vehicle from localForage', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const vehicleIdToDelete = 'some-id-2';
+    await deleteUserVehicle(loggedInUser, vehicleIdToDelete);
+    expect(localforage.setItem).toHaveBeenCalledWith(loggedInUser, [
+      ...mockVehicleList,
+    ]);
   });
 });

@@ -67,19 +67,39 @@ export const getCurrentUser = async (): Promise<LoggedInUser | null> => {
 export const getUserVehicles = async (
   username: string
 ): Promise<Vehicle[] | null> => {
-  throw new Error('Not Implemented');
+  return await localforage.getItem<Vehicle[]>(username);
 };
 
 export const saveUserVehicle = async (
   username: string,
   vehicle: Vehicle
 ): Promise<void> => {
-  throw new Error('Not Implemented');
+  const savedVehicles = (await localforage.getItem<Vehicle[]>(username)) || [];
+
+  const vehicleIndex = savedVehicles.findIndex(
+    (v) => vehicle.id && vehicle.id === v.id
+  );
+
+  if (vehicleIndex !== -1) {
+    savedVehicles[vehicleIndex] = vehicle;
+  } else {
+    savedVehicles.push(vehicle);
+  }
+
+  await localforage.setItem<Vehicle[]>(username, savedVehicles);
 };
 
 export const deleteUserVehicle = async (
   username: string,
-  vehicle: Vehicle
+  vehicleId: string
 ): Promise<void> => {
-  throw new Error('Not Implemented');
+  const savedVehicles = (await localforage.getItem<Vehicle[]>(username)) || [];
+
+  const vehicleIndex = savedVehicles.findIndex((v) => v.id === vehicleId);
+
+  if (vehicleIndex !== -1) {
+    savedVehicles.splice(vehicleIndex, 1);
+  }
+
+  await localforage.setItem<Vehicle[]>(username, savedVehicles);
 };
