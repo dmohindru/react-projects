@@ -1,9 +1,10 @@
-import { describe, test, expect, jest } from '@jest/globals';
+import { describe, expect, jest } from '@jest/globals';
 import localforage from 'localforage';
 import type { LoggedInUser, Vehicle } from './data';
 import { loginUser, logoutUser, getCurrentUser } from './data';
 
 jest.mock('localforage');
+const mockedLocalForage = localforage as jest.Mocked<typeof localforage>;
 
 describe('User login tests', () => {
   const mockUserName = 'mock-user-name';
@@ -22,13 +23,15 @@ describe('User login tests', () => {
   });
 
   it('Should return current logged in user if previous login was less than 30 mins', async () => {
-    (localforage.getItem as jest.Mock).mockReturnValue(mockUser);
+    //(localforage.getItem as jest.Mock).mockReturnValue(mockUser);
+    mockedLocalForage.getItem.mockResolvedValue(mockUser);
     const loggedInUser = await getCurrentUser();
     expect(loggedInUser).toBe(mockUser);
   });
 
   it('Should return null user if no logged in user found in localforage', async () => {
-    (localforage.getItem as jest.Mock).mockReturnValue(null);
+    //(localforage.getItem as jest.Mock).mockReturnValue(null);
+    mockedLocalForage.getItem.mockResolvedValue(null);
     const loggedInUser = await getCurrentUser();
     expect(loggedInUser).toBe(null);
   });
@@ -39,7 +42,7 @@ describe('User login tests', () => {
       username: 'old-mock-user-name',
       time: fortyMinutesAgo,
     };
-    (localforage.getItem as jest.Mock).mockReturnValue(oldMockUser);
+    mockedLocalForage.getItem.mockResolvedValue(oldMockUser);
     const loggedInUser = await getCurrentUser();
     expect(loggedInUser).toBe(null);
     expect(localforage.removeItem).toHaveBeenCalledWith('loggedInUser');
@@ -78,6 +81,8 @@ describe('Vehicles Test', () => {
       favorite: false,
     },
   ];
+
+  const loggedInUser = 'loggedInUser';
 
   beforeEach(() => {
     jest.clearAllMocks();
