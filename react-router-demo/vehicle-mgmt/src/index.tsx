@@ -17,14 +17,19 @@ import { ErrorPage } from './ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
+    <Route
+      path="/"
+      element={<App />}
+      errorElement={<ErrorPage />}
+      loader={rootLoader}
+    >
       <Route errorElement={<ErrorPage />}>
-        <Route path="/login" element={<Login />} />
+        <Route path="login" element={<Login />} />
         <Route path="vehicles" element={<VehiclesRoot />}>
-          <Route index element={<VehiclesHome />} />
+          {/* <Route index element={<VehiclesHome />} />
           <Route path="add" element={<VehicleAdd />} />
           <Route path=":vehicleId" element={<Vehicle />} />
-          <Route path=":vehicleId/edit" element={<VehicleEdit />} />
+          <Route path=":vehicleId/edit" element={<VehicleEdit />} /> */}
         </Route>
       </Route>
     </Route>

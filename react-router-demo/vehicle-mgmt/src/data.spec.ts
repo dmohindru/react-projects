@@ -9,7 +9,6 @@ import {
   saveUserVehicle,
   deleteUserVehicle,
 } from './data';
-import exp from 'constants';
 
 jest.mock('localforage');
 const mockedLocalForage = localforage as jest.Mocked<typeof localforage>;

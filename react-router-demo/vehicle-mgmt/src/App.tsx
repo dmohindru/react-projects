@@ -1,20 +1,22 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { redirect, Outlet } from 'react-router-dom';
 import { getCurrentUser } from './data';
-import { redirect } from 'react-router-dom';
 
-export const loader = async (): Promise<Response | null> => {
-  // const user = await getCurrentUser();
-  // if (user) {
-  //   return redirect('/vehicles');
-  // } else {
-  //   return redirect('/login');
-  // }
+export const loader = async ({
+  request,
+}: {
+  request: Request;
+}): Promise<Response | null> => {
+  const currentPath = new URL(request.url).pathname;
+  const user = await getCurrentUser();
+  if (user && currentPath === '/') {
+    return redirect('/vehicles');
+  } else if (!user && currentPath !== '/login') {
+    return redirect('/login');
+  }
   return null;
 };
 
 export const App: React.FC = () => {
-  useEffect(() => {
-    console.log('hello world');
-  });
-  return <>Hello</>;
+  return <Outlet />;
 };
