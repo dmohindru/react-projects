@@ -8,7 +8,11 @@ import {
 } from 'react-router-dom';
 import { App, loader as rootLoader } from './App';
 import { Login, action as loginAction } from './Login';
-import { VehiclesRoot } from './vehicles/VehiclesRoot';
+import {
+  VehiclesRoot,
+  loader as vehicleRootLoader,
+  action as vehicleRootAction,
+} from './vehicles/VehiclesRoot';
 import { VehiclesHome } from './vehicles/VehiclesHome';
 import { Vehicle } from './vehicles/Vehicle';
 import { VehicleAdd } from './vehicles/VehicleAdd';
@@ -25,7 +29,12 @@ const router = createBrowserRouter(
     >
       <Route errorElement={<ErrorPage />}>
         <Route path="login" element={<Login />} action={loginAction} />
-        <Route path="vehicles" element={<VehiclesRoot />}>
+        <Route
+          path="vehicles"
+          element={<VehiclesRoot />}
+          loader={vehicleRootLoader}
+          action={vehicleRootAction}
+        >
           {/* <Route index element={<VehiclesHome />} />
           <Route path="add" element={<VehicleAdd />} />
           <Route path=":vehicleId" element={<Vehicle />} />
