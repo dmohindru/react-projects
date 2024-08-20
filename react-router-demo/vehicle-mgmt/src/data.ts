@@ -19,9 +19,9 @@ const MINUTES = 30;
 
 localforage.config({
   driver: localforage.INDEXEDDB,
-  name: 'Vehicle Mgmt',
+  name: 'Fleet Master',
   version: 1.0,
-  storeName: 'vehicleMgmt',
+  storeName: 'fleetMaster',
   description: 'Stores key value pair for Vehicle Mgmt Software',
 });
 

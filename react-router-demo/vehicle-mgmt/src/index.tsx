@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { App, loader as rootLoader } from './App';
-import { Login } from './Login';
+import { Login, action as loginAction } from './Login';
 import { VehiclesRoot } from './vehicles/VehiclesRoot';
 import { VehiclesHome } from './vehicles/VehiclesHome';
 import { Vehicle } from './vehicles/Vehicle';
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       loader={rootLoader}
     >
       <Route errorElement={<ErrorPage />}>
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login />} action={loginAction} />
         <Route path="vehicles" element={<VehiclesRoot />}>
           {/* <Route index element={<VehiclesHome />} />
           <Route path="add" element={<VehicleAdd />} />
