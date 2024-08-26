@@ -35,9 +35,9 @@ const router = createBrowserRouter(
           loader={vehicleRootLoader}
           action={vehicleRootAction}
         >
-          {/* <Route index element={<VehiclesHome />} />
+          <Route index element={<VehiclesHome />} />
           <Route path="add" element={<VehicleAdd />} />
-          <Route path=":vehicleId" element={<Vehicle />} />
+          {/* <Route path=":vehicleId" element={<Vehicle />} />
           <Route path=":vehicleId/edit" element={<VehicleEdit />} /> */}
         </Route>
       </Route>
