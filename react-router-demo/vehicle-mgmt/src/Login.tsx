@@ -76,7 +76,7 @@ export const Login: React.FC = () => {
                 sx={{ my: 3 }}
                 type="submit"
               >
-                Submit
+                Login
               </Button>
             </Box>
           </Form>

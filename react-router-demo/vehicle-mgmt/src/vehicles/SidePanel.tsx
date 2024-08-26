@@ -1,22 +1,61 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, TextField, Divider } from '@mui/material';
 import type { Vehicle } from '../data';
+import { NavLink } from 'react-router-dom';
 
 type SidePanelProps = {
   vehicles: Vehicle[];
 };
 
-const renderVehicle = (vehicle: Vehicle): React.ReactElement => (
-  <Typography variant="body1" my={1.5} mx={4}>
-    {vehicle.make} {vehicle.model}
-  </Typography>
-);
+const renderVehicle = (vehicle: Vehicle): React.ReactElement | null => {
+  if (!vehicle.id) {
+    return null;
+  }
+  return (
+    <NavLink to={`${vehicle.id}`} key={vehicle.id}>
+      <Typography
+        variant="body1"
+        my={1}
+        mx={4}
+        px={1}
+        py={1}
+        sx={{
+          borderRadius: '5px',
+          '&:hover': {
+            bgcolor: '#E0E0E0',
+          },
+        }}
+      >
+        {vehicle.make} {vehicle.model}
+      </Typography>
+    </NavLink>
+  );
+};
 
 export const SidePanel: React.FC<SidePanelProps> = ({ vehicles }) => {
   return (
-    <Box display="flex" flexDirection="column" bgcolor="#F0F0F0">
-      <Button>Add</Button>
-      {vehicles.map((vehicle) => renderVehicle(vehicle))}
+    <Box display="flex" flexDirection="column" bgcolor="#F0F0F0" height="100%">
+      <Box display="flex" flexDirection="row">
+        <TextField variant="outlined" size="small" sx={{ flexGrow: 1, m: 1 }} />
+        <Button variant="contained" sx={{ m: 1 }}>
+          Add
+        </Button>
+      </Box>
+      <Box flexGrow={1}>
+        <Divider />
+        {vehicles.map((vehicle) => renderVehicle(vehicle))}
+      </Box>
+      <Box>
+        <Divider />
+        <Typography
+          variant="h6"
+          display="flex"
+          justifyContent="center"
+          margin={1}
+        >
+          Fleet Master
+        </Typography>
+      </Box>
     </Box>
   );
 };

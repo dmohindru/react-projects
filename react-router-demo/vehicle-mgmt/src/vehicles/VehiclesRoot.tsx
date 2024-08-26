@@ -2,7 +2,14 @@ import React from 'react';
 import type { LoggedInUser, Vehicle } from '../data';
 import { getCurrentUser, logoutUser } from '../data';
 import { useLoaderData, redirect, Form, Outlet } from 'react-router-dom';
-import { AppBar, Typography, Button, Box, Toolbar, Stack } from '@mui/material';
+import {
+  AppBar,
+  Typography,
+  Button,
+  Box,
+  Toolbar,
+  Container,
+} from '@mui/material';
 import { SidePanel } from './SidePanel';
 
 export const loader = async (): Promise<LoggedInUser | Response> => {
@@ -49,7 +56,12 @@ export const VehiclesRoot: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      height="100vh"
+      boxSizing="border-box"
+    >
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
@@ -62,7 +74,7 @@ export const VehiclesRoot: React.FC = () => {
           </Form>
         </Toolbar>
       </AppBar>
-      <Box display="flex" flexDirection="row" margin={1} py={1}>
+      <Box display="flex" flexDirection="row" py={1} flexGrow={1}>
         <Box flex={2}>
           <SidePanel vehicles={mockVehicleList} />
         </Box>
