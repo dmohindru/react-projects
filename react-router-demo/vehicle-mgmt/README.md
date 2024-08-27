@@ -38,4 +38,4 @@ All the user data will be stored in browser's local storage. Following react rou
 - [All Examples](https://github.com/remix-run/react-router/tree/dev/examples)
 - [Protected Route Demo](https://github.com/remix-run/react-router/tree/dev/examples/auth)
 - [Auth Example using RouterProvider](https://github.com/remix-run/react-router/tree/dev/examples/auth-router-provider)
-- [Use formik with reacter router dom](https://edwardsmoses.com/form-validation-with-react-router-v6)
+- [Use formik with reactor router dom](https://edwardsmoses.com/form-validation-with-react-router-v6)
