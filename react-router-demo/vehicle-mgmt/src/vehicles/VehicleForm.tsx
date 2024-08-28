@@ -122,6 +122,7 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
           />
           <Autocomplete
             options={getYears()}
+            getOptionLabel={(option: number) => option.toString()}
             disablePortal
             value={values.year}
             onBlur={handleBlur}
@@ -149,7 +150,7 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
             error={!!touched.value && !!errors.value}
             helperText={touched.value && errors.value}
           />
-          <FormControl>
+          <FormControl sx={{ my: 1 }}>
             <InputLabel id="favorite-label">Favorite</InputLabel>
             <Select
               labelId="favorite-label"
@@ -159,12 +160,8 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
               onChange={handleChange}
               size="small"
             >
-              <MenuItem key={1} value={'true'}>
-                Yes
-              </MenuItem>
-              <MenuItem key={1} value={'false'}>
-                No
-              </MenuItem>
+              <MenuItem value={'true'}>Yes</MenuItem>
+              <MenuItem value={'false'}>No</MenuItem>
             </Select>
           </FormControl>
           <Box display="flex" flexGrow={1}>
