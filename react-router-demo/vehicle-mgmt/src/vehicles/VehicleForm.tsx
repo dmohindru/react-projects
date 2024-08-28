@@ -1,5 +1,14 @@
 import React from 'react';
-import { Typography, Button, Box } from '@mui/material';
+import {
+  Typography,
+  Button,
+  Box,
+  Autocomplete,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from '@mui/material';
 import { FormInputField } from '../common/StyledComponent';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -25,12 +34,22 @@ const vehicleFormSchema = yup.object().shape({
     .positive('Vehicle Value must be positive number'),
 });
 
+const getYears = (): number[] => {
+  const startYear = 1990;
+  const currentYear = new Date().getFullYear();
+  return Array.from(
+    { length: currentYear - startYear + 1 },
+    (_, index) => startYear + index
+  );
+};
+
 export const VehicleForm: React.FC<VehicleFormProps> = ({
   labelAction,
   vehicle,
 }) => {
   const navigate = useNavigate();
   const submit = useSubmit();
+
   const initialValue: Vehicle = {
     make: vehicle?.make ?? '',
     model: vehicle?.model ?? '',
@@ -60,6 +79,7 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
     touched,
     isValid,
     dirty,
+    setFieldValue,
   } = formik;
 
   return (
@@ -100,15 +120,24 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
             error={!!touched.model && !!errors.model}
             helperText={touched.model && errors.model}
           />
-          <FormInputField
-            label="Year"
-            size="small"
-            name="year"
+          <Autocomplete
+            options={getYears()}
+            disablePortal
             value={values.year}
             onBlur={handleBlur}
-            onChange={handleChange}
-            error={!!touched.year && !!errors.year}
-            helperText={touched.year && errors.year}
+            onChange={(event, newValue) => {
+              setFieldValue('year', newValue);
+            }}
+            renderInput={(params) => (
+              <FormInputField
+                {...params}
+                label="Year"
+                size="small"
+                name="year"
+                error={!!touched.year && !!errors.year}
+                helperText={touched.year && errors.year}
+              />
+            )}
           />
           <FormInputField
             label="Value"
@@ -120,6 +149,24 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
             error={!!touched.value && !!errors.value}
             helperText={touched.value && errors.value}
           />
+          <FormControl>
+            <InputLabel id="favorite-label">Favorite</InputLabel>
+            <Select
+              labelId="favorite-label"
+              name="favorite"
+              value={values.favorite}
+              label="Favorite"
+              onChange={handleChange}
+              size="small"
+            >
+              <MenuItem key={1} value={'true'}>
+                Yes
+              </MenuItem>
+              <MenuItem key={1} value={'false'}>
+                No
+              </MenuItem>
+            </Select>
+          </FormControl>
           <Box display="flex" flexGrow={1}>
             <Button
               variant="contained"
