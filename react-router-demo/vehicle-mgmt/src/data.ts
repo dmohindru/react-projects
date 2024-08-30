@@ -70,6 +70,20 @@ export const getUserVehicles = async (
   return await localforage.getItem<Vehicle[]>(username);
 };
 
+export const getUserVehicle = async (
+  username: string,
+  vehicleId: string
+): Promise<Vehicle | null> => {
+  const vehicles = await getUserVehicles(username);
+  if (vehicles) {
+    return (
+      vehicles.find((vehicle) => vehicle.id && vehicle.id === vehicleId) || null
+    );
+  } else {
+    return null;
+  }
+};
+
 export const saveUserVehicle = async (
   username: string,
   vehicle: Vehicle

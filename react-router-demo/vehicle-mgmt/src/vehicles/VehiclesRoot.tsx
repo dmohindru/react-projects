@@ -5,7 +5,7 @@ import { useLoaderData, redirect, Form, Outlet } from 'react-router-dom';
 import { AppBar, Typography, Button, Box, Toolbar } from '@mui/material';
 import { SidePanel } from './SidePanel';
 
-type LoginData = {
+export type LoginData = {
   user: LoggedInUser;
   vehicles: Vehicle[] | null;
 };
@@ -30,33 +30,6 @@ export const action = async () => {
 
 export const VehiclesRoot: React.FC = () => {
   const { user, vehicles } = useLoaderData() as LoginData;
-  // Temp code
-  // const mockVehicleList: Vehicle[] = [
-  //   {
-  //     id: 'some-id-1',
-  //     make: 'Ford',
-  //     model: 'Falcon',
-  //     year: 2007,
-  //     value: 6000,
-  //     favorite: false,
-  //   },
-  //   {
-  //     id: 'some-id-2',
-  //     make: 'Ford',
-  //     model: 'Focus',
-  //     year: 2013,
-  //     value: 10000,
-  //     favorite: true,
-  //   },
-  //   {
-  //     id: 'some-id-3',
-  //     make: 'Hyundai',
-  //     model: 'i30',
-  //     year: 2015,
-  //     value: 12000,
-  //     favorite: false,
-  //   },
-  // ];
 
   return (
     <Box

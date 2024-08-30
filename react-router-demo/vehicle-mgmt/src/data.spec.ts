@@ -5,6 +5,7 @@ import {
   loginUser,
   logoutUser,
   getCurrentUser,
+  getUserVehicle,
   getUserVehicles,
   saveUserVehicle,
   deleteUserVehicle,
@@ -147,6 +148,15 @@ describe('Vehicles Test', () => {
     expect(localforage.setItem).toHaveBeenCalledWith(loggedInUser, [
       ...mockVehicleList,
     ]);
+  });
+
+  it('Should return single saved vehicle from localForage', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const vehicleId = 'some-id-1';
+    const vehicle = await getUserVehicle(loggedInUser, vehicleId);
+    expect(vehicle).toBe(
+      mockVehicleList.find((vehicle) => vehicle.id === vehicleId)
+    );
   });
 
   it('Should delete vehicle from localForage', async () => {
