@@ -1,16 +1,26 @@
 import React from 'react';
 import type { LoggedInUser, Vehicle } from '../data';
-import { getCurrentUser, logoutUser } from '../data';
+import { getCurrentUser, getUserVehicles, logoutUser } from '../data';
 import { useLoaderData, redirect, Form, Outlet } from 'react-router-dom';
 import { AppBar, Typography, Button, Box, Toolbar } from '@mui/material';
 import { SidePanel } from './SidePanel';
 
-export const loader = async (): Promise<LoggedInUser | Response> => {
+type LoginData = {
+  user: LoggedInUser;
+  vehicles: Vehicle[] | null;
+};
+
+export const loader = async (): Promise<LoginData | Response> => {
   const user = await getCurrentUser();
   if (!user) {
     return redirect('/');
+  } else {
+    const vehicles = await getUserVehicles(user.username);
+    return {
+      user,
+      vehicles,
+    };
   }
-  return user;
 };
 
 export const action = async () => {
@@ -19,34 +29,34 @@ export const action = async () => {
 };
 
 export const VehiclesRoot: React.FC = () => {
-  const user = useLoaderData() as LoggedInUser;
+  const { user, vehicles } = useLoaderData() as LoginData;
   // Temp code
-  const mockVehicleList: Vehicle[] = [
-    {
-      id: 'some-id-1',
-      make: 'Ford',
-      model: 'Falcon',
-      year: 2007,
-      value: 6000,
-      favorite: false,
-    },
-    {
-      id: 'some-id-2',
-      make: 'Ford',
-      model: 'Focus',
-      year: 2013,
-      value: 10000,
-      favorite: true,
-    },
-    {
-      id: 'some-id-3',
-      make: 'Hyundai',
-      model: 'i30',
-      year: 2015,
-      value: 12000,
-      favorite: false,
-    },
-  ];
+  // const mockVehicleList: Vehicle[] = [
+  //   {
+  //     id: 'some-id-1',
+  //     make: 'Ford',
+  //     model: 'Falcon',
+  //     year: 2007,
+  //     value: 6000,
+  //     favorite: false,
+  //   },
+  //   {
+  //     id: 'some-id-2',
+  //     make: 'Ford',
+  //     model: 'Focus',
+  //     year: 2013,
+  //     value: 10000,
+  //     favorite: true,
+  //   },
+  //   {
+  //     id: 'some-id-3',
+  //     make: 'Hyundai',
+  //     model: 'i30',
+  //     year: 2015,
+  //     value: 12000,
+  //     favorite: false,
+  //   },
+  // ];
 
   return (
     <Box
@@ -69,7 +79,7 @@ export const VehiclesRoot: React.FC = () => {
       </AppBar>
       <Box display="flex" flexDirection="row" py={1} flexGrow={1}>
         <Box flex={2}>
-          <SidePanel vehicles={mockVehicleList} />
+          <SidePanel vehicles={vehicles ?? []} />
         </Box>
         <Box flex={5}>
           <Outlet />
