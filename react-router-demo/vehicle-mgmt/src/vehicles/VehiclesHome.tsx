@@ -1,7 +1,33 @@
 import React from 'react';
-import { Container, Typography, TextField, Box } from '@mui/material';
+import {
+  Container,
+  Typography,
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  Paper,
+  styled,
+} from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
 import type { LoginData } from './VehiclesRoot';
+
+const StyledTableRow = styled(TableRow)({
+  display: 'flex',
+});
+
+const StyledLabelColumn = styled(TableCell)({
+  flexGrow: 3,
+  fontSize: '20px',
+  fontWeight: 'bold',
+});
+
+const StyledValueColumn = styled(TableCell)({
+  flexGrow: 2,
+  fontSize: '20px',
+  fontWeight: 'bold',
+});
 
 export const VehiclesHome: React.FC = () => {
   const { user, vehicles } = useLoaderData() as LoginData;
@@ -18,19 +44,32 @@ export const VehiclesHome: React.FC = () => {
         Welcome {user.username}
       </Typography>
       <Typography variant="h4" my={3}>
-        Your vehicle portfolio details
+        Your vehicle portfolio
       </Typography>
-      <Box>
-        <Typography variant="h5">Total Vehicles: {vehicles?.length}</Typography>
-        <Typography variant="h5">
-          Total Asset value:{'$'}
-          {vehicles?.reduce((acc, current) => acc + current.value, 0)}
-        </Typography>
-        <Typography variant="h5">
-          Number of favorite vehicles:{' '}
-          {vehicles?.filter((vehicle) => vehicle.favorite).length}
-        </Typography>
-      </Box>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableBody>
+            <StyledTableRow>
+              <StyledLabelColumn>Total Asset ($)</StyledLabelColumn>
+              <StyledValueColumn align="right">
+                {`${vehicles?.reduce((acc, current) => acc + current.value, 0)}.00`}
+              </StyledValueColumn>
+            </StyledTableRow>
+            <StyledTableRow>
+              <StyledLabelColumn>Total Vehicles</StyledLabelColumn>
+              <StyledValueColumn align="right">
+                {vehicles?.length}
+              </StyledValueColumn>
+            </StyledTableRow>
+            <StyledTableRow>
+              <StyledLabelColumn>Total favorite Vehicles</StyledLabelColumn>
+              <StyledValueColumn align="right">
+                {vehicles?.filter((vehicle) => vehicle.favorite).length}
+              </StyledValueColumn>
+            </StyledTableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Container>
   );
 };
