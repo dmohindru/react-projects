@@ -5,29 +5,15 @@ import {
   TableContainer,
   Table,
   TableBody,
-  TableRow,
-  TableCell,
   Paper,
-  styled,
 } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
 import type { LoginData } from './VehiclesRoot';
-
-const StyledTableRow = styled(TableRow)({
-  display: 'flex',
-});
-
-const StyledLabelColumn = styled(TableCell)({
-  flexGrow: 3,
-  fontSize: '20px',
-  fontWeight: 'bold',
-});
-
-const StyledValueColumn = styled(TableCell)({
-  flexGrow: 2,
-  fontSize: '20px',
-  fontWeight: 'bold',
-});
+import {
+  StyledTableRow,
+  StyledLabelColumn,
+  StyledValueColumn,
+} from '../common/StyledComponent';
 
 export const VehiclesHome: React.FC = () => {
   const { user, vehicles } = useLoaderData() as LoginData;

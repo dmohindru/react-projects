@@ -14,9 +14,13 @@ import {
   action as vehicleRootAction,
 } from './vehicles/VehiclesRoot';
 import { VehiclesHome } from './vehicles/VehiclesHome';
-import { Vehicle } from './vehicles/Vehicle';
+import {
+  VehicleDetails,
+  loader as vehicleDetailsLoader,
+} from './vehicles/VehicleDetails';
 import { VehicleAdd, action as vehicleAddAction } from './vehicles/VehicleAdd';
 import { VehicleEdit } from './vehicles/VehicleEdit';
+import { action as vehicleDeleteAction } from './vehicles/VehicleDelete';
 import { ErrorPage } from './ErrorPage';
 
 const router = createBrowserRouter(
@@ -41,8 +45,14 @@ const router = createBrowserRouter(
             element={<VehicleAdd />}
             action={vehicleAddAction}
           />
-          {/* <Route path=":vehicleId" element={<Vehicle />} />
-          <Route path=":vehicleId/edit" element={<VehicleEdit />} /> */}
+          <Route
+            path=":vehicleId"
+            element={<VehicleDetails />}
+            loader={vehicleDetailsLoader}
+          />
+          <Route path=":vehicleId/delete" action={vehicleDeleteAction} />
+
+          {/* <Route path=":vehicleId/edit" element={<VehicleEdit />} /> */}
         </Route>
       </Route>
     </Route>
