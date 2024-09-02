@@ -21,6 +21,7 @@ type VehicleFormProps = {
 };
 
 const vehicleFormSchema = yup.object().shape({
+  id: yup.string().optional(),
   make: yup.string().required('Vehicle make is required'),
   model: yup.string().required('Vehicle model is required'),
   year: yup
@@ -51,6 +52,7 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
   const submit = useSubmit();
 
   const initialValue: Vehicle = {
+    id: vehicle?.id,
     make: vehicle?.make ?? '',
     model: vehicle?.model ?? '',
     year: vehicle?.year ?? 1990,

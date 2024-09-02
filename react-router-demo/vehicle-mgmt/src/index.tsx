@@ -50,9 +50,12 @@ const router = createBrowserRouter(
             element={<VehicleDetails />}
             loader={vehicleDetailsLoader}
           />
+          <Route
+            path=":vehicleId/edit"
+            element={<VehicleEdit />}
+            loader={vehicleDetailsLoader}
+          />
           <Route path=":vehicleId/delete" action={vehicleDeleteAction} />
-
-          {/* <Route path=":vehicleId/edit" element={<VehicleEdit />} /> */}
         </Route>
       </Route>
     </Route>

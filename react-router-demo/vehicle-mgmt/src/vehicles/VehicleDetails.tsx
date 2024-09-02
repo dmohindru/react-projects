@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   LoaderFunctionArgs,
   redirect,
   useLoaderData,
-  Form,
+  useSubmit,
+  useNavigate,
 } from 'react-router-dom';
 import {
   Container,
@@ -17,6 +18,7 @@ import {
 } from '@mui/material';
 import { getUserVehicle, getCurrentUser, Vehicle } from '../data';
 import { StyledTableRow, StyledValueColumn } from '../common/StyledComponent';
+import { ConfirmDialog } from '../common/ConfirmDialog';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { vehicleId } = params;
@@ -39,6 +41,27 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export const VehicleDetails: React.FC = () => {
   const vehicle = useLoaderData() as Vehicle;
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
+  const submit = useSubmit();
+  const navigate = useNavigate();
+
+  const handleDeleteClick = () => {
+    setOpenConfirmDialog(true);
+  };
+
+  const handleEditClick = () => {
+    navigate('edit');
+  };
+
+  const handleConfirm = () => {
+    setOpenConfirmDialog(false);
+    submit(null, { method: 'POST', action: 'delete' });
+  };
+
+  const handleCloseDialog = () => {
+    setOpenConfirmDialog(false);
+  };
+
   return (
     <Container
       maxWidth="md"
@@ -73,7 +96,7 @@ export const VehicleDetails: React.FC = () => {
             <StyledTableRow>
               <StyledValueColumn>Favorite</StyledValueColumn>
               <StyledValueColumn>
-                {vehicle.favorite ? 'true' : 'false'}
+                {vehicle.favorite ? 'Yes' : 'No'}
               </StyledValueColumn>
             </StyledTableRow>
           </TableBody>
@@ -81,32 +104,25 @@ export const VehicleDetails: React.FC = () => {
       </TableContainer>
 
       <Box display="flex" mt={3} width="100%" justifyContent="center">
-        <Form>
-          <Button variant="contained" sx={{ mr: 2 }}>
-            Edit
-          </Button>
-        </Form>
-
-        <Form
-          method="post"
-          action="delete"
-          onSubmit={(event) => {
-            // eslint-disable-next-line no-restricted-globals
-            if (!confirm('Please confirm you want to delete this record.')) {
-              event.preventDefault();
-            }
-          }}
+        <Button variant="contained" onClick={handleEditClick} sx={{ mr: 2 }}>
+          Edit
+        </Button>
+        <Button
+          color="error"
+          variant="contained"
+          onClick={handleDeleteClick}
+          sx={{ ml: 2 }}
         >
-          <Button
-            color="error"
-            variant="contained"
-            type="submit"
-            sx={{ ml: 2 }}
-          >
-            Delete
-          </Button>
-        </Form>
+          Delete
+        </Button>
       </Box>
+      <ConfirmDialog
+        open={openConfirmDialog}
+        title="Confirm Deletion"
+        description={`Are you sure you want to delete ${vehicle.make} ${vehicle.model} vehicle`}
+        onClose={handleCloseDialog}
+        onConfirm={handleConfirm}
+      />
     </Container>
   );
 };
