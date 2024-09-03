@@ -8,7 +8,7 @@ import {
   Paper,
 } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
-import type { LoginData } from './VehiclesRoot';
+import type { LoginData } from '../common/loaders';
 import {
   StyledTableRow,
   StyledLabelColumn,

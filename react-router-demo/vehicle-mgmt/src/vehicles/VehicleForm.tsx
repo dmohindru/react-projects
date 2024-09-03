@@ -12,7 +12,7 @@ import {
 import { FormInputField } from '../common/StyledComponent';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import type { Vehicle } from '../data';
+import type { Vehicle } from '../data/data';
 import { useSubmit, useNavigate } from 'react-router-dom';
 
 type VehicleFormProps = {
@@ -21,7 +21,7 @@ type VehicleFormProps = {
 };
 
 const vehicleFormSchema = yup.object().shape({
-  id: yup.string().optional(),
+  id: yup.string().nullable().default(null),
   make: yup.string().required('Vehicle make is required'),
   model: yup.string().required('Vehicle model is required'),
   year: yup
@@ -86,6 +86,7 @@ export const VehicleForm: React.FC<VehicleFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit}>
+      <input type="hidden" value={values.id} />
       <Box
         display="flex"
         flexDirection="column"

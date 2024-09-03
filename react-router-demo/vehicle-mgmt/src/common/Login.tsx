@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { ActionFunctionArgs, redirect, Form } from 'react-router-dom';
-import { loginUser } from './data';
+import { loginUser } from '../data/data';
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();

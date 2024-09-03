@@ -6,19 +6,22 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { App, loader as rootLoader } from './App';
-import { Login, action as loginAction } from './Login';
 import {
-  VehiclesRoot,
-  loader as vehicleRootLoader,
-  action as vehicleRootAction,
-} from './vehicles/VehiclesRoot';
+  currentUserLoader,
+  allVehiclesLoader,
+  vehicleDetailsLoader,
+} from './common/loaders';
+import {
+  vehicleSaveAction,
+  logoutUserAction,
+  loginUserAction,
+} from './common/actions';
+import { App } from './App';
+import { Login } from './common/Login';
+import { VehiclesRoot } from './vehicles/VehiclesRoot';
 import { VehiclesHome } from './vehicles/VehiclesHome';
-import {
-  VehicleDetails,
-  loader as vehicleDetailsLoader,
-} from './vehicles/VehicleDetails';
-import { VehicleAdd, action as vehicleAddAction } from './vehicles/VehicleAdd';
+import { VehicleDetails } from './vehicles/VehicleDetails';
+import { VehicleAdd } from './vehicles/VehicleAdd';
 import { VehicleEdit } from './vehicles/VehicleEdit';
 import { action as vehicleDeleteAction } from './vehicles/VehicleDelete';
 import { ErrorPage } from './ErrorPage';
@@ -29,21 +32,21 @@ const router = createBrowserRouter(
       path="/"
       element={<App />}
       errorElement={<ErrorPage />}
-      loader={rootLoader}
+      loader={currentUserLoader}
     >
       <Route errorElement={<ErrorPage />}>
-        <Route path="login" element={<Login />} action={loginAction} />
+        <Route path="login" element={<Login />} action={loginUserAction} />
         <Route
           path="vehicles"
           element={<VehiclesRoot />}
-          loader={vehicleRootLoader}
-          action={vehicleRootAction}
+          loader={allVehiclesLoader}
+          action={logoutUserAction}
         >
-          <Route index element={<VehiclesHome />} loader={vehicleRootLoader} />
+          <Route index element={<VehiclesHome />} loader={allVehiclesLoader} />
           <Route
             path="add"
             element={<VehicleAdd />}
-            action={vehicleAddAction}
+            action={vehicleSaveAction}
           />
           <Route
             path=":vehicleId"
@@ -54,6 +57,7 @@ const router = createBrowserRouter(
             path=":vehicleId/edit"
             element={<VehicleEdit />}
             loader={vehicleDetailsLoader}
+            action={vehicleSaveAction}
           />
           <Route path=":vehicleId/delete" action={vehicleDeleteAction} />
         </Route>

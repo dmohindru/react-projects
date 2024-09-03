@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, redirect } from 'react-router-dom';
-import { getCurrentUser, deleteUserVehicle } from '../data';
+import { getCurrentUser, deleteUserVehicle } from '../data/data';
 
 export async function action({ params }: ActionFunctionArgs) {
   const { vehicleId } = params;

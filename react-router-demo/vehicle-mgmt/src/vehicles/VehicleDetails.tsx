@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  LoaderFunctionArgs,
-  redirect,
-  useLoaderData,
-  useSubmit,
-  useNavigate,
-} from 'react-router-dom';
+import { useLoaderData, useSubmit, useNavigate } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -16,28 +10,9 @@ import {
   Paper,
   Box,
 } from '@mui/material';
-import { getUserVehicle, getCurrentUser, Vehicle } from '../data';
+import { Vehicle } from '../data/data';
 import { StyledTableRow, StyledValueColumn } from '../common/StyledComponent';
 import { ConfirmDialog } from '../common/ConfirmDialog';
-
-export async function loader({ params }: LoaderFunctionArgs) {
-  const { vehicleId } = params;
-  const user = await getCurrentUser();
-  if (!user) {
-    return redirect('/');
-  } else if (!vehicleId) {
-    return redirect('/vehicles');
-  } else {
-    const vehicle = await getUserVehicle(user.username, vehicleId);
-    if (!vehicle) {
-      throw new Response('', {
-        status: 404,
-        statusText: `Vehicle with id [${vehicleId}] not found`,
-      });
-    }
-    return vehicle;
-  }
-}
 
 export const VehicleDetails: React.FC = () => {
   const vehicle = useLoaderData() as Vehicle;
@@ -91,7 +66,7 @@ export const VehicleDetails: React.FC = () => {
             </StyledTableRow>
             <StyledTableRow>
               <StyledValueColumn>Value</StyledValueColumn>
-              <StyledValueColumn>{vehicle.value}</StyledValueColumn>
+              <StyledValueColumn>{vehicle.value}.00</StyledValueColumn>
             </StyledTableRow>
             <StyledTableRow>
               <StyledValueColumn>Favorite</StyledValueColumn>

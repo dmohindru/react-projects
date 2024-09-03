@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button, TextField, Divider } from '@mui/material';
-import type { Vehicle } from '../data';
+import type { Vehicle } from '../data/data';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 type SidePanelProps = {
