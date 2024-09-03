@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData, Form, Outlet } from 'react-router-dom';
+import { useLoaderData, Form, Outlet, Link } from 'react-router-dom';
 import { AppBar, Typography, Button, Box, Toolbar } from '@mui/material';
 import { SidePanel } from './SidePanel';
 import type { LoginData } from '../common/loaders';
@@ -17,10 +17,19 @@ export const VehiclesRoot: React.FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
-            {user.username}
+            <Link
+              to="/vehicles"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              {user.username}
+            </Link>
           </Typography>
           <Form method="post">
-            <Button color="inherit" type="submit">
+            <Button
+              color="inherit"
+              type="submit"
+              sx={{ fontWeight: 'bold', fontSize: '16px' }}
+            >
               Logout
             </Button>
           </Form>

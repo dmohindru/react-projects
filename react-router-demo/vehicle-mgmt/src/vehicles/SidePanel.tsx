@@ -1,5 +1,16 @@
 import React from 'react';
-import { Box, Typography, Button, TextField, Divider } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from '@mui/material';
+import { Star, StarBorder } from '@mui/icons-material';
 import type { Vehicle } from '../data/data';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -17,21 +28,28 @@ const renderVehicle = (vehicle: Vehicle): React.ReactElement | null => {
       style={{ textDecoration: 'none' }}
       key={vehicle.id}
     >
-      <Typography
-        variant="body1"
-        my={1}
-        mx={4}
-        px={1}
-        py={1}
-        sx={{
-          borderRadius: '5px',
-          '&:hover': {
-            bgcolor: '#E0E0E0',
-          },
-        }}
-      >
-        {vehicle.make} {vehicle.model}
-      </Typography>
+      {({ isActive }) => (
+        <ListItem
+          sx={{
+            backgroundColor: isActive ? 'primary.main' : 'inherit',
+            color: isActive ? 'white' : 'inherit',
+            '&:hover': {
+              backgroundColor: isActive ? 'primary.main' : 'lightgrey',
+            },
+            '&:active': {
+              color: isActive ? 'white' : 'blue',
+            },
+          }}
+        >
+          <ListItemText
+            sx={{ py: 1, px: 1 }}
+            primary={`${vehicle.make} ${vehicle.model}`}
+          />
+          <ListItemIcon>
+            {vehicle.favorite ? <Star /> : <StarBorder />}
+          </ListItemIcon>
+        </ListItem>
+      )}
     </NavLink>
   );
 };
@@ -56,10 +74,10 @@ export const SidePanel: React.FC<SidePanelProps> = ({ vehicles }) => {
           Add
         </Button>
       </Box>
-      <Box flexGrow={1}>
-        <Divider />
+      <Divider />
+      <List flexGrow={1} component={Box}>
         {vehicles.map((vehicle) => renderVehicle(vehicle))}
-      </Box>
+      </List>
       <Box>
         <Divider />
         <Typography
