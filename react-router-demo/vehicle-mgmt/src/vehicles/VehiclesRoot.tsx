@@ -8,12 +8,7 @@ export const VehiclesRoot: React.FC = () => {
   const { user, vehicles } = useLoaderData() as LoginData;
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      height="100vh"
-      boxSizing="border-box"
-    >
+    <Box display="flex" flexDirection="column" minHeight="100vh">
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" sx={{ flexGrow: 1 }}>
