@@ -26,10 +26,10 @@ export const VehiclesHome: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h3" mt={6} mb={3}>
+      <Typography fontWeight="bold" variant="h3" mt={6} mb={3}>
         Welcome {user.username}
       </Typography>
-      <Typography variant="h4" my={3}>
+      <Typography fontWeight="bold" variant="h4" my={3}>
         Your vehicle portfolio
       </Typography>
       <TableContainer component={Paper}>
@@ -38,19 +38,21 @@ export const VehiclesHome: React.FC = () => {
             <StyledTableRow>
               <StyledLabelColumn>Total Asset ($)</StyledLabelColumn>
               <StyledValueColumn align="right">
-                {`${vehicles?.reduce((acc, current) => acc + current.value, 0)}.00`}
+                {vehicles
+                  ? `${vehicles?.reduce((acc, current) => acc + current.value, 0)}.00`
+                  : '0.00'}
               </StyledValueColumn>
             </StyledTableRow>
             <StyledTableRow>
               <StyledLabelColumn>Total Vehicles</StyledLabelColumn>
               <StyledValueColumn align="right">
-                {vehicles?.length}
+                {vehicles?.length || 0}
               </StyledValueColumn>
             </StyledTableRow>
             <StyledTableRow>
               <StyledLabelColumn>Total favorite Vehicles</StyledLabelColumn>
               <StyledValueColumn align="right">
-                {vehicles?.filter((vehicle) => vehicle.favorite).length}
+                {vehicles?.filter((vehicle) => vehicle.favorite).length || 0}
               </StyledValueColumn>
             </StyledTableRow>
           </TableBody>

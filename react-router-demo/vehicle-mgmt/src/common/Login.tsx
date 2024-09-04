@@ -8,29 +8,22 @@ import {
   Button,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { ActionFunctionArgs, redirect, Form } from 'react-router-dom';
-import { loginUser } from '../data/data';
-
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const formData = await request.formData();
-  const username = formData.get('username');
-
-  if (typeof username === 'string' && username.trim() !== '') {
-    await loginUser(username);
-    return redirect('/vehicles');
-  }
-  return redirect('/login');
-};
+import { Form } from 'react-router-dom';
 
 export const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [disabled, setDisabled] = useState<boolean>(true);
+  const [spaceError, setSpaceError] = useState<boolean>(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
   useEffect(() => {
-    setDisabled(username.trim() === '');
+    const spaceRegex = /\s/;
+    const containsSpace = spaceRegex.test(username.trim());
+    setSpaceError(containsSpace);
+    const isEmpty = username.trim() === '';
+    setDisabled(isEmpty || containsSpace);
   }, [username]);
 
   return (
@@ -69,6 +62,8 @@ export const Login: React.FC = () => {
                 sx={{ my: 3 }}
                 onChange={handleInputChange}
                 value={username}
+                error={spaceError}
+                helperText={spaceError && 'Username cannot have space in it'}
               />
               <Button
                 variant="contained"

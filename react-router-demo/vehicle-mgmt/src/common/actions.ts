@@ -50,7 +50,7 @@ export const loginUserAction = async ({ request }: ActionFunctionArgs) => {
   const username = formData.get('username');
 
   if (typeof username === 'string' && username.trim() !== '') {
-    await loginUser(username);
+    await loginUser(username.trim());
     return redirect('/vehicles');
   }
   return redirect('/login');
