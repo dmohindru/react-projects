@@ -25,7 +25,7 @@ import { VehicleDetails } from './vehicles/VehicleDetails';
 import { VehicleAdd } from './vehicles/VehicleAdd';
 import { VehicleEdit } from './vehicles/VehicleEdit';
 import { action as vehicleDeleteAction } from './vehicles/VehicleDelete';
-import { ErrorPage } from './ErrorPage';
+import { ErrorPage } from './common/ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

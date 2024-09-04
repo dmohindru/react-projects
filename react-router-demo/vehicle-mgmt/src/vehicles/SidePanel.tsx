@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -12,7 +12,14 @@ import {
 } from '@mui/material';
 import { Star, StarBorder } from '@mui/icons-material';
 import type { Vehicle } from '../data/data';
-import { NavLink, useNavigate } from 'react-router-dom';
+import {
+  NavLink,
+  useNavigate,
+  Form,
+  useSubmit,
+  useLoaderData,
+} from 'react-router-dom';
+import { LoginData } from '../common/loaders';
 
 type SidePanelProps = {
   vehicles: Vehicle[];
@@ -56,6 +63,13 @@ const renderVehicle = (vehicle: Vehicle): React.ReactElement | null => {
 
 export const SidePanel: React.FC<SidePanelProps> = ({ vehicles }) => {
   const navigate = useNavigate();
+  const submit = useSubmit();
+  const { searchParam } = useLoaderData() as LoginData;
+  const [defaultSearchParam, setDefaultSearchParam] = useState<string>('');
+
+  useEffect(() => {
+    setDefaultSearchParam(searchParam ?? '');
+  }, [searchParam]);
 
   const handleAddClick = () => {
     navigate('add');
@@ -64,12 +78,19 @@ export const SidePanel: React.FC<SidePanelProps> = ({ vehicles }) => {
   return (
     <Box display="flex" flexDirection="column" bgcolor="#F0F0F0" height="100%">
       <Box display="flex" flexDirection="row">
-        <TextField
-          label="Search"
-          variant="outlined"
-          size="small"
-          sx={{ flexGrow: 1, m: 1 }}
-        />
+        <Form id="search-form" role="search">
+          <TextField
+            label="Search"
+            variant="outlined"
+            size="small"
+            name="q"
+            value={defaultSearchParam}
+            sx={{ flexGrow: 1, m: 1 }}
+            onChange={(event) => {
+              submit(event.currentTarget.form);
+            }}
+          />
+        </Form>
         <Button variant="contained" sx={{ m: 1 }} onClick={handleAddClick}>
           Add
         </Button>

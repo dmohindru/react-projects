@@ -10,6 +10,7 @@ import {
   saveUserVehicle,
   deleteUserVehicle,
 } from './data';
+import exp from 'constants';
 
 jest.mock('localforage');
 const mockedLocalForage = localforage as jest.Mocked<typeof localforage>;
@@ -94,10 +95,33 @@ describe('Vehicles Test', () => {
     jest.clearAllMocks();
   });
 
-  it('Should return saved vehicles for logged in user', async () => {
+  it('Should return saved all vehicles for logged in user', async () => {
     mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
     const userVehicles = await getUserVehicles(loggedInUser);
-    expect(userVehicles).toBe(mockVehicleList);
+    expect(userVehicles).toStrictEqual(mockVehicleList);
+  });
+
+  it('Should return filtered vehicles for logged in user', async () => {
+    const filteredVehicleList = [
+      {
+        id: 'some-id-3',
+        make: 'Hyundai',
+        model: 'i30',
+        year: 2015,
+        value: 12000,
+        favorite: false,
+      },
+    ];
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const userVehicles = await getUserVehicles(loggedInUser, 'hyu');
+    expect(userVehicles?.length).toBe(1);
+    expect(userVehicles).toStrictEqual(filteredVehicleList);
+  });
+
+  it('Should return zero filtered vehicles for search criteria not found', async () => {
+    mockedLocalForage.getItem.mockResolvedValue(mockVehicleList);
+    const userVehicles = await getUserVehicles(loggedInUser, 'abc');
+    expect(userVehicles?.length).toBe(0);
   });
 
   it('Should save vehicle to localForage', async () => {

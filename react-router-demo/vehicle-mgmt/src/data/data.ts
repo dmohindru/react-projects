@@ -65,9 +65,15 @@ export const getCurrentUser = async (): Promise<LoggedInUser | null> => {
 };
 
 export const getUserVehicles = async (
-  username: string
+  username: string,
+  searchParams: string = ''
 ): Promise<Vehicle[] | null> => {
-  return await localforage.getItem<Vehicle[]>(username);
+  const vehicles = await localforage.getItem<Vehicle[]>(username);
+  const filteredVehicles = vehicles?.filter((vehicle) => {
+    const vehicleName = `${vehicle.make}${vehicle.model}`.toLowerCase();
+    return vehicleName.includes(searchParams.toLowerCase());
+  });
+  return filteredVehicles ?? null;
 };
 
 export const getUserVehicle = async (

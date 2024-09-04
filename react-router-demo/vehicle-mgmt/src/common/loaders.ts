@@ -10,6 +10,7 @@ import {
 export type LoginData = {
   user: LoggedInUser;
   vehicles: Vehicle[] | null;
+  searchParam: string | null;
 };
 
 export async function vehicleDetailsLoader({ params }: LoaderFunctionArgs) {
@@ -31,15 +32,20 @@ export async function vehicleDetailsLoader({ params }: LoaderFunctionArgs) {
   }
 }
 
-export const allVehiclesLoader = async (): Promise<LoginData | Response> => {
+export const allVehiclesLoader = async ({
+  request,
+}: LoaderFunctionArgs): Promise<LoginData | Response> => {
   const user = await getCurrentUser();
+  const url = new URL(request.url);
+  const q = url.searchParams.get('q');
   if (!user) {
     return redirect('/');
   } else {
-    const vehicles = await getUserVehicles(user.username);
+    const vehicles = await getUserVehicles(user.username, !q ? '' : q);
     return {
       user,
       vehicles,
+      searchParam: q,
     };
   }
 };
