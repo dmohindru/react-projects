@@ -67,6 +67,10 @@ This repository contains collection of full stack react projects to capture my e
 
 - This folder will contain series of react custom hooks demos
 
+[React Router Demo series](./react-router-demo/)
+
+- This folder will contain series of react router demos
+
 ---
 
 ### Remarks
