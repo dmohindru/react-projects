@@ -35,7 +35,7 @@ export const Login: React.FC = () => {
         alignContent="center"
         alignItems="center"
       >
-        <Typography variant="h4" sx={{ mt: 15 }}>
+        <Typography fontWeight="bold" variant="h4" sx={{ mt: 15 }}>
           Fleet Master
         </Typography>
         <Paper
@@ -46,6 +46,7 @@ export const Login: React.FC = () => {
           <Form method="post">
             <Box display="flex" flexDirection="column">
               <Typography
+                fontWeight="bold"
                 variant="h5"
                 display="flex"
                 justifyContent="center"

@@ -70,7 +70,7 @@ export const getUserVehicles = async (
 ): Promise<Vehicle[] | null> => {
   const vehicles = await localforage.getItem<Vehicle[]>(username);
   const filteredVehicles = vehicles?.filter((vehicle) => {
-    const vehicleName = `${vehicle.make}${vehicle.model}`.toLowerCase();
+    const vehicleName = `${vehicle.make} ${vehicle.model}`.toLowerCase();
     return vehicleName.includes(searchParams.toLowerCase());
   });
   return filteredVehicles ?? null;
