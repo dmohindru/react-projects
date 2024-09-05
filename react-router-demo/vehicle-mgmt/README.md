@@ -20,22 +20,17 @@ All the user data will be stored in browser's local storage. Following react rou
 - Nested Layout Routes
 - 404 Pages
 - Form
-- Fetcher Forms
 - Route loaders
 - Route actions
 - Error Elements
-- Hierarchical Error Elements
 - Navigate Component
-- useLocation hook
-- useNavigation hook
+- useNavigate hook
 - useSubmit hook
-- useFetcher hook
-- Redirect
 
 ### Links
 
 - [Official Tutorial](https://reactrouter.com/en/main/start/tutorial)
-- [All Examples](https://github.com/remix-run/react-router/tree/dev/examples)
+- [All React Router DOM Examples](https://github.com/remix-run/react-router/tree/dev/examples)
 - [Protected Route Demo](https://github.com/remix-run/react-router/tree/dev/examples/auth)
 - [Auth Example using RouterProvider](https://github.com/remix-run/react-router/tree/dev/examples/auth-router-provider)
 - [Use formik with reactor router dom](https://edwardsmoses.com/form-validation-with-react-router-v6)
