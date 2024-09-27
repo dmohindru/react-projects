@@ -6,4 +6,6 @@ This application stack implements OAuth2.0 authentication and has following acto
 - Resource Server (Spring boot)
 - Auth Server (Spring boot Auth)
 
+### Application Architecture
+
 ![App architecture](./app-architecture.png)
