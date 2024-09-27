@@ -71,6 +71,10 @@ This repository contains collection of full stack react projects to capture my e
 
 - This folder will contain series of react router demos
 
+[React Authentication Demo](./auth-demo-app/)
+
+- This folder contains demo react app with spring boot based auth0 authentication
+
 ---
 
 ### Remarks
