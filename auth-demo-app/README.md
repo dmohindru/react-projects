@@ -9,3 +9,9 @@ This application stack implements OAuth2.0 authentication and has following acto
 ### Application Architecture
 
 ![App architecture](./app-architecture.png)
+
+### Applications
+
+- [Authorization Server](./auth-server/)
+- [SPA Frontend]
+- [Resource Server]
