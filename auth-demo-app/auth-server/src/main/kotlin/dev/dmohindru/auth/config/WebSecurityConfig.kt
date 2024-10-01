@@ -170,6 +170,4 @@ class WebSecurityConfig {
     fun passEncoder(): PasswordEncoder {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
-
-
 }
