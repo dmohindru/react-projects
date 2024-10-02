@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: resource-server-demo
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080 # make sure this url matches iss url present in jwt
+
