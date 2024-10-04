@@ -1,5 +1,6 @@
-function App() {
-  return <div>Welcome to WiseCracks!!!!</div>;
-}
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-export default App;
+export const App: React.FC = () => {
+  return <Outlet />;
+};
