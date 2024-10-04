@@ -13,5 +13,5 @@ This application stack implements OAuth2.0 authentication and has following acto
 ### Applications
 
 - [Authorization Server](./auth-server/)
-- [SPA Frontend]
-- [Resource Server]
+- [Resource Server](./resource-server/)
+- [Client SPA](./client-spa/)
