@@ -54,6 +54,7 @@ export const App: React.FC = () => {
           </CardContent>
         </Card>
       </Box>
+      <Outlet />
     </Container>
   );
 };

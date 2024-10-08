@@ -14,12 +14,11 @@ import { ErrorPage } from './components/ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route errorElement={<ErrorPage />}>
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="app" element={<Main />} />
-      </Route>
+    <Route errorElement={<ErrorPage />}>
+      <Route path="/" element={<App />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/app" element={<Main />} />
     </Route>
   )
 );
