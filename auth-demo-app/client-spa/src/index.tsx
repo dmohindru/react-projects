@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { App } from './App';
-import { Login } from './components/Login';
+import { Login, loginAction } from './components/Login';
 import { Register } from './components/Register';
 import { Main } from './components/Main';
 import { ErrorPage } from './components/ErrorPage';
@@ -16,7 +16,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<ErrorPage />}>
       <Route path="/" element={<App />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login />} action={loginAction} />
       <Route path="/register" element={<Register />} />
       <Route path="/app" element={<Main />} />
     </Route>

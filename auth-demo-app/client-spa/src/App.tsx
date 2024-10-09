@@ -10,6 +10,7 @@ import {
   Button,
   styled,
 } from '@mui/material';
+import { generatePKCE } from './utils/PKCEUtils';
 
 const CenteredTypography = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
@@ -20,6 +21,21 @@ const CenteredTypography = styled(Typography)(({ theme }) => ({
 }));
 
 export const App: React.FC = () => {
+  const handleLoginClick = async () => {
+    const { codeVerifier, codeChallenge } = await generatePKCE();
+
+    sessionStorage.setItem('pkce_code_verifier', codeVerifier);
+    const params = new URLSearchParams({
+      response_type: 'code',
+      client_id: 'frontend-react-app',
+      redirect_uri: 'http://localhost:3000/callback',
+      scope: 'openid profile',
+      code_challenge: codeChallenge,
+      code_challenge_method: 'S256',
+    });
+
+    window.location.href = `http://localhost:8080/oauth2/authorize?${params.toString()}`;
+  };
   return (
     <Container maxWidth="md">
       <Box
@@ -47,7 +63,7 @@ export const App: React.FC = () => {
                 flexDirection="row"
                 justifyContent="space-around"
               >
-                <Button>Login</Button>
+                <Button onClick={handleLoginClick}>Login</Button>
                 <Button disabled>Register</Button>
               </Box>
             </Box>

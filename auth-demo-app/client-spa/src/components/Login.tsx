@@ -8,7 +8,42 @@ import {
   TextField,
   Button,
 } from '@mui/material';
-import { Form } from 'react-router-dom';
+import { Form, ActionFunctionArgs } from 'react-router-dom';
+import axios from 'axios';
+
+export const loginAction = async ({ request }: ActionFunctionArgs) => {
+  const formData = await request.formData();
+  const username = formData.get('username')?.toString() ?? '';
+  const password = formData.get('password')?.toString() ?? '';
+  try {
+    const response = await axios.post(
+      'http://localhost:8080/login',
+      new URLSearchParams({
+        username,
+        password,
+      }),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        withCredentials: true, // If you need to include cookies (like JSESSIONID)
+      }
+    );
+
+    if (response.status === 200) {
+      // Successful login, Spring Boot will handle the redirection
+      console.log('Login successful, Spring Boot will handle the redirection.');
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Login failed:', error.response?.data || error.message);
+    } else {
+      console.error('Unexpected error:', error);
+    }
+  }
+  console.log('username', username);
+  console.log('password', password);
+};
 
 export const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -70,6 +105,7 @@ export const Login: React.FC = () => {
                 helperText={spaceError && 'Username cannot have space in it'}
               />
               <TextField
+                name="password"
                 label="password"
                 size="small"
                 sx={{ mb: 2 }}
