@@ -11,6 +11,8 @@ import { Login, loginAction } from './components/Login';
 import { Register } from './components/Register';
 import { Main } from './components/Main';
 import { ErrorPage } from './components/ErrorPage';
+import { Callback } from './components/Callback';
+import { callbackLoader } from './utils/loaders';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} action={loginAction} />
       <Route path="/register" element={<Register />} />
       <Route path="/app" element={<Main />} />
+      <Route path="/callback" element={<Callback />} />
     </Route>
   )
 );

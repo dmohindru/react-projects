@@ -71,16 +71,25 @@ class WebSecurityConfig {
                     .loginPage("http://localhost:3000/login")
                     .loginProcessingUrl("/login")
                     .successHandler { _, res, _ ->
-                        res.resetBuffer()
-                        res.status = HttpStatus.OK.value()
-                        res.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        res.writer.append("login successful success")
-                        res.flushBuffer()
+                        // Set CORS headers after successful login
+                        res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+                        res.setHeader("Access-Control-Allow-Credentials", "true")
+                        res.sendRedirect("http://localhost:3000/callback")
                     }
-                    .failureHandler { _, res, _ -> res.status = HttpStatus.UNAUTHORIZED.value() }
+                    .failureHandler { _, res, _ ->
+                        res.status = HttpStatus.UNAUTHORIZED.value()
+                        res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+                        res.setHeader("Access-Control-Allow-Credentials", "true")
+                    }
             }
             .logout {
                 it.logoutSuccessUrl("http://localhost:3000/login?logout")
+                    .addLogoutHandler { _, res, _ ->
+                        // Add CORS headers for the logout process
+                        res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
+                        res.setHeader("Access-Control-Allow-Credentials", "true")
+
+                    }
             }
             .exceptionHandling {
                 it.authenticationEntryPoint(HttpStatusEntryPoint(HttpStatus.FORBIDDEN))
@@ -111,11 +120,22 @@ class WebSecurityConfig {
     fun corsConfigurationSource(): CorsConfigurationSource {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
-        config.addAllowedHeader("*")
-        config.addAllowedMethod("*")
-        config.addAllowedOrigin("http://localhost:3000")
+
+        // Set the specific allowed origin
+        config.allowedOrigins = listOf("http://localhost:3000")
+
+        // Allow standard HTTP methods
+        config.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+
+        // Allow specific headers
+        config.allowedHeaders = listOf("Authorization", "Cache-Control", "Content-Type")
+
+        // Allow credentials (cookies, authorization headers)
         config.allowCredentials = true
+
+        // Ensure the CORS settings apply to all endpoints
         source.registerCorsConfiguration("/**", config)
+
         return source
     }
 
@@ -129,10 +149,11 @@ class WebSecurityConfig {
             .redirectUri("http://localhost:3000/callback")
             .scope(OidcScopes.OPENID)
             .scope(OidcScopes.PROFILE)
-            .clientSettings(ClientSettings.builder()
-                .requireAuthorizationConsent(false)
-                .requireProofKey(true)
-                .build()
+            .clientSettings(
+                ClientSettings.builder()
+                    .requireAuthorizationConsent(false)
+                    .requireProofKey(true)
+                    .build()
             )
             .build()
 
@@ -143,9 +164,11 @@ class WebSecurityConfig {
             .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
             .scope("read")
             .scope("write")
-            .clientSettings(ClientSettings.builder()
-                .requireAuthorizationConsent(false)
-                .build())
+            .clientSettings(
+                ClientSettings.builder()
+                    .requireAuthorizationConsent(false)
+                    .build()
+            )
             .build()
 
         return InMemoryRegisteredClientRepository(publicClient, backendClient)
@@ -160,7 +183,7 @@ class WebSecurityConfig {
 
         val user2 = User.builder()
             .username("user")
-            .password("password")
+            .password(passwordEncoder.encode("password"))
             .build()
 
         return InMemoryUserDetailsManager(user1, user2)

@@ -23,10 +23,10 @@ export const loginAction = async ({ request }: ActionFunctionArgs) => {
         password,
       }),
       {
+        withCredentials: true, // If you need to include cookies (like JSESSIONID)
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        withCredentials: true, // If you need to include cookies (like JSESSIONID)
       }
     );
 
