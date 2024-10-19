@@ -63,7 +63,7 @@ class WebSecurityConfig {
     @Throws(Exception::class)
     fun authenticationSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .securityMatcher("/login", "/logout", "/register")
+            .securityMatcher("/login", "/logout", "/register", "/callback")
             .cors(Customizer.withDefaults())
             .csrf { it.disable() }
             .formLogin {

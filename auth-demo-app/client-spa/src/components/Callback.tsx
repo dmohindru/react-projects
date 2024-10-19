@@ -3,11 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export const Callback: React.FC = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
+    const searchParams = new URLSearchParams(window.location.search);
     const authorizationCode = searchParams.get('code');
 
     if (authorizationCode) {
@@ -36,13 +36,13 @@ export const Callback: React.FC = () => {
           // Save tokens in storage or handle accordingly
           console.log('Access Token:', access_token);
           console.log('Refresh Token:', refresh_token);
-          navigate('/app');
+          // navigate('/app');
         })
         .catch((error) => {
           console.error('Token exchange failed:', error);
         });
     }
-  }, [location, navigate]);
+  });
 
   return <div>Processing...</div>;
 };
