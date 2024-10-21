@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import {
   Container,
   Box,
@@ -10,8 +9,10 @@ import {
   Button,
   styled,
 } from '@mui/material';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const CenteredTypography = styled(Typography)(({ theme }) => ({
+export const CenteredTypography = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
   marginBottom: theme.spacing(2),
   display: 'flex',
@@ -20,7 +21,18 @@ const CenteredTypography = styled(Typography)(({ theme }) => ({
 }));
 
 export const Home: React.FC = () => {
-  const handleLoginClick = async () => {};
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const errorMessage = location.state?.error || null;
+
+  const handleLoginClick = async () => {
+    if (!isAuthenticated) {
+      loginWithRedirect();
+    } else {
+      navigate('/app');
+    }
+  };
   return (
     <Container maxWidth="md">
       <Box
@@ -28,6 +40,7 @@ export const Home: React.FC = () => {
         display="flex"
         alignContent="center"
         justifyContent="center"
+        flexDirection="column"
       >
         <Card sx={{ mt: 4, maxWidth: '600' }}>
           <CardMedia
@@ -54,8 +67,12 @@ export const Home: React.FC = () => {
             </Box>
           </CardContent>
         </Card>
+        {errorMessage && (
+          <CenteredTypography color="red" variant="h5">
+            {errorMessage}
+          </CenteredTypography>
+        )}
       </Box>
-      <Outlet />
     </Container>
   );
 };
