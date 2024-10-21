@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
+import './global.css';
 import { App } from './App';
 import { Home } from './Home';
 import { ErrorPage } from './ErrorPage';
