@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { AppBar, Box, Toolbar, Button, Typography } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
+import { MessageFetcher } from './MessageFetcher';
 
 export const App: React.FC = () => {
   const { user, logout } = useAuth0();
@@ -26,11 +27,11 @@ export const App: React.FC = () => {
         </Toolbar>
       </AppBar>
       <Box display="flex" flexDirection="row">
-        <Box bgcolor="red" flexGrow="1" height="100vh">
-          <Typography>Box 1</Typography>
+        <Box width="50vw" height="100vh">
+          <MessageFetcher title="Dad Jokes" messageType="DadJoke" />
         </Box>
-        <Box bgcolor="blue" flexGrow="1" height="100vh">
-          <Typography>Box 2</Typography>
+        <Box width="50vw" height="100vh">
+          <MessageFetcher title="Quote of the day" messageType="Quote" />
         </Box>
       </Box>
     </Box>
