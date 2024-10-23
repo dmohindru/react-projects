@@ -26,11 +26,11 @@ export const App: React.FC = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Box display="flex" flexDirection="row">
-        <Box width="50vw" height="100vh" borderRight={1}>
+      <Box display="flex" flexDirection="row" flexGrow={1}>
+        <Box display="flex" width="50vw" borderRight={1}>
           <MessageFetcher title="Dad Jokes" messageType="DadJoke" />
         </Box>
-        <Box width="50vw" height="100vh" borderLeft={1}>
+        <Box display="flex" width="50vw" borderLeft={1}>
           <MessageFetcher title="Quote of the day" messageType="Quote" />
         </Box>
       </Box>

@@ -72,7 +72,7 @@ export const MessageFetcher: React.FC<MessageFetcherProps> = ({
     }
   };
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
+    <Box display="flex" flexDirection="column" alignItems="center" flexGrow={1}>
       <Typography
         variant="h4"
         display="flex"
@@ -82,9 +82,13 @@ export const MessageFetcher: React.FC<MessageFetcherProps> = ({
       >
         {title}
       </Typography>
-      <TimedButton initialTime={5} label="Fetch" onClick={fetchMessage} />
-      {loading && <CircularProgress />}
-      {error && <Alert severity="error">{error}</Alert>}
+      <TimedButton initialTime={10} label="Fetch" onClick={fetchMessage} />
+      {loading && <CircularProgress sx={{ mt: 2 }} />}
+      {error && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
+      )}
       {message && (
         <Typography
           variant="h6"
@@ -97,7 +101,13 @@ export const MessageFetcher: React.FC<MessageFetcherProps> = ({
         </Typography>
       )}
       {fetchTime && (
-        <Typography variant="body1">{`fetched at: ${formatDate(fetchTime)}`}</Typography>
+        <Box flexGrow={1} display="flex" alignItems="flex-end">
+          <Typography
+            variant="body1"
+            fontWeight="bold"
+            mb={4}
+          >{`fetched at: ${formatDate(fetchTime)}`}</Typography>
+        </Box>
       )}
     </Box>
   );

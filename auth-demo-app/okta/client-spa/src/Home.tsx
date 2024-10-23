@@ -43,29 +43,35 @@ export const Home: React.FC = () => {
         flexDirection="column"
       >
         <Card sx={{ mt: 4, maxWidth: '600' }}>
-          <CardMedia
-            sx={{ height: 500, width: 500 }}
-            image="/app-logo.jpg"
-            title="app-logo"
-          />
-          <CardContent sx={{ border: 1 }}>
-            <Box display="flex" flexDirection="column">
-              <CenteredTypography variant="h4">
-                Welcome to WiseCrack!
-              </CenteredTypography>
-              <CenteredTypography variant="body1">
-                Your daily does of humor and wisdom
-              </CenteredTypography>
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-around"
-              >
-                <Button onClick={handleLoginClick}>Login</Button>
-                <Button disabled>Register</Button>
+          <Box display="flex" flexDirection="column" alignItems="center">
+            <CardMedia
+              sx={{
+                height: 500,
+                width: 500,
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+              }}
+              image="/app-logo.jpg"
+              title="app-logo"
+            />
+            <CardContent sx={{ width: '100%' }}>
+              <Box display="flex" flexDirection="column">
+                <CenteredTypography variant="h4">
+                  Welcome to WiseCrack!
+                </CenteredTypography>
+                <CenteredTypography variant="body1">
+                  Your daily does of humor and wisdom
+                </CenteredTypography>
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="space-around"
+                >
+                  <Button onClick={handleLoginClick}>Login</Button>
+                </Box>
               </Box>
-            </Box>
-          </CardContent>
+            </CardContent>
+          </Box>
         </Card>
         {errorMessage && (
           <CenteredTypography color="red" variant="h5">
