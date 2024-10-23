@@ -6,5 +6,5 @@ spring:
 okta:
   oauth2:
     issuer: https://dev-tjdq4avw0xcms7ni.us.auth0.com/
-    audience: ${okta.oauth2.issuer}api/v2/
+    audience: http://wisecrack.dmohindru.dev
 
