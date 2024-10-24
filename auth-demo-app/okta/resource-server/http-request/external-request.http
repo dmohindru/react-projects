@@ -1,0 +1,6 @@
+### Request Dad Jokes
+GET https://icanhazdadjoke.com/
+Accept: application/json
+
+### Request Quote of the day
+GET https://zenquotes.io/api/random
