@@ -1,5 +1,6 @@
 package dev.dmohindru.messageapi.config
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -12,7 +13,10 @@ import org.springframework.web.filter.CorsFilter
 
 @EnableWebSecurity
 @Configuration
-class SecurityConfig {
+class SecurityConfig(
+    @Value("\${client-origin}")
+    val clientOrigin: String
+) {
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
@@ -34,7 +38,7 @@ class SecurityConfig {
         config.allowCredentials = true
 
         // Specify which origins should be allowed to access the resource server
-        config.addAllowedOrigin("http://localhost:3000")
+        config.addAllowedOrigin(clientOrigin)
 
         // Specify which HTTP methods are allowed
         config.addAllowedMethod("*")

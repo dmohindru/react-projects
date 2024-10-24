@@ -1,8 +1,10 @@
 import { Alert, Box, Typography, CircularProgress } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { TimedButton } from './TimedButton';
+
+const BASE_API_URL = process.env.REACT_APP_MESSAGE_API_BASE_URL;
 
 type MessageFetcherProps = {
   title: string;
@@ -40,11 +42,17 @@ export const MessageFetcher: React.FC<MessageFetcherProps> = ({
   const [message, setMessage] = useState<string | null>(null);
   const [fetchTime, setFetchTime] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (!BASE_API_URL) {
+      throw new Error('Base API url not set');
+    }
+  });
+
   const fetchMessage = async () => {
     const apiUrl =
       messageType === 'DadJoke'
-        ? 'http://localhost:8081/api/v1/dadjoke'
-        : 'http://localhost:8081/api/v1/quote';
+        ? `${BASE_API_URL}api/v1/dadjoke`
+        : `${BASE_API_URL}api/v1/quote`;
     setLoading(true);
     setError(null);
     setMessage(null);
