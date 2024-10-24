@@ -1,0 +1,14 @@
+### Request access token from auth server
+POST http://localhost:8080/oauth2/token
+Authorization: Basic YmFja2VuZC1jbGllbnQ6cGFzc3dvcmQ=
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=read write
+
+### Request Dad Joke
+GET http://localhost:8081/api/v1/dadjoke
+Authorization: Bearer <Access Token>
+
+### Request Quote of the day
+GET http://localhost:8081/api/v1/quote
+Authorization: Bearer <Access Token>
