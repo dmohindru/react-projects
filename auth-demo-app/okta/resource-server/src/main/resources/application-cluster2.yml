@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: resource-server-demo
+okta:
+  oauth2:
+    issuer: https://dev-tjdq4avw0xcms7ni.us.auth0.com/
+    audience: http://wisecrack.dmohindru.dev
+
+client-origin: http://k3s-cluster2-controlplane:3000

@@ -16,7 +16,7 @@ COPY src ./src
 RUN ./gradlew bootJar
 
 # Stage 2: Create the final image
-FROM gradle:8.3-jdk17-alpine
+FROM openjdk:17-alpine
 WORKDIR /app
 
 # Copy the built application JAR from the previous stage
