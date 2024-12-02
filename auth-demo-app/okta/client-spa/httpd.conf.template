@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+    ServerName react-app.local
+    DocumentRoot "/usr/local/apache2/htdocs"
+
+    # Serve static files
+    <Directory "/usr/local/apache2/htdocs">
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    # Alias for dynamic config.json
+    Alias /config.json {{CONFIG_JSON_PATH}}
+
+    # Logging
+    ErrorLog "/usr/local/apache2/logs/error.log"
+    CustomLog "/usr/local/apache2/logs/access.log" common
+</VirtualHost>

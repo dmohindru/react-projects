@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { TimedButton } from './TimedButton';
-
-const BASE_API_URL = process.env.REACT_APP_MESSAGE_API_BASE_URL;
+import { getConfig } from './config';
 
 type MessageFetcherProps = {
   title: string;
@@ -41,18 +40,19 @@ export const MessageFetcher: React.FC<MessageFetcherProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [fetchTime, setFetchTime] = useState<string | null>(null);
+  const baseApiUrl = getConfig('messageApiBaseUrl');
 
   useEffect(() => {
-    if (!BASE_API_URL) {
+    if (!baseApiUrl) {
       throw new Error('Base API url not set');
     }
-  });
+  }, [baseApiUrl]);
 
   const fetchMessage = async () => {
     const apiUrl =
       messageType === 'DadJoke'
-        ? `${BASE_API_URL}api/v1/dadjoke`
-        : `${BASE_API_URL}api/v1/quote`;
+        ? `${baseApiUrl}api/v1/dadjoke`
+        : `${baseApiUrl}api/v1/quote`;
     setLoading(true);
     setError(null);
     setMessage(null);

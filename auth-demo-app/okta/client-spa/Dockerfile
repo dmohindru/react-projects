@@ -23,8 +23,15 @@ FROM httpd:2.4
 # Copy the build directory from the previous stage to the Apache document root
 COPY --from=build /app/build/ /usr/local/apache2/htdocs/
 
+# Copy all environment-specific config files
+COPY ./configs /etc/react-app/
+
 # Expose port 80
 EXPOSE 80
 
+# Entrypoint script
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 # Start Apache server in the foreground
-CMD ["httpd-foreground"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

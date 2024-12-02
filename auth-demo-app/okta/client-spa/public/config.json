@@ -1,0 +1,5 @@
+{
+  "messageApiBaseUrl": "http://localhost:8081/",
+  "auth0Domain": "dev-tjdq4avw0xcms7ni.us.auth0.com",
+  "auth0ClientId": "ejP3gU99paglvnFyrnPiXeIlWapdhVPX"
+}
