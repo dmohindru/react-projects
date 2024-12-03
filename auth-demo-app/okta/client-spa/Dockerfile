@@ -30,7 +30,7 @@ COPY ./configs /etc/react-app/
 EXPOSE 80
 
 # Entrypoint script
-COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Start Apache server in the foreground
