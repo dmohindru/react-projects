@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getConfig } from './config';
 
 export const CenteredTypography = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
@@ -25,6 +26,7 @@ export const Home: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const errorMessage = location.state?.error || null;
+  const envIdentifier = getConfig('identifier');
 
   const handleLoginClick = async () => {
     if (!isAuthenticated) {
@@ -69,6 +71,16 @@ export const Home: React.FC = () => {
                 >
                   <Button onClick={handleLoginClick}>Login</Button>
                 </Box>
+                <Typography
+                  color="gray"
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    my: 1,
+                  }}
+                >
+                  Env Identifier: {envIdentifier}
+                </Typography>
               </Box>
             </CardContent>
           </Box>
