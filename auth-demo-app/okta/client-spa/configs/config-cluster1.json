@@ -1,6 +1,6 @@
 {
-  "messageApiBaseUrl": "http://localhost:8081/",
+  "messageApiBaseUrl": "http://wisecrack-api-service:8081/",
   "auth0Domain": "dev-tjdq4avw0xcms7ni.us.auth0.com",
-  "auth0ClientId": "ejP3gU99paglvnFyrnPiXeIlWapdhVPX",
+  "auth0ClientId": "TZdAfl0xusJkGwQGiI9Gkn87a9aG0cq8",
   "identifier": "cluster1"
 }
