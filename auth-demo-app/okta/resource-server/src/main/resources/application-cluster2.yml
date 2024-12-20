@@ -8,4 +8,4 @@ okta:
     issuer: https://dev-tjdq4avw0xcms7ni.us.auth0.com/
     audience: http://wisecrack.dmohindru.dev
 
-client-origin: http://wisecrack-app.cluster2.local
+client-origin: http://wisecrack-app.cluster2

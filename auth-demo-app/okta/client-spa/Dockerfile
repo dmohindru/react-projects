@@ -26,6 +26,15 @@ COPY --from=build /app/build/ /usr/local/apache2/htdocs/
 # Copy all environment-specific config files
 COPY ./configs /etc/react-app/
 
+# Apache config to support spa client side routing
+COPY ./apache-config/react-app.conf /usr/local/apache2/conf/extra/react-app.conf
+
+# Enable the configuration in httpd.conf
+RUN echo "Include conf/extra/react-app.conf" >> /usr/local/apache2/conf/httpd.conf
+
+# Enable mod_rewrite in Apache
+RUN sed -i '/^#LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
+
 # Expose port 80
 EXPOSE 80
 
